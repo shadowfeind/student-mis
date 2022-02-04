@@ -14,13 +14,20 @@ import {
   putSingleAssignmentReducer,
 } from "./student/assignment/assignment/AssignmentReducers";
 import {
+  getAllOtherOptionsForStudentReducer,
+  getAllStudentAttendanceReducer,
   getAllStudentMonthlyPresentSheetReducer,
+  getBulkAttendanceStudentReducer,
   getEnglishDateReducer,
+  getEnglishDateStudentReducer,
   getListForPresentStudentReducer,
   getListForUpdateStudentPresentReducer,
+  getListStudentAttendanceReducer,
   getListStudentPresentReducer,
   getSubjectOptionsForSelectReducer,
+  getSubjectOptionsForSelectStudentReducer,
   postListStudentPresentReducer,
+  postStudentAttendanceReducer,
 } from "./student/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetReducers";
 import {
   getAllTotalStudentAttendanceReducer,
@@ -201,15 +208,10 @@ updateSingleGuardian : updateSingleGuardianReducer,
   uploadPhoto: uploadPhotoReducer,
   //user profile reducers ends
   //attendance start
-  getAllStudentMonthlyPresentSheet: getAllStudentMonthlyPresentSheetReducer,
-  getSubjectOptionsForSelect: getSubjectOptionsForSelectReducer,
-  getEnglishDate: getEnglishDateReducer,
-  getListStudentPresent: getListStudentPresentReducer,
-  getListForUpdateStudentPresent: getListForUpdateStudentPresentReducer,
-  getListForPresentStudent: getListForPresentStudentReducer,
-  postListStudentPresent: postListStudentPresentReducer,
-  getAllTotalStudentAttendance: getAllTotalStudentAttendanceReducer,
-  getListTotalStudentAttendance: getListTotalStudentAttendanceReducer,
+  getAllStudentAttendance : getAllStudentAttendanceReducer,
+  getListStudentAttendance : getListStudentAttendanceReducer,
+  getAllOtherOptionsForStudent: getAllOtherOptionsForStudentReducer,
+  getEnglishDateStudent : getEnglishDateStudentReducer,
   //attendance end
   //Resources(New Resources Student Reducers)
   getAllNewResourcesStudent: getAllNewResourcesStudentReducer,
