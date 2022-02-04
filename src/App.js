@@ -9,31 +9,31 @@ import {
   ThemeProvider,
 } from "@material-ui/core";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
-const Dashboard = lazy(() => import("./examination/dashboard/Dashboard"));
-const Pid = lazy(() => import("./examination/pid/Pid"));
-const QuickLinks = lazy(() => import("./examination/quickLinks/QuickLinks"));
-const Resources = lazy(() => import("./examination/resources/Resources"));
-const Syllabus = lazy(() => import("./examination/syllabus/Syllabus"));
+const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
+const Pid = lazy(() => import("./student/pid/Pid"));
+const QuickLinks = lazy(() => import("./student/quickLinks/QuickLinks"));
+const Resources = lazy(() => import("./student/resources/Resources"));
+const Syllabus = lazy(() => import("./student/syllabus/Syllabus"));
 const OldQuestions = lazy(() =>
-  import("./examination/oldQuestions/OldQuestions")
+  import("./student/oldQuestions/OldQuestions")
 );
 const AcademicGrading = lazy(() =>
-  import("./examination/academicGrading/AcademicGrading")
+  import("./student/academicGrading/AcademicGrading")
 );
 const ExamDivision = lazy(() =>
-  import("./examination/examDivision/ExamDivision")
+  import("./student/examDivision/ExamDivision")
 );
 const ExamSchedule = lazy(() =>
-  import("./examination/examSchedule/ExamSchedule")
+  import("./student/examSchedule/ExamSchedule")
 );
 const ExamMarkEntry = lazy(() =>
-  import("./examination/examMarkEntry/ExamMarkEntry")
+  import("./student/examMarkEntry/ExamMarkEntry")
 );
 const AssignmentFront = lazy(() =>
-  import("./examination/assignment/AssignmentFront")
+  import("./student/assignment/AssignmentFront")
 );
 const Attendance = lazy(() =>
-  import("./examination/attendance/Attendance")
+  import("./student/attendance/Attendance")
 );
 const theme = createTheme({
   palette: {

@@ -5,14 +5,14 @@ import {
   getSingleAcademicGradingforEditReducer,
   getSingleAcademicGradingReducer,
   updateSingleAcademicGradingReducer,
-} from "./examination/academicGrading/AcademicGradingReducers";
+} from "./student/academicGrading/AcademicGradingReducers";
 import {
   downloadAssignmentReducer,
   getAllAssignmentReducer,
   getAssignmentListReducer,
   getSingleAssignmentReducer,
   putSingleAssignmentReducer,
-} from "./examination/assignment/assignment/AssignmentReducers";
+} from "./student/assignment/assignment/AssignmentReducers";
 import {
   getAllStudentMonthlyPresentSheetReducer,
   getEnglishDateReducer,
@@ -21,40 +21,40 @@ import {
   getListStudentPresentReducer,
   getSubjectOptionsForSelectReducer,
   postListStudentPresentReducer,
-} from "./examination/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetReducers";
+} from "./student/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetReducers";
 import {
   getAllTotalStudentAttendanceReducer,
   getListTotalStudentAttendanceReducer,
-} from "./examination/attendance/totalStudentAttendance/TotalStudentAttendanceReducers";
+} from "./student/attendance/totalStudentAttendance/TotalStudentAttendanceReducers";
 import {
   createExamDivisionReducer,
   getAllExamDivisionReducer,
   getSingleExamDivisionEditReducer,
   getSingleExamDivisionReducer,
   updateSingleExamDivisionReducer,
-} from "./examination/examDivision/ExamDivisionReducers";
+} from "./student/examDivision/ExamDivisionReducers";
 import {
   getAllAcademicStudentExamdataReducer,
   getEventReducer,
   getEventScheduleReducer,
   getExamEntryBulkReducer,
   getExamEntrySearchDataReducer,
-} from "./examination/examMarkEntry/ExamMarkEntryReducers";
+} from "./student/examMarkEntry/ExamMarkEntryReducers";
 
 import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
-} from "./examination/examSchedule/ExamScheduleReducers";
+} from "./student/examSchedule/ExamScheduleReducers";
 import {
   getAllContactAddress,
   getSingleContactAddressReducer,
   updateSingleContactAddressReducer,
-} from "./examination/pid/contactAddress/ContactAddressReducers";
+} from "./student/pid/contactAddress/ContactAddressReducers";
 import {
   getAllContactNumber,
   getSingleContactNumberReducer,
   updateSingleContactNumberReducer,
-} from "./examination/pid/contactNumber/ContactNumberReducers";
+} from "./student/pid/contactNumber/ContactNumberReducers";
 import {
   createSingleEducationReducer,
   educationCreateReducer,
@@ -62,12 +62,12 @@ import {
   getAllEducationCreateReducer,
   getSingleEducationReducer,
   updateSingleEducationReducer,
-} from "./examination/pid/education/EducationReducers";
+} from "./student/pid/education/EducationReducers";
 import {
   getAllEmail,
   getSingleEmailReducer,
   updateSingleEmailReducer,
-} from "./examination/pid/email/EmailReducers";
+} from "./student/pid/email/EmailReducers";
 import {
   createSingleFamilyMemberReducer,
   familyMemberCreateReducer,
@@ -76,12 +76,12 @@ import {
   getSingleCreateFamilyMemberReducer,
   getSingleFamilyMemberReducer,
   updateSingleFamilyMemberReducer,
-} from "./examination/pid/familyMember/FamilyMemberReducers";
+} from "./student/pid/familyMember/FamilyMemberReducers";
 import {
   getAllGuardian,
   getSingleGuardianReducer,
   updateSingleGuardianReducer,
-} from "./examination/pid/gurdian/GuardianReducers";
+} from "./student/pid/gurdian/GuardianReducers";
 import {
   createSingleHobbyReducer,
   getAllHobby,
@@ -89,7 +89,7 @@ import {
   getSingleHobbyReducer,
   hobbyCreateReducer,
   updateSingleHobbyReducer,
-} from "./examination/pid/hobby/HobbyReducers";
+} from "./student/pid/hobby/HobbyReducers";
 import {
   createSingleJobHistoryReducer,
   getAllJobHistory,
@@ -97,12 +97,12 @@ import {
   getSingleJobHistoryReducer,
   jobHistoryCreateReducer,
   updateSingleJobHistoryReducer,
-} from "./examination/pid/jobHistory/JobHistoryReducers";
+} from "./student/pid/jobHistory/JobHistoryReducers";
 import {
   getAllPersonalInformation,
   getSinglePersonalInformationReducer,
   updateSinglePersonalInformationReducer,
-} from "./examination/pid/personalinformation/PersonalInformationReducers";
+} from "./student/pid/personalinformation/PersonalInformationReducers";
 import {
   createSingleSkillReducer,
   getAllSkill,
@@ -110,7 +110,7 @@ import {
   getSingleSkillReducer,
   skillCreateReducer,
   updateSingleSkillReducer,
-} from "./examination/pid/skill/SkillReducers";
+} from "./student/pid/skill/SkillReducers";
 import {
   createSingleTrainingReducer,
   getAllTraining,
@@ -118,12 +118,12 @@ import {
   getSingleTrainingReducer,
   trainingCreateReducer,
   updateSingleTrainingReducer,
-} from "./examination/pid/training/TrainingReducers";
-import { getAllUploadPhoto } from "./examination/pid/uploadPhoto/UploadPhotoReducers";
+} from "./student/pid/training/TrainingReducers";
+import { getAllUploadPhoto } from "./student/pid/uploadPhoto/UploadPhotoReducers";
 import {
   getAllNewResourcesStudentReducer,
   getNewResourcesStudentListReducer,
-} from "./examination/resources/newResourcesStudent/NewResourcesStudentReducers";
+} from "./student/resources/newResourcesStudent/NewResourcesStudentReducers";
 
 export const reducers = combineReducers({
   getAllAcademicStudentExamdata: getAllAcademicStudentExamdataReducer,
