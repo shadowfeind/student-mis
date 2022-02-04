@@ -30,7 +30,7 @@ export const getAllContactNumberAction = () => async (dispatch) => {
       dispatch({ type: GET_SINGLE_CONTACTNUMBER_REQUEST });
   
       const { data } = await axios.get(
-        `${API_URL}/api/GetSingleEditContactNo`,tokenConfig
+        `${API_URL}/api/PID_ContactNumber/GetSingleEditContactNo`,tokenConfig
       );
   
       dispatch({ type: GET_SINGLE_CONTACTNUMBER_SUCCESS, payload: data });

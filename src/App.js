@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
-const Pid = lazy(() => import("./student/pid/Pid"));
+const Pid = lazy(() => import("./student/pid/UserProfile"));
 const QuickLinks = lazy(() => import("./student/quickLinks/QuickLinks"));
 const Resources = lazy(() => import("./student/resources/Resources"));
 const Syllabus = lazy(() => import("./student/syllabus/Syllabus"));

@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core";
 
-
 const PersonalInformation = lazy(() =>
   import("./personalinformation/PersonalInformation")
 );
@@ -56,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Pid = () => {
+const UserProfile = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -180,4 +179,4 @@ const Pid = () => {
   );
 };
 
-export default Pid;
+export default UserProfile;

@@ -35,7 +35,7 @@ export const getAllSkillCreateAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_SKILL_CREATE_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/api/GetSingleCreatePIDSkill
+      `${API_URL}/api/PID_Skill/GetSingleCreatePIDSkill
       `,tokenConfig
     );
 
@@ -59,7 +59,6 @@ export const createSingleSkillAction = (skill) => async (dispatch) => {
     //     "Content-Type": "application/json",
     //   },
     // };
-
     const { data } = await axios.put(
       `${API_URL}/api/PID_Skill/Put`,
       jsonData,

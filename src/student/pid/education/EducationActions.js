@@ -64,7 +64,7 @@ export const getAllEducationCreateAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_EDUCATION_CREATE_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/api/GetSingleCreatePIDEducation`,tokenConfig
+      `${API_URL}/api/PID_Education/GetSingleCreatePIDEducation`,tokenConfig
     );
 
     dispatch({ type: GET_ALL_EDUCATION_CREATE_SUCCESS, payload: data });
@@ -93,6 +93,7 @@ export const educationCreateAction = (educationCreate) => async (dispatch) => {
       jsonData,
       tokenConfig
     );
+    
 
     dispatch({ type: EDUCATION_CREATE_SUCCESS, payload: data });
   } catch (error) {

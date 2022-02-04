@@ -69,6 +69,7 @@ import {
   updateSingleEmailReducer,
 } from "./student/pid/email/EmailReducers";
 import {
+  createFamilyMemberReducer,
   createSingleFamilyMemberReducer,
   familyMemberCreateReducer,
   getAllFamilyMember,
@@ -119,7 +120,7 @@ import {
   trainingCreateReducer,
   updateSingleTrainingReducer,
 } from "./student/pid/training/TrainingReducers";
-import { getAllUploadPhoto } from "./student/pid/uploadPhoto/UploadPhotoReducers";
+import { getAllUploadPhoto, uploadPhotoReducer } from "./student/pid/uploadPhoto/UploadPhotoReducers";
 import {
   getAllNewResourcesStudentReducer,
   getNewResourcesStudentListReducer,
@@ -143,58 +144,62 @@ export const reducers = combineReducers({
   updateSingleExamDivision: updateSingleExamDivisionReducer,
   getAllExamScheduleInitialData: getAllExamScheduleInitialDataReducer,
   getExamScheduleList: getExamScheduleListReducer,
+ //user profile reducers starts
   //PID PersonalInformation
   getAllPersonalInformation: getAllPersonalInformation,
   getSinglePersonalInformation: getSinglePersonalInformationReducer,
-  updateSinglePersonalInformation: updateSinglePersonalInformationReducer,
+  updateSinglePersonalInformation : updateSinglePersonalInformationReducer,
   //PID ContactAddress
-  getAllContactAddress: getAllContactAddress,
+  getAllContactAddress : getAllContactAddress,
   getSingleContactAddress: getSingleContactAddressReducer,
   updateSingleContactAddress: updateSingleContactAddressReducer,
-  //PID ContactNumber
+  //PiD Contactnumber
   getAllContactNumber: getAllContactNumber,
   getSingleContactNumber: getSingleContactNumberReducer,
-  updateSingleContactNumber: updateSingleContactNumberReducer,
+  updateSingleContactNumber : updateSingleContactNumberReducer,
   //PID Education
   getAllEducation: getAllEducation,
   getAllEducationCreate: getAllEducationCreateReducer,
-  createSingleEducation: createSingleEducationReducer,
-  educationCreate: educationCreateReducer,
+  createSingleEducation : createSingleEducationReducer,
+  educationCreate : educationCreateReducer,
   //PID Email
   getAllEmail: getAllEmail,
   getSingleEmail: getSingleEmailReducer,
   updateSingleEmail: updateSingleEmailReducer,
+ //Reducer Ends
   //PID FamilyMember
   getAllFamilyMember: getAllFamilyMember,
-  getAllFamilyMemberCreate: getAllFamilyMemberCreateReducer,
-  createSingleFamilyMember: createSingleFamilyMemberReducer,
-  familyMemberCreate: familyMemberCreateReducer,
-  //PID Guardian
-  getAllGuardian: getAllGuardian,
-  getSingleGuardian: getSingleGuardianReducer,
-  updateSingleGuardian: updateSingleGuardianReducer,
+  getSingleFamilyMember :getSingleFamilyMemberReducer,
+  updateSingleFamilyMember : updateSingleFamilyMemberReducer,
+createFamilyMember : createFamilyMemberReducer,
+getAllFamilyMemberCreate:getAllFamilyMemberCreateReducer,
+//PID Guardian
+getAllGuardian: getAllGuardian,
+getSingleGuardian: getSingleGuardianReducer,
+updateSingleGuardian : updateSingleGuardianReducer,
   //PID Hobby
-  getAllHobby: getAllHobby,
-  getAllHobbyCreate: getAllHobbyCreateReducer,
+  getAllHobby : getAllHobby,
+  getAllHobbyCreate : getAllHobbyCreateReducer,
   createSingleHobby: createSingleHobbyReducer,
-  hobbyCreate: hobbyCreateReducer,
+  hobbyCreate : hobbyCreateReducer,
   //PID JobHistory
   getAllJobHistory: getAllJobHistory,
   getAllJobHistoryCreate: getAllJobHistoryCreateReducer,
   createSingleJobHistory: createSingleJobHistoryReducer,
-  jobHistoryCreate: jobHistoryCreateReducer,
+  jobHistoryCreate : jobHistoryCreateReducer,
   //PID Skill
-  getAllSkill: getAllSkill,
+  getAllSkill : getAllSkill,
   getAllSkillCreate: getAllSkillCreateReducer,
-  createSingleSkill: createSingleSkillReducer,
+  createSingleSkill : createSingleSkillReducer,
   skillCreate: skillCreateReducer,
   //PID Training
-  getAllTraining: getAllTraining,
-  getAllTrainingCreate: getAllTrainingCreateReducer,
+  getAllTraining : getAllTraining,
+  getAllTrainingCreate : getAllTrainingCreateReducer,
   createSingleTraining: createSingleTrainingReducer,
   trainingCreate: trainingCreateReducer,
-  //PID UploadPhoto
-  getAllUploadPhoto: getAllUploadPhoto,
+  //PID uploadPhoto
+  uploadPhoto: uploadPhotoReducer,
+  //user profile reducers ends
   //attendance start
   getAllStudentMonthlyPresentSheet: getAllStudentMonthlyPresentSheetReducer,
   getSubjectOptionsForSelect: getSubjectOptionsForSelectReducer,
