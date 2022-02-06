@@ -17,8 +17,6 @@ import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
 import { GET_ALL_NEW_SOURCES_STUDENT_RESET, GET_NEW_SOURCES_STUDENT_LIST_RESET } from "./NewResourcesStudentConstant";
-import {GET_EVENT_RESET} from "../../examMarkEntry/ExamMarkEntryConstants";
-import { getEventAction } from "../../examMarkEntry/ExamMarkEntryActions";
 import { getAllNewResourcesStudentAction, getNewResourcesStudentListAction } from "./NewResourcesStudentActions";
 import NewResourcesStudentTableCollapse from "./NewResourcesStudentTableCollapse";
 

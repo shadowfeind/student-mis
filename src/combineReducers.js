@@ -40,13 +40,6 @@ import {
   getSingleExamDivisionReducer,
   updateSingleExamDivisionReducer,
 } from "./student/examDivision/ExamDivisionReducers";
-import {
-  getAllAcademicStudentExamdataReducer,
-  getEventReducer,
-  getEventScheduleReducer,
-  getExamEntryBulkReducer,
-  getExamEntrySearchDataReducer,
-} from "./student/examMarkEntry/ExamMarkEntryReducers";
 
 import {
   getAllExamScheduleInitialDataReducer,
@@ -134,12 +127,7 @@ import {
 } from "./student/resources/newResourcesStudent/NewResourcesStudentReducers";
 
 export const reducers = combineReducers({
-  getAllAcademicStudentExamdata: getAllAcademicStudentExamdataReducer,
-  getEvent: getEventReducer,
-  getEventSchedule: getEventScheduleReducer,
-  getExamEntrySearchData: getExamEntrySearchDataReducer,
-  getExamEntryBulk: getExamEntryBulkReducer,
-  academicGrading: getAllAcademicGradingReducer,
+   academicGrading: getAllAcademicGradingReducer,
   getSingleAcademicGrading: getSingleAcademicGradingReducer,
   createAcademicGrading: createAcademicGradingReducer,
   getSingleAcademicGradingforEdit: getSingleAcademicGradingforEditReducer,

@@ -26,9 +26,7 @@ const ExamDivision = lazy(() =>
 const ExamSchedule = lazy(() =>
   import("./student/examSchedule/ExamSchedule")
 );
-const ExamMarkEntry = lazy(() =>
-  import("./student/examMarkEntry/ExamMarkEntry")
-);
+
 const AssignmentFront = lazy(() =>
   import("./student/assignment/AssignmentFront")
 );
@@ -65,7 +63,6 @@ const App = () => {
           <Suspense fallback={<div></div>}>
             <Route path={"/exam-division"} component={ExamDivision} />
             <Route path={"/exam-schedule"} component={ExamSchedule} />
-            <Route path={"/exam-mark-entry"} component={ExamMarkEntry} />
             <Route path={"/pid"} component={Pid} />
             <Route path={"/quick-links"} component={QuickLinks} />
             <Route path={"/resources"} component={Resources} />

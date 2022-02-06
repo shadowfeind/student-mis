@@ -21,8 +21,6 @@ import {
   getAllExamScheduleInitialDataAction,
   getExamScheduleListAction,
 } from "./ExamScheduleActions";
-import { getEventAction } from "../examMarkEntry/ExamMarkEntryActions";
-import { GET_EVENT_RESET } from "../examMarkEntry/ExamMarkEntryConstants";
 import ExamScheduleTableCollapse from "./ExamScheduleTableCollapse";
 
 //event api came from exam mark entry
@@ -62,10 +60,11 @@ const ExamSchedule = () => {
   const [academicYearDdl, setAcademicYearDdl] = useState([]);
   const [programDdl, setProgramDdl] = useState([]);
   const [ddlEvent, setDdlEvent] = useState([]);
-  const [programValue, setProgramValue] = useState(6);
-  const [classId, setClassId] = useState(null);
-  const [acaYear, setAcaYear] = useState(55);
-  const [event, setEvent] = useState(null);
+  const [programValue, setProgramValue] = useState("");
+  const [classId, setClassId] = useState("");
+  const [acaYear, setAcaYear] = useState("");
+  const [event, setEvent] = useState("");
+  const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -111,18 +110,10 @@ const ExamSchedule = () => {
   const { examScheduleInitialData, error: examScheduleInitialDataError } =
     useSelector((state) => state.getAllExamScheduleInitialData);
 
-  const { allEvents, success: getEventSuccess } = useSelector(
-    (state) => state.getEvent
-  );
 
   const { examScheduleList } = useSelector(
     (state) => state.getExamScheduleList
   );
-
-  if (getEventSuccess) {
-    setDdlEvent(allEvents);
-    dispatch({ type: GET_EVENT_RESET });
-  }
 
   if (examScheduleInitialDataError) {
     setNotify({
@@ -145,6 +136,8 @@ const ExamSchedule = () => {
       setAcademicYearDdl(
         examScheduleInitialData.searchFilterModel.ddlAcademicYear
       );
+      setDdlEvent( examScheduleInitialData.searchFilterModel.ddlEvent
+        );
     }
   }, [examScheduleInitialData, dispatch]);
 
@@ -153,29 +146,29 @@ const ExamSchedule = () => {
       setTableData(examScheduleList.dbModelLst);
     }
   }, [examScheduleList]);
-  const handleClassIdChange = (value) => {
-    setClassId(value);
-    dispatch(getEventAction(acaYear, programValue, value));
-  };
 
-  const handleYearChange = (value) => {
-    setAcaYear(value);
-    if (classId) {
-      dispatch(getEventAction(value, programValue, classId));
-    }
-  };
+  const validate=()=>{
+    let temp ={};
+    temp.acaYear = !acaYear ? "This feild is required" : "";
+    temp.programValue = !programValue ? "This feild is required" : "";
+    temp.classId = !classId ? "This feild is required" : "";
+    temp.event = !event ? "This feild is required" : "";
+    
+    setErrors({ ...temp });
+    return Object.values(temp).every((x) => x === "");
+  }
 
   const handleExamScheduleSearch = () => {
-    if ((acaYear, programValue, classId, event)) {
+    if (validate()) {
       dispatch(
         getExamScheduleListAction(acaYear, programValue, classId, event)
       );
     }
   };
 
-  const updateExamSchedule = () => {
-    setOpenPopup(true);
-  };
+  // const updateExamSchedule = () => {
+  //   setOpenPopup(true);
+  // };
 
   return (
     <>
@@ -187,8 +180,9 @@ const ExamSchedule = () => {
                 name="Academic Year"
                 label="Academic Year"
                 value={acaYear}
-                onChange={(e) => handleYearChange(e.target.value)}
+                onChange={(e) => setAcaYear(e.target.value)}
                 options={academicYearDdl}
+                errors ={errors.acaYear}
               />
             </Grid>
             <Grid item xs={3}>
@@ -196,8 +190,10 @@ const ExamSchedule = () => {
                 name="Program/Faculty"
                 label="Program/Faculty"
                 value={programValue}
+                onChange={(e) => setProgramValue(e.target.value)}
                 // onChange={handleInputChange}
                 options={programDdl}
+                errors ={errors.programValue}
               />
             </Grid>
             <Grid item xs={3}>
@@ -205,8 +201,9 @@ const ExamSchedule = () => {
                 name="Classes"
                 label="Classes"
                 value={classId}
-                onChange={(e) => handleClassIdChange(e.target.value)}
+                onChange={(e) => setClassId(e.target.value)}
                 options={ddlClass}
+                errors ={errors.classId}
               />
             </Grid>
 
@@ -217,6 +214,7 @@ const ExamSchedule = () => {
                 value={event}
                 onChange={(e) => setEvent(e.target.value)}
                 options={ddlEvent ? ddlEvent : test}
+                errors ={errors.event}
               />
             </Grid>
 
