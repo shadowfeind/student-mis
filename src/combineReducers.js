@@ -33,6 +33,7 @@ import {
   getAllTotalStudentAttendanceReducer,
   getListTotalStudentAttendanceReducer,
 } from "./student/attendance/totalStudentAttendance/TotalStudentAttendanceReducers";
+import { getAllClassScheduleReducer } from "./student/classSchedule/ClassScheduleReducer";
 import {
   createExamDivisionReducer,
   getAllExamDivisionReducer,
@@ -45,6 +46,7 @@ import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
+import { getAllOldQuestionsReducer } from "./student/oldQuestions/OldQuestionsReducers";
 import {
   getAllContactAddress,
   getSingleContactAddressReducer,
@@ -210,4 +212,8 @@ updateSingleGuardian : updateSingleGuardianReducer,
   getSingleAssignment: getSingleAssignmentReducer,
   putSingleAssignment: putSingleAssignmentReducer,
   downloadAssignment: downloadAssignmentReducer,
+  //ClassSchedule Reducer
+  getAllClassSchedule : getAllClassScheduleReducer,
+  //OldQuestions Reducers
+  getAllOldQuestions : getAllOldQuestionsReducer,
 });
