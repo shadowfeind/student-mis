@@ -46,7 +46,7 @@ import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
-import { getAllOldQuestionsReducer } from "./student/oldQuestions/OldQuestionsReducers";
+import { getAllOldQuestionsReducer, getListOldQuestionsStudentReducer, getSubjectOptionsForOldQuestionsReducer } from "./student/oldQuestions/OldQuestionsReducers";
 import {
   getAllContactAddress,
   getSingleContactAddressReducer,
@@ -216,4 +216,6 @@ updateSingleGuardian : updateSingleGuardianReducer,
   getAllClassSchedule : getAllClassScheduleReducer,
   //OldQuestions Reducers
   getAllOldQuestions : getAllOldQuestionsReducer,
+  getSubjectOptionsForOldQuestions : getSubjectOptionsForOldQuestionsReducer,
+  getListOldQuestionsStudent : getListOldQuestionsStudentReducer,
 });

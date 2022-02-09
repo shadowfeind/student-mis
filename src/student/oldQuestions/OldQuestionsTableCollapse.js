@@ -26,13 +26,13 @@ const OldQuestionsTableCollapse =({
 
     const classes = useStyles();
     return (
-        <TableRow key={item.$id}>
-            <TableCell>{item.Name}</TableCell>
-            <TableCell>{item.Description}</TableCell>
-            <TableCell>{item.PostedBy}</TableCell>
-            <TableCell>{item.PostedDate}</TableCell>
-            <TableCell>{item.IsActive}</TableCell>
-        </TableRow>
+        <TableRow>
+      <TableCell>{item.OldQuestionName}</TableCell>
+      <TableCell>{item.OldQuestionDescription}</TableCell>
+      <TableCell>{item.FirstName} {item.LastName}</TableCell>
+      <TableCell>{item.Created_On}</TableCell>
+      <TableCell>{item.IsActive ? "active" : "notactive"}</TableCell>
+      </TableRow>
     );
 
 }
