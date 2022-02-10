@@ -3,6 +3,9 @@ import { API_URL,tokenConfig } from "../../../constants";
 import { GET_ALL_PERSONALINFORMATION_FAIL,
      GET_ALL_PERSONALINFORMATION_REQUEST,
       GET_ALL_PERSONALINFORMATION_SUCCESS, 
+      GET_LIST_PERSONALINFORMATION_FAIL, 
+      GET_LIST_PERSONALINFORMATION_REQUEST, 
+      GET_LIST_PERSONALINFORMATION_SUCCESS, 
       GET_SINGLE_PERSONALINFORMATION_FAIL, 
       GET_SINGLE_PERSONALINFORMATION_REQUEST,
       GET_SINGLE_PERSONALINFORMATION_SUCCESS,
@@ -42,6 +45,24 @@ export const getAllPersonalInformationAction = () => async (dispatch) => {
       });
     }
   };
+
+  export const getListPersonalInformationAction = () => async (dispatch) => {
+    try {
+      dispatch({ type: GET_LIST_PERSONALINFORMATION_REQUEST });
+  
+      const { data } = await axios.get(
+        `${API_URL}/api/PID_PersonalInformation/GetListPersonallInformation?searchKey=1`,tokenConfig
+      );
+  
+      dispatch({ type: GET_LIST_PERSONALINFORMATION_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: GET_LIST_PERSONALINFORMATION_FAIL,
+        payload: error.message ? error.message : error.Message,
+      });
+    }
+  };
+
 
   export const updateSinglePersonalInformationAction = (personalInformation) => async (dispatch) => {
     try {

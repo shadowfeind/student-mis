@@ -12,6 +12,9 @@ import {
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+import { useDispatch } from "react-redux";
+import { downloadNewResourcesAction } from "./NewResourcesStudentActions";
 
 const useStyles = makeStyles({
   button: {
@@ -27,33 +30,28 @@ const NewResourcesStudentTableCollapse = ({
   updateCollegeHandler,
   deleteCollegeHandler,
 }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
-
+  const downloadHandler = (id) => {
+    dispatch(downloadNewResourcesAction(id));
+  };
   return (
     <TableRow>
-      <TableCell>{item.ResourceName}</TableCell>
-      <TableCell>{item.ResourceDescription}</TableCell>
+      <TableCell>{item.CourseName}</TableCell>
+      <TableCell>{item.CourseDescription}</TableCell>
       <TableCell>{item.PostedBy}</TableCell>
       <TableCell>{item.EffectiveForm}</TableCell>
       <TableCell>{item.isActive}</TableCell>
-      {/* <TableCell>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={() => updateCollegeHandler(item.IDNewResourcesStudent)}
-        >
-          <EditIcon style={{ fontSize: 12 }} />
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-          onClick={() => deleteCollegeHandler(item.IDNewResourcesStudent)}
-        >
-          <DeleteIcon style={{ fontSize: 12 }} />
-        </Button>
-      </TableCell> */}
+      <TableCell>
+          <Button
+            variant="contained"
+            color="default"
+            className={classes.button}
+            onClick={() => downloadHandler(item.Id)}
+          >
+            <CloudDownloadIcon style={{ fontSize: 12 }} />
+          </Button>
+          </TableCell>
     </TableRow>
   );
 };

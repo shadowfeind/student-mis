@@ -1,6 +1,9 @@
 import axios from "axios";
 import { API_URL, tokenConfig } from "../../constants";
 import {
+  DOWNLOAD_OLD_QUESTIONS_FAIL,
+  DOWNLOAD_OLD_QUESTIONS_REQUEST,
+  DOWNLOAD_OLD_QUESTIONS_SUCCESS,
   GET_ALL_OLD_QUESTIONS_FAIL,
   GET_ALL_OLD_QUESTIONS_REQUEST,
   GET_ALL_OLD_QUESTIONS_SUCCESS,
@@ -78,3 +81,22 @@ export const getListOldQuestionsStudentAction =
       });
     }
   };
+
+  export const downloadOldQuestionsAction = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: DOWNLOAD_OLD_QUESTIONS_REQUEST });
+  
+      const test = `${API_URL}/api/OldQuestionStudent/DownloadOldQuestion/${id}`;
+  
+      window.open(test, "_blank");
+      dispatch({
+        type: DOWNLOAD_OLD_QUESTIONS_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: DOWNLOAD_OLD_QUESTIONS_FAIL,
+        payload: error.message ? error.message : error.Message,
+      });
+    }
+  };
+

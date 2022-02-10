@@ -25,6 +25,9 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
     dispatch(getSingleAssignmentAction(id));
     setOpenPopup(true);
   };
+  const downloadHandler = (id) => {
+    dispatch(downloadAssignmentAction(id));
+  };
   return (
     <TableRow>
       <TableCell>{item.FullName}</TableCell>
@@ -40,7 +43,7 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
           variant="contained"
           color="default"
           className={classes.button}
-          // onClick={() => updateHandler(item.IDAssignment)}
+          onClick={() => downloadHandler(item.IDAssignment)}
         >
           <CloudDownloadIcon style={{ fontSize: 12 }} />
         </Button>

@@ -10,6 +10,9 @@ import {
     List,
     ListItem,
 } from "@material-ui/core";
+import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+import { useDispatch } from "react-redux";
+import { downloadOldQuestionsAction } from "./OldQuestionsActions";
 
 const useStyles = makeStyles({
     button: {
@@ -23,8 +26,13 @@ const useStyles = makeStyles({
 const OldQuestionsTableCollapse =({
     item,
 }) =>{
-
+    const dispatch = useDispatch();
     const classes = useStyles();
+
+    const downloadHandler = (id) => {
+        dispatch(downloadOldQuestionsAction(id));
+      };
+
     return (
         <TableRow>
       <TableCell>{item.OldQuestionName}</TableCell>
@@ -32,6 +40,16 @@ const OldQuestionsTableCollapse =({
       <TableCell>{item.FirstName} {item.LastName}</TableCell>
       <TableCell>{item.Created_On}</TableCell>
       <TableCell>{item.IsActive ? "active" : "notactive"}</TableCell>
+      <TableCell>
+          <Button
+            variant="contained"
+            color="default"
+            className={classes.button}
+            onClick={() => downloadHandler(item.Id)}
+          >
+            <CloudDownloadIcon style={{ fontSize: 12 }} />
+          </Button>
+          </TableCell>
       </TableRow>
     );
 

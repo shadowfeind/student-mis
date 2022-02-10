@@ -5,7 +5,7 @@ import { useForm, Form } from "../../../customHooks/useForm";
 import { useDispatch } from "react-redux";
 import SelectControl from "../../../components/controls/SelectControl";
 import DatePickerControl from "../../../components/controls/DatePickerControl"
-import { updateSinglePersonalInformationAction } from "./PersonalInformationActions";
+import { getSinglePersonalInformationAction, updateSinglePersonalInformationAction } from "./PersonalInformationActions";
 
 const initialFormValues = {
   IDHREmployee: 0,
@@ -76,8 +76,6 @@ const PersonalInformationForm =({personalInformation, setOpenPopup})=>{
 
       temp.DOJ = !fieldValues.DOJ
       ? "This feild is required"
-      : fieldValues.DOJ.length > 20
-      ? "Must be less than 20 characters"
       : "";
 
       temp.FirstName = !fieldValues.FirstName
@@ -102,10 +100,6 @@ const PersonalInformationForm =({personalInformation, setOpenPopup})=>{
 
       temp.Sex = !fieldValues.Sex
       ? "This feild is required"
-      : fieldValues.Sex.length > 20
-      ? "Must be less than 20 characters"
-      : !fieldValues.Sex.trim()
-      ? "This feild is required"
       : "";
 
       temp.Married = !fieldValues.Married
@@ -114,15 +108,9 @@ const PersonalInformationForm =({personalInformation, setOpenPopup})=>{
 
       temp.DOB = !fieldValues.DOB
       ? "This feild is required"
-      : fieldValues.DOB.length > 20
-      ? "Must be less than 20 characters"
       : "";
 
       temp.BloodGroup = !fieldValues.BloodGroup
-      ? "This feild is required"
-      : fieldValues.BloodGroup.length > 20
-      ? "Must be less than 20 characters"
-      : !fieldValues.BloodGroup.trim()
       ? "This feild is required"
       : "";
 
@@ -182,7 +170,11 @@ const PersonalInformationForm =({personalInformation, setOpenPopup})=>{
     e.preventDefault();
 
     if (validate()) {
-      dispatch(updateSinglePersonalInformationAction(values));
+      if(values.IDHREmployee === 0){
+      dispatch(getSinglePersonalInformationAction(values));
+      }else{
+        dispatch(updateSinglePersonalInformationAction(values));
+      }
     }
   };  
 

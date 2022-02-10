@@ -46,7 +46,7 @@ import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
-import { getAllOldQuestionsReducer, getListOldQuestionsStudentReducer, getSubjectOptionsForOldQuestionsReducer } from "./student/oldQuestions/OldQuestionsReducers";
+import { downloadOldQuestionsReducer, getAllOldQuestionsReducer, getListOldQuestionsStudentReducer, getSubjectOptionsForOldQuestionsReducer } from "./student/oldQuestions/OldQuestionsReducers";
 import {
   getAllContactAddress,
   getSingleContactAddressReducer,
@@ -104,6 +104,7 @@ import {
 import {
   getAllPersonalInformation,
   getSinglePersonalInformationReducer,
+  getListPersonalInformationReducer,
   updateSinglePersonalInformationReducer,
 } from "./student/pid/personalinformation/PersonalInformationReducers";
 import {
@@ -124,6 +125,7 @@ import {
 } from "./student/pid/training/TrainingReducers";
 import { getAllUploadPhoto, uploadPhotoReducer } from "./student/pid/uploadPhoto/UploadPhotoReducers";
 import {
+  downloadNewResourcesReducer,
   getAllNewResourcesStudentReducer,
   getNewResourcesStudentListReducer,
 } from "./student/resources/newResourcesStudent/NewResourcesStudentReducers";
@@ -144,6 +146,7 @@ export const reducers = combineReducers({
  //user profile reducers starts
   //PID PersonalInformation
   getAllPersonalInformation: getAllPersonalInformation,
+  getListPersonalInformation : getListPersonalInformationReducer,
   getSinglePersonalInformation: getSinglePersonalInformationReducer,
   updateSinglePersonalInformation : updateSinglePersonalInformationReducer,
   //PID ContactAddress
@@ -206,6 +209,7 @@ updateSingleGuardian : updateSingleGuardianReducer,
   //Resources(New Resources Student Reducers)
   getAllNewResourcesStudent: getAllNewResourcesStudentReducer,
   getNewResourcesStudentList: getNewResourcesStudentListReducer,
+  downloadNewResources : downloadNewResourcesReducer,
   //Assignment Reducers
   getAllAssignment: getAllAssignmentReducer,
   getAssignmentList: getAssignmentListReducer,
@@ -218,4 +222,5 @@ updateSingleGuardian : updateSingleGuardianReducer,
   getAllOldQuestions : getAllOldQuestionsReducer,
   getSubjectOptionsForOldQuestions : getSubjectOptionsForOldQuestionsReducer,
   getListOldQuestionsStudent : getListOldQuestionsStudentReducer,
+  downloadOldQuestions : downloadOldQuestionsReducer,
 });

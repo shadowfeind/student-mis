@@ -17,6 +17,7 @@ import Notification from "../../components/Notification";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import SelectControl from "../../components/controls/SelectControl";
 import {
+  DOWNLOAD_OLD_QUESTIONS_RESET,
   GET_ALL_OLD_QUESTIONS_RESET,
   GET_SUBJECT_OPTIONS_OLD_QUESTIONS_RESET,
 } from "./OldQuestionsConstants";
@@ -105,6 +106,18 @@ const OldQuestions = () => {
     (state) => state.getListOldQuestionsStudent
   );
 
+  const {
+    success: downloadOldQuestionsSuccess,
+    file: downloadFile,
+    error: downloadOldQuestionsError,
+  } = useSelector((state) => state.downloadOldQuestions);
+
+  if (downloadFile) {
+    var blob = new Blob([downloadFile]);
+    var url = window.URL.createObjectURL(blob);
+    debugger;
+    window.open(url, "_blank");
+  }
   if (oldQuestionsError) {
     setNotify({
       isOpen: true,
@@ -112,6 +125,15 @@ const OldQuestions = () => {
       type: "error",
     });
     dispatch({ type: GET_ALL_OLD_QUESTIONS_RESET });
+  }
+
+  if (downloadOldQuestionsError) {
+    setNotify({
+      isOpen: true,
+      message: downloadOldQuestionsError,
+      type: "error",
+    });
+    dispatch({ type: DOWNLOAD_OLD_QUESTIONS_RESET });
   }
   if (subjectOptionsError) {
     setNotify({
@@ -164,7 +186,7 @@ const OldQuestions = () => {
   };
   return (
     <>
-    <CustomContainer>
+      <CustomContainer>
         <Toolbar>
           <Grid container style={{ fontSize: "12px" }}>
             <Grid item xs={3}>
@@ -172,7 +194,7 @@ const OldQuestions = () => {
                 name="classes"
                 label="Class"
                 onChange={(e) => handleClassIdChange(e.target.value)}
-                options={ ddlClass }
+                options={ddlClass}
                 value={classId}
                 errors={errors.classId}
               />
@@ -183,7 +205,7 @@ const OldQuestions = () => {
                 label="Subject"
                 value={facultySubject}
                 onChange={(e) => setFacultySubject(e.target.value)}
-                options={ddlFacultySubject }
+                options={ddlFacultySubject}
                 errors={errors.facultySubject}
               />
             </Grid>
@@ -222,13 +244,10 @@ const OldQuestions = () => {
             <TblHead />
 
             <TableBody>
-            {tableDataAfterPagingAndSorting().map((item) => (
-                <OldQuestionsTableCollapse
-                  item={item}
-                  key={item.$id}
-                  />
-                  ))}
-                  </TableBody>
+              {tableDataAfterPagingAndSorting().map((item) => (
+                <OldQuestionsTableCollapse item={item} key={item.$id} />
+              ))}
+            </TableBody>
           </TableContainer>
         )}
         {listOldQuestionsStudent && <TblPagination />}
