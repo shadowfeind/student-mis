@@ -129,6 +129,7 @@ import {
   getAllNewResourcesStudentReducer,
   getNewResourcesStudentListReducer,
 } from "./student/resources/newResourcesStudent/NewResourcesStudentReducers";
+import { getAllSyllabusReducer, getListSyllabusReducer } from "./student/syllabus/SyllabusReducers";
 
 export const reducers = combineReducers({
    academicGrading: getAllAcademicGradingReducer,
@@ -223,4 +224,7 @@ updateSingleGuardian : updateSingleGuardianReducer,
   getSubjectOptionsForOldQuestions : getSubjectOptionsForOldQuestionsReducer,
   getListOldQuestionsStudent : getListOldQuestionsStudentReducer,
   downloadOldQuestions : downloadOldQuestionsReducer,
+    //Syllabus Teacher
+    getAllSyllabus : getAllSyllabusReducer,
+    getListSyllabus : getListSyllabusReducer,
 });
