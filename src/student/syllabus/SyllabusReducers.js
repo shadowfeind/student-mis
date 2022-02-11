@@ -24,18 +24,3 @@ import {
     }
   };
   
-  export const getListSyllabusReducer = (state = {}, action) => {
-    switch (action.type) {
-      case GET_LIST_SYLLABUS_REQUEST:
-        return { loading: true };
-      case GET_LIST_SYLLABUS_SUCCESS:
-        return { loading: false, listSyllabus: action.payload };
-      case GET_LIST_SYLLABUS_FAIL:
-        return { loading: false, error: action.payload };
-      case GET_LIST_SYLLABUS_RESET:
-        return {};
-      default:
-        return state;
-    }
-  };
-  

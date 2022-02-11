@@ -226,5 +226,4 @@ updateSingleGuardian : updateSingleGuardianReducer,
   downloadOldQuestions : downloadOldQuestionsReducer,
     //Syllabus Teacher
     getAllSyllabus : getAllSyllabusReducer,
-    getListSyllabus : getListSyllabusReducer,
 });

@@ -7,14 +7,13 @@ import CustomContainer from "../../components/CustomContainer";
 import { Button, Toolbar } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../components/Popup";
-import {
-  GET_ALL_SYLLABUS_RESET,
-  GET_LIST_SYLLABUS_RESET,
-} from "./SyllabusConstants";
-import { getAllSyllabusAction, getListSyllabusAction } from "./SyllabusActions";
+import { GET_ALL_SYLLABUS_RESET } from "./SyllabusConstants";
+import { getAllSyllabusAction } from "./SyllabusActions";
 
-const Syllabus = () => {
-  const [url, setUrl] = useState("");
+
+const Syllabus=()=>{
+
+    const [url, setUrl] = useState("");
   const [openPopup, setOpenPopup] = useState(false);
 
   const [notify, setNotify] = useState({
@@ -32,9 +31,6 @@ const Syllabus = () => {
   const { allSyllabus, error: allSyllabusError } = useSelector(
     (state) => state.getAllSyllabus
   );
-  const { listSyllabus, error: listSyllabusError } = useSelector(
-    (state) => state.getListSyllabus
-  );
 
   if (allSyllabusError) {
     setNotify({
@@ -45,38 +41,22 @@ const Syllabus = () => {
     dispatch({ type: GET_ALL_SYLLABUS_RESET });
   }
 
-  if (listSyllabusError) {
-    setNotify({
-      isOpen: true,
-      message: listSyllabusError,
-      type: "error",
-    });
-    dispatch({ type: GET_LIST_SYLLABUS_RESET });
-  }
-
   useEffect(() => {
-    if (!allSyllabus) {
-      dispatch(getAllSyllabusAction());
-    }
     if (allSyllabus) {
-      dispatch(getListSyllabusAction(allSyllabus.dbModelLst[0].Id));
-    }
+        setUrl(`${API_URL}${allSyllabus.FullPath}`);
+      }  
+      if (!allSyllabus) {
+        dispatch(getAllSyllabusAction());
+      }
+   
   }, [allSyllabus]);
-
-  useEffect(() => {
-    if (listSyllabus) {
-      setUrl(`${API_URL}${listSyllabus.FullPath}`);
-    }
-  }, [listSyllabus]);
-
-  useEffect(() => {
-    dispatch({ type: "GET_LINK", payload: "/syllabus" });
-  }, [dispatch]);
-
-  return (
+// useEffect(()=>{
+//     dispatch(getAllClassScheduleAction(1));
+// })
+return (
     <>
       <CustomContainer>
-        {listSyllabus && <iframe src={url} width="100%" height="700" />}
+      {allSyllabus && <iframe src={url} width="100%" height="700" />}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
@@ -85,6 +65,5 @@ const Syllabus = () => {
       />
     </>
   );
-};
-
+}
 export default Syllabus;
