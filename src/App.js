@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
+
 const Pid = lazy(() => import("./student/pid/UserProfile"));
 const QuickLinks = lazy(() => import("./student/quickLinks/QuickLinks"));
 const Resources = lazy(() => import("./student/resources/Resources"));
@@ -28,14 +29,21 @@ const ExamSchedule = lazy(() =>
 );
 const ClassSchedule = lazy(() =>
   import("./student/classSchedule/ClassSchedule")
-);
+
+
+const ExamMarkEntry = lazy(() =>
+  import("./student/examMarkEntry/ExamMarkEntry")
+
 
 const AssignmentFront = lazy(() =>
   import("./student/assignment/AssignmentFront")
+
 );
 const Attendance = lazy(() =>
   import("./student/attendance/Attendance")
+
 );
+const Attendance = lazy(() => import("./student/attendance/Attendance"));
 const theme = createTheme({
   palette: {
     background: {
