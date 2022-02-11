@@ -37,7 +37,7 @@ export const getAllJobHistoryCreateAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_JOBHISTORY_CREATE_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/api/GetSingleCreatePIDJobHistory`,tokenConfig
+      `${API_URL}/api/PID_JobHistory/GetSingleCreatePIDJobHistory`,tokenConfig
     );
 
     dispatch({ type: GET_ALL_JOBHISTORY_CREATE_SUCCESS, payload: data });

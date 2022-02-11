@@ -1,6 +1,9 @@
 import axios from "axios";
 import { API_URL, tokenConfig } from "../../../constants";
 import {
+  DOWNLOAD_NEW_SOURCES_FAIL,
+  DOWNLOAD_NEW_SOURCES_REQUEST,
+  DOWNLOAD_NEW_SOURCES_SUCCESS,
   GET_ALL_NEW_SOURCES_STUDENT_FAIL,
   GET_ALL_NEW_SOURCES_STUDENT_REQUEST,
   GET_ALL_NEW_SOURCES_STUDENT_SUCCESS,
@@ -52,3 +55,23 @@ export const getNewResourcesStudentListAction =
       });
     }
   };
+
+  export const downloadNewResourcesAction = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: DOWNLOAD_NEW_SOURCES_REQUEST });
+  
+      const test = `${API_URL}/api/CourseDeliveryPlanStudent/DownloadDoc/${id}`;
+  
+      window.open(test, "_blank");
+      dispatch({
+        type: DOWNLOAD_NEW_SOURCES_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: DOWNLOAD_NEW_SOURCES_FAIL,
+        payload: error.message ? error.message : error.Message,
+      });
+    }
+  };
+  

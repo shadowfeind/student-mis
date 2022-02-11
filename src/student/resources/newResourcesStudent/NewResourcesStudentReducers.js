@@ -1,4 +1,8 @@
 import {
+  DOWNLOAD_NEW_SOURCES_FAIL,
+  DOWNLOAD_NEW_SOURCES_REQUEST,
+  DOWNLOAD_NEW_SOURCES_RESET,
+  DOWNLOAD_NEW_SOURCES_SUCCESS,
   GET_ALL_NEW_SOURCES_STUDENT_FAIL,
   GET_ALL_NEW_SOURCES_STUDENT_REQUEST,
   GET_ALL_NEW_SOURCES_STUDENT_RESET,
@@ -34,6 +38,21 @@ export const getNewResourcesStudentListReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
       case GET_NEW_SOURCES_STUDENT_LIST_RESET:
         return {};
+    default:
+      return state;
+  }
+};
+
+export const downloadNewResourcesReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DOWNLOAD_NEW_SOURCES_REQUEST:
+      return { loading: true };
+    case DOWNLOAD_NEW_SOURCES_SUCCESS:
+      return { loading: false, success: true};
+    case DOWNLOAD_NEW_SOURCES_FAIL:
+      return { loading: false, error: action.payload };
+    case DOWNLOAD_NEW_SOURCES_RESET:
+      return {};
     default:
       return state;
   }

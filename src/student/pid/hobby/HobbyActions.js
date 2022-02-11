@@ -34,7 +34,7 @@ export const getAllHobbyCreateAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_HOBBY_CREATE_REQUEST });
 
-    const { data } = await axios.get(`${API_URL}/api/GetSingleCreatePIDHobby`,tokenConfig);
+    const { data } = await axios.get(`${API_URL}/api/PID_Hobby/GetSingleCreatePIDHobby`,tokenConfig);
 
     dispatch({ type: GET_ALL_HOBBY_CREATE_SUCCESS, payload: data });
   } catch (error) {

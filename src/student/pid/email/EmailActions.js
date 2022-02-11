@@ -30,7 +30,7 @@ export const getAllEmailAction = () => async (dispatch) => {
       dispatch({ type: GET_SINGLE_EMAIL_REQUEST });
   
       const { data } = await axios.get(
-        `${API_URL}/api/GetSinglePIDEmailForEdit`,tokenConfig
+        `${API_URL}/api/PID_Email/GetSinglePIDEmailForEdit`,tokenConfig
       );
   
       dispatch({ type: GET_SINGLE_EMAIL_SUCCESS, payload: data });

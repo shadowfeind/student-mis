@@ -7,11 +7,10 @@ import CustomContainer from "../../components/CustomContainer";
 import { Button, Toolbar } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../components/Popup";
-import { GET_ALL_SYLLABUS_RESET } from "./SyllabusConstants";
-import { getAllSyllabusAction } from "./SyllabusActions";
+import { GET_ALL_CLASS_SCHEDULE_RESET } from "./ClassScheduleConstant";
+import { getAllClassScheduleAction } from "./ClassScheduleAction";
 
-
-const Syllabus=()=>{
+const ClassSchedule=()=>{
 
     const [url, setUrl] = useState("");
   const [openPopup, setOpenPopup] = useState(false);
@@ -28,35 +27,35 @@ const Syllabus=()=>{
   });
   const dispatch = useDispatch();
 
-  const { allSyllabus, error: allSyllabusError } = useSelector(
-    (state) => state.getAllSyllabus
+  const { classSchedule, error: classScheduleError } = useSelector(
+    (state) => state.getAllClassSchedule
   );
 
-  if (allSyllabusError) {
+  if (classScheduleError) {
     setNotify({
       isOpen: true,
-      message: allSyllabusError,
+      message: classScheduleError,
       type: "error",
     });
-    dispatch({ type: GET_ALL_SYLLABUS_RESET });
+    dispatch({ type: GET_ALL_CLASS_SCHEDULE_RESET });
   }
 
   useEffect(() => {
-    if (allSyllabus) {
-        setUrl(`${API_URL}${allSyllabus.FullPath}`);
+    if (classSchedule) {
+        setUrl(`${API_URL}${classSchedule.FullPath}`);
       }  
-      if (!allSyllabus) {
-        dispatch(getAllSyllabusAction());
+      if (!classSchedule) {
+        dispatch(getAllClassScheduleAction());
       }
    
-  }, [allSyllabus]);
+  }, [classSchedule]);
 // useEffect(()=>{
 //     dispatch(getAllClassScheduleAction(1));
 // })
 return (
     <>
       <CustomContainer>
-      {allSyllabus && <iframe src={url} width="100%" height="700" />}
+      {classSchedule && <iframe src={url} width="100%" height="700" />}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
@@ -66,4 +65,4 @@ return (
     </>
   );
 }
-export default Syllabus;
+export default ClassSchedule;

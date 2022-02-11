@@ -17,6 +17,7 @@ import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
+  DOWNLOAD_ASSIGNMENT_RESET,
   GET_ALL_ASSIGNMENT_RESET,
   GET_ASSIGNMENT_LIST_FAIL,
   GET_ASSIGNMENT_LIST_RESET,
@@ -128,6 +129,18 @@ const Assignment = () => {
     error: putSingleAssignmentError,
   } = useSelector((state) => state.putSingleAssignment);
 
+  const {
+    success: downloadAssignmentSuccess,
+    file: downloadFile,
+    error: downloadAssignmentError,
+  } = useSelector((state) => state.downloadAssignment);
+
+  if (downloadFile) {
+    var blob = new Blob([downloadFile]);
+    var url = window.URL.createObjectURL(blob);
+    window.open(url, "_blank");
+  }
+
   if (assignmentError) {
     setNotify({
       isOpen: true,
@@ -136,6 +149,15 @@ const Assignment = () => {
     });
     dispatch({ type: GET_ALL_ASSIGNMENT_RESET });
   }
+  if (downloadAssignmentError) {
+    setNotify({
+      isOpen: true,
+      message: downloadAssignmentError,
+      type: "error",
+    });
+    dispatch({ type: DOWNLOAD_ASSIGNMENT_RESET });
+  }
+
   if (putSingleAssignmentError) {
     setNotify({
       isOpen: true,

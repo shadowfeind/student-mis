@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL,tokenConfig } from "../../../constants";
+import { API_URL, tokenConfig } from "../../../constants";
 import { GET_ALL_CONTACTADDRESS_FAIL,
      GET_ALL_CONTACTADDRESS_REQUEST,
       GET_ALL_CONTACTADDRESS_SUCCESS, 
@@ -30,7 +30,7 @@ export const getAllContactAddressAction = () => async (dispatch) => {
       dispatch({ type: GET_SINGLE_CONTACTADDRESS_REQUEST });
   
       const { data } = await axios.get(
-        `${API_URL}/api/GetSingleEdit`,tokenConfig
+        `${API_URL}/api/PID_Address/GetSingleEdit`,tokenConfig
       );
   
       dispatch({ type: GET_SINGLE_CONTACTADDRESS_SUCCESS, payload: data });

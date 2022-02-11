@@ -7,20 +7,14 @@ import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
-  GET_ALL_STUDEN_MONTHLY_PRESENT_SHEET_RESET,
-  GET_ENGLISH_DATE_RESET,
-  GET_LIST_FOR_PRESENT_STUDENT_RESET,
-  GET_LIST_FOR_UPDATE_STUDENT_PRESENT_RESET,
-  GET_LIST_STUDENT_PRESENT_RESET,
-  GET_SUBJECT_OPTIONS_FOR_SELECT_RESET,
+  GET_ALL_OTHER_OPTIONS_FOR_STUDENT_RESET,
+  GET_ALL_STUDENT_ATTENDANCE_RESET,
+  GET_LIST_STUDENT_ATTENDANCE_RESET,
 } from "./StudentMonthlyPresentSheetConstants";
 import {
-  getAllStudentPresentSheetDataAction,
-  getEnglishDateAction,
-  getListForPresentStudentAction,
-  getListForUpdateStudentPresentAction,
-  getListStudentPresentAction,
-  getSubjectOptionsForSelectAction,
+  getAllStudentAttendanceAction,
+  getEngDateStudentAction,
+  getListStudentAttendanceAction,
 } from "./StudentMonthlyPresentSheetActions";
 import DatePickerControl from "../../../components/controls/DatePickerControl";
 import StudentMonthlyPresentSheetTableCollapse from "./StudentMonthlyPresentSheetTableCollapse";
@@ -51,18 +45,18 @@ const StudentMonthlyPresentSheet = () => {
   const [programDdl, setProgramDdl] = useState([]);
   const [ddlShift, setDdlShift] = useState([]);
   const [ddlSection, setDdlSection] = useState([]);
-  const [ddlSubject, setDdlSubject] = useState([]);
+  const [ddlSubjectAttendance, setDdlSubject] = useState([]);
   const [ddlNepMonth, setDdlNepMonth] = useState([]);
   const [ddlNepYear, setDdlNepYear] = useState([]);
 
-  const [programValue, setProgramValue] = useState();
-  const [classId, setClassId] = useState();
-  const [acaYear, setAcaYear] = useState();
-  const [shift, setShift] = useState();
-  const [section, setSection] = useState();
-  const [subject, setSubject] = useState();
-  const [nepMonth, setNepMonth] = useState();
-  const [nepYear, setNepYear] = useState();
+  const [programValue, setProgramValue] = useState("");
+  const [classId, setClassId] = useState("");
+  const [acaYear, setAcaYear] = useState("");
+  const [shift, setShift] = useState("");
+  const [section, setSection] = useState("");
+  const [subject, setSubject] = useState("");
+  const [nepMonth, setNepMonth] = useState("");
+  const [nepYear, setNepYear] = useState("");
   const [errors, setErrors] = useState({});
   const [date, setDate] = useState();
 
@@ -81,122 +75,97 @@ const StudentMonthlyPresentSheet = () => {
     subTitle: "",
   });
 
-  const {
-    allStudentMonthlyPresentSheetData,
-    error: allStudentMonthlyPresentSheetDataError,
-  } = useSelector((state) => state.getAllStudentMonthlyPresentSheet);
-
-  const { subjectOptions, error: subjectOptionsError } = useSelector(
-    (state) => state.getSubjectOptionsForSelect
-  );
-
-  const { engDate, error: engDateError } = useSelector(
-    (state) => state.getEnglishDate
-  );
-
-  const { getListStudentPresent, error: getListStudentPresentError } =
-    useSelector((state) => state.getListStudentPresent);
+  const test = [{ Key: "", Value: "" }];
 
   const {
-    getListForUpdateStudentPresent,
-    error: getListForUpdateStudentPresentError,
-  } = useSelector((state) => state.getListForUpdateStudentPresent);
+    allStudentAttendanceData,
+    error: allStudentAttendanceDataError,
+  } = useSelector((state) => state.getAllStudentAttendance);
 
-  const { presentStudent, error: presentStudentError } = useSelector(
-    (state) => state.getListForPresentStudent
+  const { allOtherOptions, error: allOtherOptionsError } = useSelector(
+    (state) => state.getAllOtherOptionsForStudent
   );
 
-  if (allStudentMonthlyPresentSheetDataError) {
+  const { engDateStudent, error: engDateStudentError } = useSelector(
+    (state) => state.getEnglishDateStudent
+  );
+
+
+  const { getListStudentAttendance, error: getListStudentAttendanceError } =
+    useSelector((state) => state.getListStudentAttendance);
+
+
+  if (allStudentAttendanceDataError) {
     setNotify({
       isOpen: true,
-      message: allStudentMonthlyPresentSheetDataError,
+      message: allStudentAttendanceDataError,
       type: "error",
     });
-    dispatch({ type: GET_ALL_STUDEN_MONTHLY_PRESENT_SHEET_RESET });
+    dispatch({ type: GET_ALL_STUDENT_ATTENDANCE_RESET });
   }
-  if (subjectOptionsError) {
+  
+  if (allOtherOptionsError) {
     setNotify({
       isOpen: true,
-      message: subjectOptionsError,
+      message: allOtherOptionsError,
       type: "error",
     });
-    dispatch({ type: GET_SUBJECT_OPTIONS_FOR_SELECT_RESET });
+    dispatch({ type: GET_ALL_OTHER_OPTIONS_FOR_STUDENT_RESET });
   }
-  //eng date api not working
-  //   if (engDateError) {
-  //     setNotify({
-  //       isOpen: true,
-  //       message: engDateError,
-  //       type: "error",
-  //     });
-  //     dispatch({ type: GET_ENGLISH_DATE_RESET });
-  //   }
-  if (getListStudentPresentError) {
+
+  if (getListStudentAttendanceError) {
     setNotify({
       isOpen: true,
-      message: getListStudentPresentError,
+      message: getListStudentAttendanceError,
       type: "error",
     });
-    dispatch({ type: GET_LIST_STUDENT_PRESENT_RESET });
-  }
-  if (getListForUpdateStudentPresentError) {
-    setNotify({
-      isOpen: true,
-      message: getListForUpdateStudentPresentError,
-      type: "error",
-    });
-    dispatch({ type: GET_LIST_FOR_UPDATE_STUDENT_PRESENT_RESET });
-  }
-  if (presentStudentError) {
-    setNotify({
-      isOpen: true,
-      message: presentStudentError,
-      type: "error",
-    });
-    dispatch({ type: GET_LIST_FOR_PRESENT_STUDENT_RESET });
+    dispatch({ type: GET_LIST_STUDENT_ATTENDANCE_RESET });
   }
 
   useEffect(() => {
-    if (!allStudentMonthlyPresentSheetData) {
-      dispatch(getAllStudentPresentSheetDataAction());
+    if (!allStudentAttendanceData) {
+      dispatch(getAllStudentAttendanceAction());
     }
-    if (allStudentMonthlyPresentSheetData) {
+    if (allStudentAttendanceData) {
       setProgramDdl(
-        allStudentMonthlyPresentSheetData.searchFilterModel
+        allStudentAttendanceData.searchFilterModel
           .ddlFacultyProgramLink
       );
-      setDdlClass(allStudentMonthlyPresentSheetData.searchFilterModel.ddlClass);
+      setDdlClass(allStudentAttendanceData.searchFilterModel.ddlClass);
       setAcademicYearDdl(
-        allStudentMonthlyPresentSheetData.searchFilterModel.ddlAcademicYear
+        allStudentAttendanceData.searchFilterModel.ddlAcademicYear
       );
       setDdlShift(
-        allStudentMonthlyPresentSheetData.searchFilterModel.ddlAcademicShift
+        allStudentAttendanceData.searchFilterModel.ddlAcademicShift
+      );
+      setDdlSubject(
+        allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance
       );
       setDdlSection(
-        allStudentMonthlyPresentSheetData.searchFilterModel.ddlSection
+        allStudentAttendanceData.searchFilterModel.ddlSection
       );
       setDdlNepMonth(
-        allStudentMonthlyPresentSheetData.searchFilterModel.ddlnpMonth
+        allStudentAttendanceData.searchFilterModel.ddlnpMonth
       );
       setDdlNepYear(
-        allStudentMonthlyPresentSheetData.searchFilterModel.ddlnpYear
+        allStudentAttendanceData.searchFilterModel.ddlnpYear
       );
       setDate(
-        allStudentMonthlyPresentSheetData.searchFilterModel.currentDate.slice(
+        allStudentAttendanceData.searchFilterModel.currentDate.slice(
           0,
           10
         )
       );
-      setNepMonth(allStudentMonthlyPresentSheetData.searchFilterModel.npMonth);
-      setNepYear(allStudentMonthlyPresentSheetData.searchFilterModel.npYear);
+      setNepMonth(allStudentAttendanceData.searchFilterModel.npMonth);
+      setNepYear(allStudentAttendanceData.searchFilterModel.npYear);
     }
-  }, [allStudentMonthlyPresentSheetData, dispatch]);
+  }, [allStudentAttendanceData, dispatch]);
 
-  useEffect(() => {
-    if (subjectOptions) {
-      setDdlSubject(subjectOptions);
-    }
-  }, [subjectOptions]);
+  // useEffect(() => {
+  //   if (subjectOptions) {
+  //     setDdlSubject(subjectOptions);
+  //   }
+  // }, [subjectOptions]);
 
   const validate = () => {
     let temp = {};
@@ -217,74 +186,75 @@ const StudentMonthlyPresentSheet = () => {
   const handleSearchAttendance = () => {
     if (validate()) {
       dispatch(
-        getListStudentPresentAction(
+        getListStudentAttendanceAction(
+          date,
+          nepYear,
+          nepMonth,
           acaYear,
           programValue,
           classId,
           subject,
           section,
           shift,
-          nepYear,
-          nepMonth,
-          date
+          
         )
       );
     }
   };
 
-  const handleUpdate = () => {
-    if (validate()) {
-      dispatch(
-        getListForUpdateStudentPresentAction(
-          acaYear,
-          programValue,
-          classId,
-          subject,
-          section,
-          shift,
-          nepYear,
-          nepMonth,
-          date
-        )
-      );
-      dispatch(getListForPresentStudentAction(date, programValue, subject));
-      setOpenPopup(true);
-    }
-  };
+  // const handleYearChange = (value) => {
+  //   setAcaYear(value);
+  //   if ((programValue, classId)) {
+  //     dispatch(getSubjectOptionsForSelectAction(value, programValue, classId));
+  //   }
+  // };
 
-  const handleYearChange = (value) => {
-    setAcaYear(value);
-    if ((programValue, classId)) {
-      dispatch(getSubjectOptionsForSelectAction(value, programValue, classId));
-    }
-  };
+  // const handleProgramChange = (value) => {
+  //   setProgramValue(value);
+  //   if ((acaYear, classId)) {
+  //     dispatch(getSubjectOptionsForSelectAction(acaYear, value, classId));
+  //   }
+  // };
 
-  const handleProgramChange = (value) => {
-    setProgramValue(value);
-    if ((acaYear, classId)) {
-      dispatch(getSubjectOptionsForSelectAction(acaYear, value, classId));
-    }
-  };
-
-  const handleClassIdChange = (value) => {
-    setClassId(value);
-    if ((acaYear, programValue)) {
-      dispatch(getSubjectOptionsForSelectAction(acaYear, programValue, value));
-    }
-  };
+  // const handleClassIdChange = (value) => {
+  //   setClassId(value);
+  //   if ((acaYear, programValue)) {
+  //     dispatch(getSubjectOptionsForSelectAction(acaYear, programValue, value));
+  //   }
+  // };
 
   const nepMonthHandler = (value) => {
     setNepMonth(value);
     if (nepYear) {
-      dispatch(getEnglishDateAction(value, nepYear));
+      dispatch(getEngDateStudentAction(value, nepYear));
     }
   };
   const nepYearHandler = (value) => {
     setNepYear(value);
     if (nepMonth) {
-      dispatch(getEnglishDateAction(nepMonth, value));
+      dispatch(getEngDateStudentAction(nepMonth, value));
     }
   };
+
+  useEffect(() => {
+    if (allOtherOptions) {
+      setAcaYear(
+        allOtherOptions.year.length > 0 ? allOtherOptions.year[0].Key : ""
+      );
+      setProgramValue(
+        allOtherOptions.program.length > 0 ? allOtherOptions.program[0].Key : ""
+      );
+      setClassId(
+        allOtherOptions.classId.length > 0 ? allOtherOptions.classId[0].Key : ""
+      );
+      setSection(
+        allOtherOptions.section.length > 0 ? allOtherOptions.section[0].Key : ""
+      );
+      setShift(
+        allOtherOptions.shift.length > 0 ? allOtherOptions.shift[0].Key : ""
+      );
+    }
+  }, [allOtherOptions]);
 
   return (
     <>
@@ -296,7 +266,7 @@ const StudentMonthlyPresentSheet = () => {
                 name="Academic Year"
                 label="Academic Year"
                 value={acaYear}
-                onChange={(e) => handleYearChange(e.target.value)}
+                onChange={(e) => setAcaYear(e.target.value)}
                 options={academicYearDdl ? academicYearDdl : test}
                 errors={errors.acaYear}
               />
@@ -306,7 +276,7 @@ const StudentMonthlyPresentSheet = () => {
                 name="Program/Faculty"
                 label="Program/Faculty"
                 value={programValue}
-                onChange={(e) => handleProgramChange(e.target.value)}
+                onChange={(e) => setProgramValue(e.target.value)}
                 options={programDdl ? programDdl : test}
                 errors={errors.programValue}
               />
@@ -316,7 +286,7 @@ const StudentMonthlyPresentSheet = () => {
                 name="Classes"
                 label="Classes"
                 value={classId}
-                onChange={(e) => handleClassIdChange(e.target.value)}
+                onChange={(e) => setClassId(e.target.value)}
                 options={ddlClass ? ddlClass : test}
                 errors={errors.classId}
               />
@@ -345,11 +315,11 @@ const StudentMonthlyPresentSheet = () => {
             <Grid item xs={3}>
               <div style={{ height: "10px" }}></div>
               <SelectControl
-                name="Sujbect"
-                label="Subject Name"
+                name="Subject"
+                label="Subject"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                options={ddlSubject ? ddlSubject : test}
+                options={ddlSubjectAttendance ? ddlSubjectAttendance : test}
                 errors={errors.subject}
               />
             </Grid>
@@ -378,7 +348,7 @@ const StudentMonthlyPresentSheet = () => {
             <Grid item xs={3}>
               <div style={{ height: "10px" }}></div>
 
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
                   disableToolbar
                   variant="inline"
@@ -400,15 +370,6 @@ const StudentMonthlyPresentSheet = () => {
                 color="primary"
                 type="submit"
                 style={{ margin: "10px 0 0 10px" }}
-                onClick={handleUpdate}
-              >
-                UPDATE
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ margin: "10px 0 0 10px" }}
                 onClick={handleSearchAttendance}
               >
                 SEARCH
@@ -416,24 +377,12 @@ const StudentMonthlyPresentSheet = () => {
             </Grid>
           </Grid>
         </Toolbar>
-        {getListStudentPresent && (
+        {getListStudentAttendance && (
           <StudentMonthlyPresentSheetTableCollapse
-            students={getListStudentPresent && getListStudentPresent}
+            students={getListStudentAttendance && getListStudentAttendance}
           />
         )}
       </CustomContainer>
-      <Popup
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        title="Bulk Edit"
-      >
-        <StudentMonthlyPresentSheetUpdateForm
-          students={
-            getListForUpdateStudentPresent && getListForUpdateStudentPresent
-          }
-          presentStudent={presentStudent && presentStudent}
-        />
-      </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
         confirmDialog={confirmDialog}

@@ -26,7 +26,7 @@ import {
 import { getAllSkillAction, getAllSkillCreateAction } from "./SkillActions";
 import ListSkills from "../listComponent/ListSkills";
 import SkillForm from "./SkillForm";
-import SkillTableCollapse from "./SkillTablecollapse";
+import SkillTableCollapse from "./SkillTableCollapse";
 import { getAllSkillCreateReducer } from "./SkillReducers";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 

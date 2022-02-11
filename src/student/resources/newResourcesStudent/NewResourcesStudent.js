@@ -16,9 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
-import { GET_ALL_NEW_SOURCES_STUDENT_RESET, GET_NEW_SOURCES_STUDENT_LIST_RESET } from "./NewResourcesStudentConstant";
-import {GET_EVENT_RESET} from "../../examMarkEntry/ExamMarkEntryConstants";
-import { getEventAction } from "../../examMarkEntry/ExamMarkEntryActions";
+import { DOWNLOAD_NEW_SOURCES_RESET, GET_ALL_NEW_SOURCES_STUDENT_RESET, GET_NEW_SOURCES_STUDENT_LIST_RESET } from "./NewResourcesStudentConstant";
 import { getAllNewResourcesStudentAction, getNewResourcesStudentListAction } from "./NewResourcesStudentActions";
 import NewResourcesStudentTableCollapse from "./NewResourcesStudentTableCollapse";
 
@@ -109,6 +107,25 @@ const useStyles = makeStyles((theme) => ({
   const { newResourcesStudentList, error: newResourcesStudentListError } =
   useSelector((state) => state.getNewResourcesStudentList);
 
+  const {
+    success: downloadNewResourcesSuccess,
+    file: downloadFile,
+    error: downloadNewResourcesError,
+  } = useSelector((state) => state.downloadOldQuestions);
+
+  if (downloadFile) {
+    var blob = new Blob([downloadFile]);
+    var url = window.URL.createObjectURL(blob);
+    window.open(url, "_blank");
+  }
+  if (downloadNewResourcesError) {
+    setNotify({
+      isOpen: true,
+      message: downloadNewResourcesError,
+      type: "error",
+    });
+    dispatch({ type: DOWNLOAD_NEW_SOURCES_RESET });
+  }
   if (newResourcesStudentError) {
     setNotify({
       isOpen: true,

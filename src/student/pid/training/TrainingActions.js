@@ -37,7 +37,7 @@ export const getAllTrainingCreateAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_TRAINING_CREATE_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/api/GetSingleCreatePIDTraining`,tokenConfig
+      `${API_URL}/api/PID_Training/GetSingleCreatePIDTraining`,tokenConfig
     );
 
     dispatch({ type: GET_ALL_TRAINING_CREATE_SUCCESS, payload: data });

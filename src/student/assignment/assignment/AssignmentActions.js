@@ -127,26 +127,22 @@ export const putSingleAssignmentAction =
     }
   };
 
-export const downloadAssignmentAction = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
-
-    const { data } = await axios.get(
-      `${API_URL}/api/StudentSubmission/GetSignleToEditStudentSubmission/${id}`,
-      tokenConfig
-    );
-
-    dispatch({
-      type: DOWNLOAD_ASSIGNMENT_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: DOWNLOAD_ASSIGNMENT_FAIL,
-      payload:
-        error.message && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+  export const downloadAssignmentAction = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
+  
+      const test = `${API_URL}/api/StudentSubmission/DownloadDoc/${id}`;
+  
+      window.open(test, "_blank");
+      dispatch({
+        type: DOWNLOAD_ASSIGNMENT_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: DOWNLOAD_ASSIGNMENT_FAIL,
+        payload: error.message ? error.message : error.Message,
+      });
+    }
+  };
+  

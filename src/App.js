@@ -10,21 +10,38 @@ import {
 } from "@material-ui/core";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
-const Pid = lazy(() => import("./student/pid/Pid"));
+
+const Pid = lazy(() => import("./student/pid/UserProfile"));
 const QuickLinks = lazy(() => import("./student/quickLinks/QuickLinks"));
 const Resources = lazy(() => import("./student/resources/Resources"));
 const Syllabus = lazy(() => import("./student/syllabus/Syllabus"));
-const OldQuestions = lazy(() => import("./student/oldQuestions/OldQuestions"));
+const OldQuestions = lazy(() =>
+  import("./student/oldQuestions/OldQuestions")
+);
 const AcademicGrading = lazy(() =>
   import("./student/academicGrading/AcademicGrading")
 );
-const ExamDivision = lazy(() => import("./student/examDivision/ExamDivision"));
-const ExamSchedule = lazy(() => import("./student/examSchedule/ExamSchedule"));
+const ExamDivision = lazy(() =>
+  import("./student/examDivision/ExamDivision")
+);
+const ExamSchedule = lazy(() =>
+  import("./student/examSchedule/ExamSchedule")
+);
+const ClassSchedule = lazy(() =>
+  import("./student/classSchedule/ClassSchedule")
+
+
 const ExamMarkEntry = lazy(() =>
   import("./student/examMarkEntry/ExamMarkEntry")
-);
+
+
 const AssignmentFront = lazy(() =>
   import("./student/assignment/AssignmentFront")
+
+);
+const Attendance = lazy(() =>
+  import("./student/attendance/Attendance")
+
 );
 const Attendance = lazy(() => import("./student/attendance/Attendance"));
 const theme = createTheme({
@@ -57,12 +74,12 @@ const App = () => {
           <Suspense fallback={<div></div>}>
             <Route path={"/exam-division"} component={ExamDivision} />
             <Route path={"/exam-schedule"} component={ExamSchedule} />
-            <Route path={"/exam-mark-entry"} component={ExamMarkEntry} />
             <Route path={"/pid"} component={Pid} />
             <Route path={"/quick-links"} component={QuickLinks} />
             <Route path={"/resources"} component={Resources} />
             <Route path={"/assignment-front"} component={AssignmentFront} />
             <Route path={"/syllabus"} component={Syllabus} />
+            <Route path={"/class-schedule"} component={ClassSchedule} />
             <Route path={"/old-questions"} component={OldQuestions} />
             <Route path={"/attendance"} component={Attendance} />
             <Route

@@ -34,7 +34,7 @@ export const getSingleGuardianAction = () => async (dispatch) => {
     dispatch({ type: GET_SINGLE_GUARDIAN_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/api/GetSinglePIDGUardianForEdit`,tokenConfig
+      `${API_URL}/api/PID_Guardian/GetSinglePIDGUardianForEdit`,tokenConfig
     );
 
     dispatch({ type: GET_SINGLE_GUARDIAN_SUCCESS, payload: data });

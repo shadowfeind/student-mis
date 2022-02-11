@@ -21,6 +21,7 @@ import {
 import {
   GET_ALL_PERSONALINFORMATION_RESET,
   GET_ALL_PERSONALINFORMATION_SUCCESS,
+  GET_LIST_PERSONALINFORMATION_RESET,
   GET_SINGLE_PERSONALINFORMATION_RESET,
   UPDATE_SINGLE_PERSONALINFORMATION_RESET,
 } from "./PersonalInformationConstants";
@@ -51,6 +52,10 @@ const PersonalInformation = () => {
   );
   const { singlePersonalInformation, error: singlePersonalInformationError } =
     useSelector((state) => state.getSinglePersonalInformation);
+
+const {listPersonalInformation, error: listPersonalInformationError } =
+useSelector((state)=> state.getListPersonalInformation);
+    
   const {
     success: updateSinglePersonalInformationSuccess,
     error: updateSinglePersonalInformationError,
@@ -72,6 +77,15 @@ const PersonalInformation = () => {
     dispatch({ type: GET_ALL_PERSONALINFORMATION_SUCCESS});
     dispatch({ type: UPDATE_SINGLE_PERSONALINFORMATION_RESET });
     setOpenPopup(false);
+  }
+
+  if (listPersonalInformationError) {
+    setNotify({
+      isOpen: true,
+      message: listPersonalInformationError,
+      type: "error",
+    });
+    dispatch({ type: GET_LIST_PERSONALINFORMATION_RESET });
   }
   if (updateSinglePersonalInformationError) {
     setNotify({
@@ -103,6 +117,11 @@ const PersonalInformation = () => {
     }
   }, [dispatch, getAllPersonalInformation]);
 
+  useEffect(() => {
+    if (listPersonalInformation) {
+      setTableData([...listPersonalInformation.dbModel]);
+    }
+  }, [listPersonalInformation]);
   return (
     <CustomContainer>
       <Button
