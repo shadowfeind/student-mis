@@ -27,9 +27,7 @@ import {
   getSubjectOptionsForSelectReducer,
   getSubjectOptionsForSelectStudentReducer,
   postListStudentPresentReducer,
-
   postStudentAttendanceReducer,
-
 } from "./student/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetReducers";
 import {
   getAllTotalStudentAttendanceReducer,
@@ -46,21 +44,25 @@ import {
   updateSingleExamDivisionReducer,
 } from "./student/examDivision/ExamDivisionReducers";
 
-import {
-  getAllAcademicStudentExamdataReducer,
-  getEventReducer,
-  getEventScheduleReducer,
-  getExamEntryBulkReducer,
-  getExamEntrySearchDataReducer,
-} from "./student/examMarkEntry/ExamMarkEntryReducers";
-
+// import {
+//   getAllAcademicStudentExamdataReducer,
+//   getEventReducer,
+//   getEventScheduleReducer,
+//   getExamEntryBulkReducer,
+//   getExamEntrySearchDataReducer,
+// } from "./student/examMarkEntry/ExamMarkEntryReducers";
 
 import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
 
-import { downloadOldQuestionsReducer, getAllOldQuestionsReducer, getListOldQuestionsStudentReducer, getSubjectOptionsForOldQuestionsReducer } from "./student/oldQuestions/OldQuestionsReducers";
+import {
+  downloadOldQuestionsReducer,
+  getAllOldQuestionsReducer,
+  getListOldQuestionsStudentReducer,
+  getSubjectOptionsForOldQuestionsReducer,
+} from "./student/oldQuestions/OldQuestionsReducers";
 
 import {
   getAllContactAddress,
@@ -139,9 +141,10 @@ import {
   updateSingleTrainingReducer,
 } from "./student/pid/training/TrainingReducers";
 
-import { getAllUploadPhoto, uploadPhotoReducer } from "./student/pid/uploadPhoto/UploadPhotoReducers";
-
-import { getAllUploadPhoto } from "./student/pid/uploadPhoto/UploadPhotoReducers";
+import {
+  getAllUploadPhoto,
+  uploadPhotoReducer,
+} from "./student/pid/uploadPhoto/UploadPhotoReducers";
 
 import {
   downloadNewResourcesReducer,
@@ -149,11 +152,13 @@ import {
   getNewResourcesStudentListReducer,
 } from "./student/resources/newResourcesStudent/NewResourcesStudentReducers";
 
-import { getAllSyllabusReducer, getListSyllabusReducer } from "./student/syllabus/SyllabusReducers";
-
+import {
+  getAllSyllabusReducer,
+  getListSyllabusReducer,
+} from "./student/syllabus/SyllabusReducers";
 
 export const reducers = combineReducers({
-   academicGrading: getAllAcademicGradingReducer,
+  academicGrading: getAllAcademicGradingReducer,
   getSingleAcademicGrading: getSingleAcademicGradingReducer,
   createAcademicGrading: createAcademicGradingReducer,
   getSingleAcademicGradingforEdit: getSingleAcademicGradingforEditReducer,
@@ -165,73 +170,73 @@ export const reducers = combineReducers({
   updateSingleExamDivision: updateSingleExamDivisionReducer,
   getAllExamScheduleInitialData: getAllExamScheduleInitialDataReducer,
   getExamScheduleList: getExamScheduleListReducer,
- //user profile reducers starts
+  //user profile reducers starts
   //PID PersonalInformation
   getAllPersonalInformation: getAllPersonalInformation,
-  getListPersonalInformation : getListPersonalInformationReducer,
+  getListPersonalInformation: getListPersonalInformationReducer,
   getSinglePersonalInformation: getSinglePersonalInformationReducer,
-  updateSinglePersonalInformation : updateSinglePersonalInformationReducer,
+  updateSinglePersonalInformation: updateSinglePersonalInformationReducer,
   //PID ContactAddress
-  getAllContactAddress : getAllContactAddress,
+  getAllContactAddress: getAllContactAddress,
   getSingleContactAddress: getSingleContactAddressReducer,
   updateSingleContactAddress: updateSingleContactAddressReducer,
   //PiD Contactnumber
   getAllContactNumber: getAllContactNumber,
   getSingleContactNumber: getSingleContactNumberReducer,
-  updateSingleContactNumber : updateSingleContactNumberReducer,
+  updateSingleContactNumber: updateSingleContactNumberReducer,
   //PID Education
   getAllEducation: getAllEducation,
   getAllEducationCreate: getAllEducationCreateReducer,
-  createSingleEducation : createSingleEducationReducer,
-  educationCreate : educationCreateReducer,
+  createSingleEducation: createSingleEducationReducer,
+  educationCreate: educationCreateReducer,
   //PID Email
   getAllEmail: getAllEmail,
   getSingleEmail: getSingleEmailReducer,
   updateSingleEmail: updateSingleEmailReducer,
- //Reducer Ends
+  //Reducer Ends
   //PID FamilyMember
   getAllFamilyMember: getAllFamilyMember,
-  getSingleFamilyMember :getSingleFamilyMemberReducer,
-  updateSingleFamilyMember : updateSingleFamilyMemberReducer,
-createFamilyMember : createFamilyMemberReducer,
-getAllFamilyMemberCreate:getAllFamilyMemberCreateReducer,
-//PID Guardian
-getAllGuardian: getAllGuardian,
-getSingleGuardian: getSingleGuardianReducer,
-updateSingleGuardian : updateSingleGuardianReducer,
+  getSingleFamilyMember: getSingleFamilyMemberReducer,
+  updateSingleFamilyMember: updateSingleFamilyMemberReducer,
+  createFamilyMember: createFamilyMemberReducer,
+  getAllFamilyMemberCreate: getAllFamilyMemberCreateReducer,
+  //PID Guardian
+  getAllGuardian: getAllGuardian,
+  getSingleGuardian: getSingleGuardianReducer,
+  updateSingleGuardian: updateSingleGuardianReducer,
   //PID Hobby
-  getAllHobby : getAllHobby,
-  getAllHobbyCreate : getAllHobbyCreateReducer,
+  getAllHobby: getAllHobby,
+  getAllHobbyCreate: getAllHobbyCreateReducer,
   createSingleHobby: createSingleHobbyReducer,
-  hobbyCreate : hobbyCreateReducer,
+  hobbyCreate: hobbyCreateReducer,
   //PID JobHistory
   getAllJobHistory: getAllJobHistory,
   getAllJobHistoryCreate: getAllJobHistoryCreateReducer,
   createSingleJobHistory: createSingleJobHistoryReducer,
-  jobHistoryCreate : jobHistoryCreateReducer,
+  jobHistoryCreate: jobHistoryCreateReducer,
   //PID Skill
-  getAllSkill : getAllSkill,
+  getAllSkill: getAllSkill,
   getAllSkillCreate: getAllSkillCreateReducer,
-  createSingleSkill : createSingleSkillReducer,
+  createSingleSkill: createSingleSkillReducer,
   skillCreate: skillCreateReducer,
   //PID Training
-  getAllTraining : getAllTraining,
-  getAllTrainingCreate : getAllTrainingCreateReducer,
+  getAllTraining: getAllTraining,
+  getAllTrainingCreate: getAllTrainingCreateReducer,
   createSingleTraining: createSingleTrainingReducer,
   trainingCreate: trainingCreateReducer,
   //PID uploadPhoto
   uploadPhoto: uploadPhotoReducer,
   //user profile reducers ends
   //attendance start
-  getAllStudentAttendance : getAllStudentAttendanceReducer,
-  getListStudentAttendance : getListStudentAttendanceReducer,
+  getAllStudentAttendance: getAllStudentAttendanceReducer,
+  getListStudentAttendance: getListStudentAttendanceReducer,
   getAllOtherOptionsForStudent: getAllOtherOptionsForStudentReducer,
-  getEnglishDateStudent : getEnglishDateStudentReducer,
+  getEnglishDateStudent: getEnglishDateStudentReducer,
   //attendance end
   //Resources(New Resources Student Reducers)
   getAllNewResourcesStudent: getAllNewResourcesStudentReducer,
   getNewResourcesStudentList: getNewResourcesStudentListReducer,
-  downloadNewResources : downloadNewResourcesReducer,
+  downloadNewResources: downloadNewResourcesReducer,
   //Assignment Reducers
   getAllAssignment: getAllAssignmentReducer,
   getAssignmentList: getAssignmentListReducer,
@@ -239,12 +244,12 @@ updateSingleGuardian : updateSingleGuardianReducer,
   putSingleAssignment: putSingleAssignmentReducer,
   downloadAssignment: downloadAssignmentReducer,
   //ClassSchedule Reducer
-  getAllClassSchedule : getAllClassScheduleReducer,
+  getAllClassSchedule: getAllClassScheduleReducer,
   //OldQuestions Reducers
-  getAllOldQuestions : getAllOldQuestionsReducer,
-  getSubjectOptionsForOldQuestions : getSubjectOptionsForOldQuestionsReducer,
-  getListOldQuestionsStudent : getListOldQuestionsStudentReducer,
-  downloadOldQuestions : downloadOldQuestionsReducer,
-    //Syllabus Teacher
-    getAllSyllabus : getAllSyllabusReducer,
+  getAllOldQuestions: getAllOldQuestionsReducer,
+  getSubjectOptionsForOldQuestions: getSubjectOptionsForOldQuestionsReducer,
+  getListOldQuestionsStudent: getListOldQuestionsStudentReducer,
+  downloadOldQuestions: downloadOldQuestionsReducer,
+  //Syllabus Teacher
+  getAllSyllabus: getAllSyllabusReducer,
 });
