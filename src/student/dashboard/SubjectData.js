@@ -2,7 +2,7 @@ export const subject = [
   {
     id: 1,
     name: "Science",
-    credit: "SCI (Credit: 4)",
+    credit: "(Sci Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/6mPDc4f/Science-Quotes.jpg",
@@ -10,7 +10,7 @@ export const subject = [
   {
     id: 2,
     name: "English",
-    credit: "Eng (Credit: 4)",
+    credit: "(Eng Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/sypZmq4/english.jpg",
@@ -18,7 +18,7 @@ export const subject = [
   {
     id: 3,
     name: "Nepali",
-    credit: "Nep (Credit: 4)",
+    credit: "(Nep Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/6mPDc4f/Science-Quotes.jpg",
@@ -26,7 +26,7 @@ export const subject = [
   {
     id: 4,
     name: "Socail Studies",
-    credit: "SS (Credit: 4)",
+    credit: "(Ss Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/5s20zQR/ss.jpg",
@@ -34,7 +34,7 @@ export const subject = [
   {
     id: 5,
     name: "Math",
-    credit: "Mth (Credit: 4)",
+    credit: "(Mth Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/6mPDc4f/Science-Quotes.jpg",
@@ -42,7 +42,7 @@ export const subject = [
   {
     id: 6,
     name: "General Knowledge",
-    credit: "GK (Credit: 4)",
+    credit: "(Gk Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/Sw0XwNG/gk.jpg",
@@ -50,7 +50,7 @@ export const subject = [
   {
     id: 7,
     name: "Opt. Math",
-    credit: "Opt (Credit: 4)",
+    credit: "(Opt Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/6mPDc4f/Science-Quotes.jpg",
@@ -58,7 +58,7 @@ export const subject = [
   {
     id: 8,
     name: "Computer science",
-    credit: "C.SCI (Credit: 4)",
+    credit: "(Cs Cr: 4)",
     teacher: "Suresh Kumar Mandar",
     phone: "9841479789",
     imageUrl: "https://i.ibb.co/ggPc7Lt/computer.jpg",

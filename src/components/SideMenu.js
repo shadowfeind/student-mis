@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     position: "absolute",
     left: "0",
     height: "100%",
-    width: "6%",
+    width: "7%",
     backgroundColor: "#253053",
     position: "fixed",
     "& h6": {
@@ -60,6 +60,16 @@ const SideMenu = () => {
       >
         MIS
       </Typography>
+      <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
+        {/* <Settings fontSize="medium" /> */}
+        <img
+          src="https://i.ibb.co/r5BH44c/student.jpg"
+          width="70px"
+          height="70px"
+          style={{ borderRadius: "50%" }}
+        />
+        <Typography variant="h6">Profile</Typography>
+      </NavLink>
       <NavLink
         to={"/"}
         exact={true}
@@ -102,10 +112,6 @@ const SideMenu = () => {
         <Typography variant="h6">Class Schedule</Typography>
       </NavLink>
 
-      <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
-        <Settings fontSize="medium" />
-        <Typography variant="h6">Pid</Typography>
-      </NavLink>
       <NavLink
         to={"/quick-links"}
         activeStyle={isActive}

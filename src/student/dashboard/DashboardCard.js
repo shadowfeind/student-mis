@@ -24,12 +24,13 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "45.25%", // 16:9
   },
   topHeading: {
     color: "#000",
     fontSize: "18px",
     paddingBottom: "3px",
+    marginBottom: "-10px",
   },
 }));
 
@@ -49,11 +50,13 @@ export const DashboardCard = ({ subject }) => {
           component="h4"
           className={classes.topHeading}
         >
-          {subject.name}
+          {subject.name}{" "}
+          <span style={{ textAlign: "right", fontSize: "12px", color: "#666" }}>
+            {" "}
+            {subject.credit}
+          </span>
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="h6">
-          {subject.credit}
-        </Typography>
+
         <Typography variant="body2" color="textSecondary" component="h6">
           {subject.teacher}
           <IconButton aria-label="add to favorites">
