@@ -27,13 +27,17 @@ import {
   getSubjectOptionsForSelectReducer,
   getSubjectOptionsForSelectStudentReducer,
   postListStudentPresentReducer,
+
   postStudentAttendanceReducer,
+
 } from "./student/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetReducers";
 import {
   getAllTotalStudentAttendanceReducer,
   getListTotalStudentAttendanceReducer,
 } from "./student/attendance/totalStudentAttendance/TotalStudentAttendanceReducers";
+
 import { getAllClassScheduleReducer } from "./student/classSchedule/ClassScheduleReducer";
+
 import {
   createExamDivisionReducer,
   getAllExamDivisionReducer,
@@ -43,10 +47,21 @@ import {
 } from "./student/examDivision/ExamDivisionReducers";
 
 import {
+  getAllAcademicStudentExamdataReducer,
+  getEventReducer,
+  getEventScheduleReducer,
+  getExamEntryBulkReducer,
+  getExamEntrySearchDataReducer,
+} from "./student/examMarkEntry/ExamMarkEntryReducers";
+
+
+import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
+
 import { downloadOldQuestionsReducer, getAllOldQuestionsReducer, getListOldQuestionsStudentReducer, getSubjectOptionsForOldQuestionsReducer } from "./student/oldQuestions/OldQuestionsReducers";
+
 import {
   getAllContactAddress,
   getSingleContactAddressReducer,
@@ -124,12 +139,15 @@ import {
   updateSingleTrainingReducer,
 } from "./student/pid/training/TrainingReducers";
 import { getAllUploadPhoto, getAllUploadPhotoReducer, uploadPhotoReducer } from "./student/pid/uploadPhoto/UploadPhotoReducers";
+
 import {
   downloadNewResourcesReducer,
   getAllNewResourcesStudentReducer,
   getNewResourcesStudentListReducer,
 } from "./student/resources/newResourcesStudent/NewResourcesStudentReducers";
+
 import { getAllSyllabusReducer, getListSyllabusReducer } from "./student/syllabus/SyllabusReducers";
+
 
 export const reducers = combineReducers({
    academicGrading: getAllAcademicGradingReducer,
