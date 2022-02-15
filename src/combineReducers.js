@@ -123,7 +123,7 @@ import {
   trainingCreateReducer,
   updateSingleTrainingReducer,
 } from "./student/pid/training/TrainingReducers";
-import { getAllUploadPhoto, uploadPhotoReducer } from "./student/pid/uploadPhoto/UploadPhotoReducers";
+import { getAllUploadPhoto, getAllUploadPhotoReducer, uploadPhotoReducer } from "./student/pid/uploadPhoto/UploadPhotoReducers";
 import {
   downloadNewResourcesReducer,
   getAllNewResourcesStudentReducer,
@@ -200,6 +200,7 @@ updateSingleGuardian : updateSingleGuardianReducer,
   trainingCreate: trainingCreateReducer,
   //PID uploadPhoto
   uploadPhoto: uploadPhotoReducer,
+  getAllUploadPhoto : getAllUploadPhotoReducer,
   //user profile reducers ends
   //attendance start
   getAllStudentAttendance : getAllStudentAttendanceReducer,
