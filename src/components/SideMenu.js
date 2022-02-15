@@ -1,5 +1,5 @@
 import { makeStyles, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   School,
@@ -12,6 +12,13 @@ import {
   PostAdd,
   RecordVoiceOver,
 } from "@material-ui/icons";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { getHeaderContentAction } from "../student/dashboard/DashboardActions";
+import { UPLOADPHOTO_RESET } from "../student/pid/uploadPhoto/UploadPhotoConstants";
+import { API_URL } from "../constants";
+import { getAllUploadPhotoAction } from "../student/pid/uploadPhoto/UploadPhotoActions";
+import Notification from "./Notification";
 
 const useStyles = makeStyles({
   sideMenu: {
@@ -47,11 +54,38 @@ const useStyles = makeStyles({
 
 const SideMenu = () => {
   const classes = useStyles();
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
   const isActive = {
     color: "#253053",
     backgroundColor: "#eaeff5",
     textDecoration: "none",
   };
+  const dispatch = useDispatch();
+  const { headerContent, error: headerContentError } = useSelector(
+    (state) => state.getHeaderContent
+  );
+  const { success: uploadPhotoSuccess } = useSelector(
+    (state) => state.uploadPhoto
+  );
+  if (uploadPhotoSuccess) {
+    dispatch({ type: UPLOADPHOTO_RESET });
+    dispatch(getHeaderContentAction());
+    setNotify({
+      isOpen: true,
+      message: "Successfully Uploaded",
+      type: "success",
+    });
+    dispatch(getAllUploadPhotoAction());
+  }
+  useEffect(() => {
+    if (!headerContent) {
+      dispatch(getHeaderContentAction());
+    }
+  }, [headerContent, dispatch]);
   return (
     <div className={classes.sideMenu}>
       <Typography
@@ -61,13 +95,15 @@ const SideMenu = () => {
         MIS
       </Typography>
       <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
-        {/* <Settings fontSize="medium" /> */}
-        <img
-          src="https://i.ibb.co/r5BH44c/student.jpg"
-          width="70px"
-          height="70px"
-          style={{ borderRadius: "50%" }}
-        />
+        {headerContent && (
+          <img
+            src={`${API_URL}${headerContent.FullPath}`}
+            width="70px"
+            height="70px"
+            style={{ borderRadius: "50%" }}
+          />
+        )}
+
         <Typography variant="h6">Profile</Typography>
       </NavLink>
       <NavLink
@@ -160,6 +196,7 @@ const SideMenu = () => {
         <Accessible fontSize="medium" />
         <Typography variant="h6">Attendance</Typography>
       </NavLink>
+      <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };
