@@ -15,7 +15,7 @@ export const getAllUploadPhotoAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_UPLOADPHOTO_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/api/PID_PhotoUploadImage/GetSingleToEditPhoto`,
+      `${API_URL}/api/PID_PhotoUpload/GetSingleToEditPhoto`,
       tokenConfig
     );
 
@@ -31,41 +31,42 @@ export const getAllUploadPhotoAction = () => async (dispatch) => {
   }
 };
 
-export const putUploadPhotoAction =
-  (image, dbData) => async (dispatch) => {
-    try {
-      dispatch({ type: UPLOADPHOTO_REQUEST });
+export const putUploadPhotoAction = (image, dbData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPLOADPHOTO_REQUEST });
 
-      let formData = new FormData();
-      formData.append("ImageUploaded", image);
+    let formData = new FormData();
+    formData.append("ImageUploaded", image);
 
-      const { data } = await axios.post(
-        `${API_URL}/api/PID_PhotoUploadImage/FileUpload`,
-        formData,
+    const { data } = await axios.post(
+      `${API_URL}/api/PID_PhotoUpload/FileUpload`,
+      formData,
+      tokenConfig
+    );
+
+    if (data) {
+      const newData = {
+        ...dbData,
+        ...data,
+      };
+      const jsonData = JSON.stringify({
+        hrEmployeeModel: newData,
+      });
+      console.log(jsonData);
+      await axios.put(
+        `${API_URL}/api/PID_PhotoUpload/PutPhoto`,
+        jsonData,
         tokenConfig
       );
-
-      if (data) {
-        const newData = {  ...dbData, FullPath: data };
-        const jsonData = JSON.stringify({
-          Adm_ImageUploaded: {dbModel: newData}
-        });
-   
-        await axios.put(
-          `${API_URL}/api/PID_PhotoUploadImage/PutPhoto`,
-          jsonData,
-          tokenConfig
-        );
-        console.log(jsonData)
-      }
-
-      dispatch({
-        type: UPLOADPHOTO_SUCCESS,
-      });
-    } catch (error) {
-      dispatch({
-        type: UPLOADPHOTO_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
     }
-  };
+
+    dispatch({
+      type: UPLOADPHOTO_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPLOADPHOTO_FAIL,
+      payload: error.message ? error.message : error.Message,
+    });
+  }
+};

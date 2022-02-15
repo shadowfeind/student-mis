@@ -36,7 +36,7 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
         type="file"
       />
 
-      <img src={imgSrc ? imgSrc : uploadPhoto && `${API_URL}${uploadPhoto.FullPath}`} height={200} width={200} />
+      <img src={imgSrc ? imgSrc : uploadPhoto && `${API_URL}${uploadPhoto.dbModel.FullPath}`} height={200} width={200} />
       <div
         style={{
           display: "flex",

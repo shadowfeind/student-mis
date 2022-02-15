@@ -56,6 +56,7 @@ const UploadPhoto = () => {
       type: "success",
     });
     dispatch({ type: UPLOADPHOTO_RESET });
+    dispatch(getAllUploadPhotoAction());
   }
   if (uploadPhotoError) {
     setNotify({
