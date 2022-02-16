@@ -65,7 +65,10 @@ const App = () => {
             <Route path={"/pid"} component={Pid} />
             <Route path={"/quick-links"} component={QuickLinks} />
             <Route path={"/resources"} component={Resources} />
-            <Route path={"/assignment-front"} component={AssignmentFront} />
+            <Route
+              path={"/assignment-front/:id?"}
+              component={AssignmentFront}
+            />
             <Route path={"/syllabus"} component={Syllabus} />
             <Route path={"/class-schedule"} component={ClassSchedule} />
             <Route path={"/old-questions"} component={OldQuestions} />

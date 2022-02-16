@@ -35,7 +35,10 @@ import {
 } from "./student/attendance/totalStudentAttendance/TotalStudentAttendanceReducers";
 
 import { getAllClassScheduleReducer } from "./student/classSchedule/ClassScheduleReducer";
-import { getHeaderContentReducer } from "./student/dashboard/DashboardReducers";
+import {
+  getDashboardContentReducer,
+  getHeaderContentReducer,
+} from "./student/dashboard/DashboardReducers";
 
 import {
   createExamDivisionReducer,
@@ -160,6 +163,7 @@ import {
 
 export const reducers = combineReducers({
   getHeaderContent: getHeaderContentReducer,
+  getDashboardContent: getDashboardContentReducer,
   academicGrading: getAllAcademicGradingReducer,
   getSingleAcademicGrading: getSingleAcademicGradingReducer,
   createAcademicGrading: createAcademicGradingReducer,
