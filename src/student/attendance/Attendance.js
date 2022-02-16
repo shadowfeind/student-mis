@@ -10,9 +10,9 @@ import { useDispatch } from "react-redux";
 const StudentMonthlyPresentSheet = lazy(() =>
   import("./studentMonthlyPresentSheet/StudentMonthlyPresentSheet")
 );
-const TotalStudentAttendance = lazy(() =>
-  import("./totalStudentAttendance/TotalStudentAttendance")
-);
+// const TotalStudentAttendance = lazy(() =>
+//   import("./totalStudentAttendance/TotalStudentAttendance")
+// );
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,7 +87,7 @@ const Attendance = () => {
           <StudentMonthlyPresentSheet />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <TotalStudentAttendance />
+          {/* <TotalStudentAttendance /> */}
         </TabPanel>
       </Suspense>
     </div>

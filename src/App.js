@@ -64,7 +64,7 @@ const App = () => {
             <Route path={"/exam-schedule"} component={ExamSchedule} />
             <Route path={"/pid"} component={Pid} />
             <Route path={"/quick-links"} component={QuickLinks} />
-            <Route path={"/resources"} component={Resources} />
+            <Route path={"/resources/:id?"} component={Resources} />
             <Route
               path={"/assignment-front/:id?"}
               component={AssignmentFront}
