@@ -9,8 +9,9 @@ import {
   ThemeProvider,
 } from "@material-ui/core";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
-const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
 
+const PageNotFound = lazy(() => import("./student/pageNotFound/PageNotFound"));
+const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
 const Pid = lazy(() => import("./student/pid/UserProfile"));
 const QuickLinks = lazy(() => import("./student/quickLinks/QuickLinks"));
 const Resources = lazy(() => import("./student/resources/Resources"));
@@ -60,25 +61,28 @@ const App = () => {
         <div className={classes.appMain}>
           <Header />
           <Suspense fallback={<div></div>}>
-            <Route path={"/exam-division"} component={ExamDivision} />
-            <Route path={"/exam-schedule"} component={ExamSchedule} />
-            <Route path={"/pid"} component={Pid} />
-            <Route path={"/quick-links"} component={QuickLinks} />
-            <Route path={"/resources/:id?"} component={Resources} />
-            <Route
-              path={"/assignment-front/:id?"}
-              component={AssignmentFront}
-            />
-            <Route path={"/syllabus"} component={Syllabus} />
-            <Route path={"/class-schedule"} component={ClassSchedule} />
-            <Route path={"/old-questions"} component={OldQuestions} />
-            <Route path={"/attendance"} component={Attendance} />
-            <Route
-              exact
-              path={"/academic-grading"}
-              component={AcademicGrading}
-            />
-            <Route exact path={"/"} component={Dashboard} />
+            <Switch>
+              <Route path={"/exam-division"} component={ExamDivision} />
+              <Route path={"/exam-schedule"} component={ExamSchedule} />
+              <Route path={"/pid"} component={Pid} />
+              <Route path={"/quick-links"} component={QuickLinks} />
+              <Route path={"/resources/:id?"} component={Resources} />
+              <Route
+                path={"/assignment-front/:id?"}
+                component={AssignmentFront}
+              />
+              <Route path={"/syllabus"} component={Syllabus} />
+              <Route path={"/class-schedule"} component={ClassSchedule} />
+              <Route path={"/old-questions"} component={OldQuestions} />
+              <Route path={"/attendance"} component={Attendance} />
+              <Route
+                exact
+                path={"/academic-grading"}
+                component={AcademicGrading}
+              />
+              <Route exact path={"/"} component={Dashboard} />
+              <Route path="*" component={PageNotFound} />
+            </Switch>
           </Suspense>
         </div>
         <CssBaseline />

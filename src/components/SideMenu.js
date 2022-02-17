@@ -71,21 +71,19 @@ const SideMenu = () => {
   const { success: uploadPhotoSuccess } = useSelector(
     (state) => state.uploadPhoto
   );
-  if (uploadPhotoSuccess) {
-    dispatch({ type: UPLOADPHOTO_RESET });
-    dispatch(getHeaderContentAction());
-    setNotify({
-      isOpen: true,
-      message: "Successfully Uploaded",
-      type: "success",
-    });
-    dispatch(getAllUploadPhotoAction());
-  }
+
   useEffect(() => {
     if (!headerContent) {
       dispatch(getHeaderContentAction());
     }
   }, [headerContent, dispatch]);
+
+  useEffect(() => {
+    if (uploadPhotoSuccess) {
+      dispatch(getHeaderContentAction());
+    }
+  }, [uploadPhotoSuccess]);
+
   return (
     <div className={classes.sideMenu}>
       <Typography
