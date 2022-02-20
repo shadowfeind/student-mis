@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { unstable_batchedUpdates } from "react-dom";
 import {
   Button,
   InputAdornment,
@@ -59,14 +61,15 @@ const tableHeader = [
 ];
 
 const Assignment = () => {
+  const { id: subjectIdFromDashboard } = useParams();
   const [ddlClass, setDdlClass] = useState([]);
   const [academicYearDdl, setAcademicYearDdl] = useState([]);
   const [programDdl, setProgramDdl] = useState([]);
   const [ddlShift, setDdlShift] = useState([]);
-  const [programValue, setProgramValue] = useState(6);
-  const [classId, setClassId] = useState(13);
-  const [acaYear, setAcaYear] = useState(52);
-  const [shift, setShift] = useState(2);
+  const [programValue, setProgramValue] = useState("");
+  const [classId, setClassId] = useState("");
+  const [acaYear, setAcaYear] = useState("");
+  const [shift, setShift] = useState("");
   const [errors, setErrors] = useState({});
   const [ddlFacultySubject, setDdlFacultySubject] = useState([]);
   const [facultySubject, setFacultySubject] = useState("");
@@ -206,13 +209,31 @@ const Assignment = () => {
       dispatch(getAllAssignmentAction());
     }
     if (assignment) {
-      setProgramDdl(assignment.searchFilterModel.ddlFacultyProgramLink);
-      setDdlClass(assignment.searchFilterModel.ddlClass);
-      setAcademicYearDdl(assignment.searchFilterModel.ddlAcademicYear);
-      setDdlShift(assignment.searchFilterModel.ddlAcademicShift);
-      setDdlFacultySubject(assignment.searchFilterModel.ddlSubject);
+      unstable_batchedUpdates(() => {
+        setAcademicYearDdl(assignment.searchFilterModel.ddlAcademicYear);
+        setProgramDdl(assignment.searchFilterModel.ddlFacultyProgramLink);
+        setDdlClass(assignment.searchFilterModel.ddlClass);
+        setDdlShift(assignment.searchFilterModel.ddlAcademicShift);
+        setDdlFacultySubject(assignment.searchFilterModel.ddlSubject);
+        setAcaYear(assignment.searchFilterModel.idAcademicYear);
+        setProgramValue(assignment.searchFilterModel.idFacultyProgramLink);
+        setClassId(assignment.searchFilterModel.level);
+        setShift(assignment.searchFilterModel.idShift);
+      });
+      if (subjectIdFromDashboard) {
+        setFacultySubject(subjectIdFromDashboard);
+        dispatch(
+          getAssignmentListAction(
+            assignment.searchFilterModel.idAcademicYear,
+            assignment.searchFilterModel.idFacultyProgramLink,
+            assignment.searchFilterModel.level,
+            assignment.searchFilterModel.idShift,
+            subjectIdFromDashboard
+          )
+        );
+      }
     }
-  }, [assignment, dispatch]);
+  }, [assignment, dispatch, subjectIdFromDashboard]);
 
   useEffect(() => {
     if (assignmentList) {
@@ -245,6 +266,7 @@ const Assignment = () => {
       );
     }
   };
+
   return (
     <>
       <CustomContainer>
@@ -256,7 +278,7 @@ const Assignment = () => {
                 label="Academic Year"
                 value={acaYear}
                 onChange={(e) => setAcaYear(e.target.value)}
-                options={academicYearDdl ? academicYearDdl : test}
+                options={academicYearDdl}
                 errors={errors.acaYear}
               />
             </Grid>
@@ -266,7 +288,7 @@ const Assignment = () => {
                 label="Program/Faculty"
                 value={programValue}
                 onChange={(e) => setProgramValue(e.target.value)}
-                options={programDdl ? programDdl : test}
+                options={programDdl}
                 errors={errors.programValue}
               />
             </Grid>
@@ -276,7 +298,7 @@ const Assignment = () => {
                 label="Classes"
                 value={classId}
                 onChange={(e) => setClassId(e.target.value)}
-                options={ddlClass ? ddlClass : test}
+                options={ddlClass}
                 errors={errors.classId}
               />
             </Grid>
@@ -286,7 +308,7 @@ const Assignment = () => {
                 label="Shift"
                 value={shift}
                 onChange={(e) => setShift(e.target.value)}
-                options={ddlShift ? ddlShift : test}
+                options={ddlShift}
                 errors={errors.shift1}
               />
             </Grid>
@@ -297,7 +319,7 @@ const Assignment = () => {
                 label="Faculty Subject"
                 value={facultySubject}
                 onChange={(e) => setFacultySubject(e.target.value)}
-                options={ddlFacultySubject ? ddlFacultySubject : test}
+                options={ddlFacultySubject}
                 errors={errors.facultySubject}
               />
             </Grid>

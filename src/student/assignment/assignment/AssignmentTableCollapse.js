@@ -32,9 +32,9 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
     <TableRow>
       <TableCell>{item.FullName}</TableCell>
       <TableCell>{item.AssignmentName}</TableCell>
-      <TableCell>{item.AssignmentDate}</TableCell>
-      <TableCell>{item.DueDate}</TableCell>
-      <TableCell>{item.SubmittedDate}</TableCell>
+      <TableCell>{item.AssignmentDate.slice(0,10)}</TableCell>
+      <TableCell>{item.DueDate.slice(0,10)}</TableCell>
+      <TableCell>{item.SubmittedDate?.slice(0,10)}</TableCell>
       <TableCell>{item.TotalMark}</TableCell>
       <TableCell>{item.ObtainedMarks}</TableCell>
       <TableCell>

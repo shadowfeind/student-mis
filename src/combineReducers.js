@@ -35,6 +35,10 @@ import {
 } from "./student/attendance/totalStudentAttendance/TotalStudentAttendanceReducers";
 
 import { getAllClassScheduleReducer } from "./student/classSchedule/ClassScheduleReducer";
+import {
+  getDashboardContentReducer,
+  getHeaderContentReducer,
+} from "./student/dashboard/DashboardReducers";
 
 import {
   createExamDivisionReducer,
@@ -140,7 +144,11 @@ import {
   trainingCreateReducer,
   updateSingleTrainingReducer,
 } from "./student/pid/training/TrainingReducers";
-import { getAllUploadPhoto, getAllUploadPhotoReducer, uploadPhotoReducer } from "./student/pid/uploadPhoto/UploadPhotoReducers";
+import {
+  getAllUploadPhoto,
+  getAllUploadPhotoReducer,
+  uploadPhotoReducer,
+} from "./student/pid/uploadPhoto/UploadPhotoReducers";
 
 import {
   downloadNewResourcesReducer,
@@ -154,6 +162,8 @@ import {
 } from "./student/syllabus/SyllabusReducers";
 
 export const reducers = combineReducers({
+  getHeaderContent: getHeaderContentReducer,
+  getDashboardContent: getDashboardContentReducer,
   academicGrading: getAllAcademicGradingReducer,
   getSingleAcademicGrading: getSingleAcademicGradingReducer,
   createAcademicGrading: createAcademicGradingReducer,
@@ -222,7 +232,7 @@ export const reducers = combineReducers({
   trainingCreate: trainingCreateReducer,
   //PID uploadPhoto
   uploadPhoto: uploadPhotoReducer,
-  getAllUploadPhoto : getAllUploadPhotoReducer,
+  getAllUploadPhoto: getAllUploadPhotoReducer,
   //user profile reducers ends
   //attendance start
   getAllStudentAttendance: getAllStudentAttendanceReducer,

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { unstable_batchedUpdates } from "react-dom";
 import {
   Button,
   InputAdornment,
@@ -10,65 +12,69 @@ import {
 import { Search } from "@material-ui/icons";
 import useCustomTable from "../../../customHooks/useCustomTable";
 import InputControl from "../../../components/controls/InputControl";
-import Popup from "../../../components/Popup";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
-import { DOWNLOAD_NEW_SOURCES_RESET, GET_ALL_NEW_SOURCES_STUDENT_RESET, GET_NEW_SOURCES_STUDENT_LIST_RESET } from "./NewResourcesStudentConstant";
-import { getAllNewResourcesStudentAction, getNewResourcesStudentListAction } from "./NewResourcesStudentActions";
+import {
+  DOWNLOAD_NEW_SOURCES_RESET,
+  GET_ALL_NEW_SOURCES_STUDENT_RESET,
+  GET_NEW_SOURCES_STUDENT_LIST_RESET,
+} from "./NewResourcesStudentConstant";
+import {
+  getAllNewResourcesStudentAction,
+  getNewResourcesStudentListAction,
+} from "./NewResourcesStudentActions";
 import NewResourcesStudentTableCollapse from "./NewResourcesStudentTableCollapse";
 
 const useStyles = makeStyles((theme) => ({
-    searchInput: {
-      width: "75%",
-      fontSize: "12px",
-    },
-    button: {
-      position: "absolute",
-      right: "10px",
-    },
-    customInput: {
-      minWidth: "200px",
-    },
-  }));
+  searchInput: {
+    width: "75%",
+    fontSize: "12px",
+  },
+  button: {
+    position: "absolute",
+    right: "10px",
+  },
+  customInput: {
+    minWidth: "200px",
+  },
+}));
 
-  const test = [{ Key: "", Value: "" }];
+const tableHeader = [
+  { id: "ResourceName", label: "Resource Name" },
+  { id: "ResourceDescription", label: "Resource Description" },
+  { id: "PostedBy", label: "Posted By" },
+  { id: "EffectiveForm", label: "Effective Form" },
+  { id: "isActive", label: "IsActive" },
+  { id: "Actions", label: "Actions", disableSorting: true },
+];
 
-  const tableHeader = [
-    { id: "ResourceName", label: "Resource Name" },
-    { id: "ResourceDescription", label: "Resource Description" },
-    { id: "PostedBy", label: "Posted By" },
-    { id: "EffectiveForm", label: "Effective Form" },
-    { id: "isActive", label: "IsActive" },
-    { id: "Actions", label: "Actions", disableSorting: true },
-  ];
+const NewResourcesStudent = () => {
+  const { id: subjectIdFromDashboard } = useParams();
+  const [ddlClass, setDdlClass] = useState([]);
+  const [academicYearDdl, setAcademicYearDdl] = useState([]);
+  const [programDdl, setProgramDdl] = useState([]);
+  const [ddlShift, setDdlShift] = useState([]);
+  const [programValue, setProgramValue] = useState("");
+  const [classId, setClassId] = useState("");
+  const [acaYear, setAcaYear] = useState("");
+  const [shift, setShift] = useState("");
+  const [errors, setErrors] = useState({});
+  const [ddlSection, setDdlSection] = useState([]);
+  const [section, setSection] = useState(1);
+  const [ddlFacultySubject, setDdlFacultySubject] = useState([]);
+  const [facultySubject, setFacultySubject] = useState("");
+  const dispatch = useDispatch();
+  const classes = useStyles();
 
-  const NewResourcesStudent=()=>{
-    const [ddlClass, setDdlClass] = useState([]);
-    const [academicYearDdl, setAcademicYearDdl] = useState([]);
-    const [programDdl, setProgramDdl] = useState([]);
-    const [ddlShift, setDdlShift] = useState([]);
-    const [programValue, setProgramValue] = useState(6);
-    const [classId, setClassId] = useState(13);
-    const [acaYear, setAcaYear] = useState(52);
-    const [shift, setShift] = useState(2);
-    const [errors, setErrors] = useState({});
-    const [ddlSection, setDdlSection] = useState([]);
-    const [section, setSection] = useState(1);
-    const [ddlFacultySubject, setDdlFacultySubject] = useState([]);
-    const [facultySubject, setFacultySubject] = useState("");
-    const dispatch = useDispatch();
-    const classes = useStyles();
-  
-    const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [filterFn, setFilterFn] = useState({
     fn: (item) => {
       return item;
     },
   });
-  const [openPopup, setOpenPopup] = useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -101,11 +107,12 @@ const useStyles = makeStyles((theme) => ({
     });
   };
 
-  const { newResourcesStudent, error: newResourcesStudentError } =
-  useSelector((state) => state.getAllNewResourcesStudent);
+  const { newResourcesStudent, error: newResourcesStudentError } = useSelector(
+    (state) => state.getAllNewResourcesStudent
+  );
 
   const { newResourcesStudentList, error: newResourcesStudentListError } =
-  useSelector((state) => state.getNewResourcesStudentList);
+    useSelector((state) => state.getNewResourcesStudentList);
 
   const {
     success: downloadNewResourcesSuccess,
@@ -144,43 +151,52 @@ const useStyles = makeStyles((theme) => ({
     dispatch({ type: GET_NEW_SOURCES_STUDENT_LIST_RESET });
   }
 
-  const validate=()=>{
-    let temp ={};
+  const validate = () => {
+    let temp = {};
     temp.acaYear = !acaYear ? "This feild is required" : "";
     temp.programValue = !programValue ? "This feild is required" : "";
     temp.classId = !classId ? "This feild is required" : "";
     temp.section = !section ? "This feild is required" : "";
     temp.shift1 = !shift ? "This feild is required" : "";
     temp.facultySubject = !facultySubject ? "This feild is required" : "";
-    
+
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
-  }
-  
+  };
+
   useEffect(() => {
     if (!newResourcesStudent) {
       dispatch(getAllNewResourcesStudentAction());
     }
     if (newResourcesStudent) {
-       
-      setProgramDdl(
-        newResourcesStudent.searchFilterModel.ddlFacultyProgramLink
-      );
-      setDdlClass(newResourcesStudent.searchFilterModel.ddlClass);
-      setAcademicYearDdl(
-        newResourcesStudent.searchFilterModel.ddlAcademicYear
-      );
-      setDdlShift(
-        newResourcesStudent.searchFilterModel.ddlAcademicShift
-      );
-      setDdlSection(
-        newResourcesStudent.searchFilterModel.ddlSection
-      );
-      setDdlFacultySubject(
-        newResourcesStudent.searchFilterModel.ddlSubject
-      );
+      unstable_batchedUpdates(() => {
+        setProgramDdl(
+          newResourcesStudent.searchFilterModel.ddlFacultyProgramLink
+        );
+        setDdlClass(newResourcesStudent.searchFilterModel.ddlClass);
+        setAcademicYearDdl(
+          newResourcesStudent.searchFilterModel.ddlAcademicYear
+        );
+        setDdlShift(newResourcesStudent.searchFilterModel.ddlAcademicShift);
+        setDdlSection(newResourcesStudent.searchFilterModel.ddlSection);
+        setDdlFacultySubject(newResourcesStudent.searchFilterModel.ddlSubject);
+        
+      });
+      if (subjectIdFromDashboard) {
+        setFacultySubject(subjectIdFromDashboard);
+        dispatch(
+          getNewResourcesStudentListAction(
+            subjectIdFromDashboard,
+            newResourcesStudent.searchFilterModel.idAcademicYear,
+            newResourcesStudent.searchFilterModel.idFacultyProgramLink,
+            newResourcesStudent.searchFilterModel.level,
+            newResourcesStudent.searchFilterModel.section,
+            (newResourcesStudent.searchFilterModel.idShift)
+          )
+        );
+      }
     }
-  }, [newResourcesStudent, dispatch]);
+  }, [newResourcesStudent, dispatch, subjectIdFromDashboard]);
 
   useEffect(() => {
     if (newResourcesStudentList) {
@@ -188,68 +204,75 @@ const useStyles = makeStyles((theme) => ({
     }
   }, [newResourcesStudentList]);
 
-      const handleExamScheduleSearch = () => {
-        if (validate()) {
-          dispatch(
-            getNewResourcesStudentListAction(facultySubject, acaYear, programValue, classId, section, shift)
-          );
-        }
-      };
+  const handleExamScheduleSearch = () => {
+    if (validate()) {
+      dispatch(
+        getNewResourcesStudentListAction(
+          facultySubject,
+          acaYear,
+          programValue,
+          classId,
+          section,
+          shift
+        )
+      );
+    }
+  };
 
-      return (
-        <>
-          <CustomContainer>
-            <Toolbar>
-              <Grid container style={{ fontSize: "12px" }}>
-                <Grid item xs={3}>
-                  <SelectControl
-                    name="Academic Year"
-                    label="Academic Year"
-                    value={acaYear}
-                    onChange={(e) => setAcaYear(e.target.value)}
-                    options={academicYearDdl ? academicYearDdl : test }
-                    errors={errors.acaYear}
-                  />
-                </Grid>
-                <Grid item xs={3}>
-                  <SelectControl
-                    name="Program/Faculty"
-                    label="Program/Faculty"
-                    value={programValue}
-                    onChange={(e) => setProgramValue(e.target.value)}
-                    options={programDdl ? programDdl : test}
-                    errors={errors.programValue}
-                  />
-                </Grid>
-                <Grid item xs={3}>
-                  <SelectControl
-                    name="Classes"
-                    label="Classes"
-                    value={classId}
-                    onChange={(e) => setClassId(e.target.value)}
-                    options={ddlClass ? ddlClass : test}
-                    errors={errors.classId}
-                  />
-                </Grid>
-    
-                <Grid item xs={3}>
-                  <SelectControl
-                    name="section"
-                    label="Section"
-                    value={section}
-                    onChange={(e) => setSection(e.target.value)}
-                    options={ddlSection ? ddlSection : test}
-                    errors={errors.section}
-                  />
-                </Grid>
-                <Grid item xs={3}>
-                <div style={{ height: "10px" }}></div>
+  return (
+    <>
+      <CustomContainer>
+        <Toolbar>
+          <Grid container style={{ fontSize: "12px" }}>
+            <Grid item xs={3}>
+              <SelectControl
+                name="Academic Year"
+                label="Academic Year"
+                value={acaYear}
+                onChange={(e) => setAcaYear(e.target.value)}
+                options={academicYearDdl}
+                errors={errors.acaYear}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <SelectControl
+                name="Program/Faculty"
+                label="Program/Faculty"
+                value={programValue}
+                onChange={(e) => setProgramValue(e.target.value)}
+                options={programDdl}
+                errors={errors.programValue}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <SelectControl
+                name="Classes"
+                label="Classes"
+                value={classId}
+                onChange={(e) => setClassId(e.target.value)}
+                options={ddlClass}
+                errors={errors.classId}
+              />
+            </Grid>
+
+            <Grid item xs={3}>
+              <SelectControl
+                name="section"
+                label="Section"
+                value={section}
+                onChange={(e) => setSection(e.target.value)}
+                options={ddlSection}
+                errors={errors.section}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="Shift"
                 label="Shift"
                 value={shift}
                 onChange={(e) => setShift(e.target.value)}
-                options={ddlShift ? ddlShift : test}
+                options={ddlShift}
                 errors={errors.shift1}
               />
             </Grid>
@@ -260,13 +283,13 @@ const useStyles = makeStyles((theme) => ({
                 label="Faculty Subject"
                 value={facultySubject}
                 onChange={(e) => setFacultySubject(e.target.value)}
-                options={ddlFacultySubject ? ddlFacultySubject : test}
+                options={ddlFacultySubject}
                 errors={errors.facultySubject}
               />
             </Grid>
-                <Grid item xs={3}>
-                <div style={{ height: "10px" }}></div>
-                <Button
+            <Grid item xs={3}>
+              <div style={{ height: "10px" }}></div>
+              <Button
                 variant="contained"
                 color="primary"
                 type="submit"
@@ -302,7 +325,6 @@ const useStyles = makeStyles((theme) => ({
                 <NewResourcesStudentTableCollapse item={item} key={item.$id} />
               ))}
             </TableBody>
-        
           </TableContainer>
         )}
 
@@ -315,6 +337,6 @@ const useStyles = makeStyles((theme) => ({
       />
     </>
   );
-  }
+};
 
-  export default NewResourcesStudent;
+export default NewResourcesStudent;
