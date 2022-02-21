@@ -129,14 +129,14 @@ const SideMenu = () => {
         <Accessible fontSize="medium" />
         <Typography variant="h6">Exam Division</Typography>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to={"/exam-schedule"}
         activeStyle={isActive}
         className={classes.textBox}
       >
         <PeopleOutline fontSize="medium" />
         <Typography variant="h6">Exam Schedule</Typography>
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to={"/class-schedule"}
         activeStyle={isActive}

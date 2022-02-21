@@ -33,7 +33,7 @@ const useStyles = makeStyles({
         <TableRow>
           <TableCell>{item.EducationLevel}</TableCell>
           <TableCell>{item.InstituteName}</TableCell>
-          <TableCell>{item.PassDate}</TableCell>
+          <TableCell>{item.PassDate.slice(0,10)}</TableCell>
           <TableCell>{item.ScoreIn}</TableCell>
           <TableCell>{item.Score}</TableCell>
           <TableCell>{item.MajorSpecialization}</TableCell>

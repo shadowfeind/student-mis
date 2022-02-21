@@ -40,7 +40,7 @@ const NewResourcesStudentTableCollapse = ({
       <TableCell>{item.CourseName}</TableCell>
       <TableCell>{item.CourseDescription}</TableCell>
       <TableCell>{item.PostedBy}</TableCell>
-      <TableCell>{item.EffectiveForm}</TableCell>
+      <TableCell>{item.EffectiveForm.slice(0,10)}</TableCell>
       <TableCell>{item.isActive}</TableCell>
       <TableCell>
           <Button

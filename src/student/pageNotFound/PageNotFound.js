@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CustomContainer from "../../components/CustomContainer";
 import "./PageNotFound.css";
 const PageNotFound = () => {
@@ -18,7 +19,9 @@ const PageNotFound = () => {
             mystery. But you can click the button below to go back to the
             Dashboard.
           </p>
-          {/* <button className="btn green">Go Back To Dashboard</button> */}
+          <Link className="btn green" to={"/"}>
+            Go Back To Dashboard
+          </Link>
         </div>
       </div>
     </CustomContainer>

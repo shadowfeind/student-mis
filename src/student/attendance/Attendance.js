@@ -75,20 +75,15 @@ const Attendance = () => {
             label="Student Monthly Present Sheet"
             {...a11yProps(0)}
           />
-          <Tab
-            style={{ fontSize: "11px", color: "#fff" }}
-            label="Total Student Attendance"
-            {...a11yProps(1)}
-          />
         </Tabs>
       </AppBar>
       <Suspense fallback={<div></div>}>
         <TabPanel value={value} index={0}>
           <StudentMonthlyPresentSheet />
         </TabPanel>
-        <TabPanel value={value} index={1}>
-          {/* <TotalStudentAttendance /> */}
-        </TabPanel>
+        {/* <TabPanel value={value} index={1}>
+          <TotalStudentAttendance />
+        </TabPanel> */}
       </Suspense>
     </div>
   );

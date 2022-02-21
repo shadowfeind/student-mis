@@ -180,13 +180,7 @@ const NewResourcesStudent = () => {
         setDdlShift(newResourcesStudent.searchFilterModel.ddlAcademicShift);
         setDdlSection(newResourcesStudent.searchFilterModel.ddlSection);
         setDdlFacultySubject(newResourcesStudent.searchFilterModel.ddlSubject);
-        setAcaYear(newResourcesStudent.searchFilterModel.idAcademicYear);
-        setProgramValue(
-          newResourcesStudent.searchFilterModel.idFacultyProgramLink
-        );
-        setClassId(newResourcesStudent.searchFilterModel.level);
-        setShift(newResourcesStudent.searchFilterModel.idShift);
-        setSection(newResourcesStudent.searchFilterModel.section);
+        
       });
       if (subjectIdFromDashboard) {
         setFacultySubject(subjectIdFromDashboard);
@@ -197,7 +191,7 @@ const NewResourcesStudent = () => {
             newResourcesStudent.searchFilterModel.idFacultyProgramLink,
             newResourcesStudent.searchFilterModel.level,
             newResourcesStudent.searchFilterModel.section,
-            Number(newResourcesStudent.searchFilterModel.idShift)
+            (newResourcesStudent.searchFilterModel.idShift)
           )
         );
       }
