@@ -4,6 +4,9 @@ import {
   DOWNLOAD_ASSIGNMENT_FAIL,
   DOWNLOAD_ASSIGNMENT_REQUEST,
   DOWNLOAD_ASSIGNMENT_SUCCESS,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
   GET_ALL_ASSIGNMENT_FAIL,
   GET_ALL_ASSIGNMENT_REQUEST,
   GET_ALL_ASSIGNMENT_SUCCESS,
@@ -141,6 +144,25 @@ export const putSingleAssignmentAction =
     } catch (error) {
       dispatch({
         type: DOWNLOAD_ASSIGNMENT_FAIL,
+        payload: error.message ? error.message : error.Message,
+      });
+    }
+  };
+
+  export const downloadSubmittedAssignmentAction = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST });
+  
+      const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
+  
+      window.open(test, "_blank");
+      dispatch({
+        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
         payload: error.message ? error.message : error.Message,
       });
     }

@@ -35,7 +35,7 @@ export const getAllNewResourcesStudentAction = () => async (dispatch) => {
 };
 
 export const getNewResourcesStudentListAction =
-  (facultySubject,year,program,section,shift,classId) => async (dispatch) => {
+  (facultySubject,year,program,classId,section,shift) => async (dispatch) => {
     try {
       dispatch({ type: GET_NEW_SOURCES_STUDENT_LIST_REQUEST });
 
@@ -74,4 +74,5 @@ export const getNewResourcesStudentListAction =
       });
     }
   };
+  
   
