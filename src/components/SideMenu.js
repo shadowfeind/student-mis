@@ -143,7 +143,7 @@ const SideMenu = () => {
         className={classes.textBox}
       >
         <PeopleOutline fontSize="medium" />
-        <Typography variant="h6">Class Schedule</Typography>
+        <Typography variant="h6">Class Routine</Typography>
       </NavLink>
 
       <NavLink
