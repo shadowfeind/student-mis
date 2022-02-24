@@ -63,7 +63,7 @@ const NewResourcesStudent = () => {
   const [shift, setShift] = useState("");
   const [errors, setErrors] = useState({});
   const [ddlSection, setDdlSection] = useState([]);
-  const [section, setSection] = useState(1);
+  const [section, setSection] = useState("");
   const [ddlFacultySubject, setDdlFacultySubject] = useState([]);
   const [facultySubject, setFacultySubject] = useState("");
   const dispatch = useDispatch();

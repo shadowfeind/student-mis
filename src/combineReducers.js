@@ -8,6 +8,7 @@ import {
 } from "./student/academicGrading/AcademicGradingReducers";
 import {
   downloadAssignmentReducer,
+  downloadSubmittedAssignmentReducer,
   getAllAssignmentReducer,
   getAssignmentListReducer,
   getSingleAssignmentReducer,
@@ -250,6 +251,7 @@ export const reducers = combineReducers({
   getSingleAssignment: getSingleAssignmentReducer,
   putSingleAssignment: putSingleAssignmentReducer,
   downloadAssignment: downloadAssignmentReducer,
+  downloadSubmittedAssignment : downloadSubmittedAssignmentReducer,
   //ClassSchedule Reducer
   getAllClassSchedule: getAllClassScheduleReducer,
   //OldQuestions Reducers
