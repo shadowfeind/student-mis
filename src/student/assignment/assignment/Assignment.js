@@ -58,8 +58,8 @@ const tableHeader = [
   { id: "SubmittedDate", label: "SubmittedDate" },
   { id: "TotalMark", label: "FullMarks" },
   { id: "ObtainedMarks", label: "Obtained Marks" },
-  { id: "DocumentSubmitted", label: "Submitted Files" },
   { id: "DocumentName", label: "Assignment" },
+  { id: "DocumentSubmitted", label: "Submitted Files" },
   { id: "Actions", label: "Actions", disableSorting: true },
 ];
 
