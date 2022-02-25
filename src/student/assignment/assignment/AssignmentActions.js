@@ -100,16 +100,17 @@ export const putSingleAssignmentAction =
         tokenConfig
       );
 
+      console.log(assignment)
+
       if (data) {
         const newData = {
           ...assignment,
-          DocumentSubmit: data,
+          DocumentSubmitted: data,
         };
         const jsonData = JSON.stringify({
           dbStudentSubmissionModel: newData,
         });
 
-        console.log(jsonData);
 
         await axios.put(
           `${API_URL}/api/StudentSubmission/PutStudentSubmission`,
@@ -139,7 +140,7 @@ export const putSingleAssignmentAction =
       window.open(test, "_blank");
       dispatch({
         type: DOWNLOAD_ASSIGNMENT_SUCCESS,
-        payload: data,
+
       });
     } catch (error) {
       dispatch({
@@ -158,7 +159,7 @@ export const putSingleAssignmentAction =
       window.open(test, "_blank");
       dispatch({
         type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
-        payload: data,
+       
       });
     } catch (error) {
       dispatch({

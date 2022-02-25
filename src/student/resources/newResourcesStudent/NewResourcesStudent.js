@@ -48,7 +48,7 @@ const tableHeader = [
   { id: "PostedBy", label: "Posted By" },
   { id: "EffectiveForm", label: "Effective Form" },
   { id: "isActive", label: "IsActive" },
-  { id: "Actions", label: "Actions", disableSorting: true },
+  { id: "Actions", label: "Download", disableSorting: true },
 ];
 
 const NewResourcesStudent = () => {
@@ -75,6 +75,7 @@ const NewResourcesStudent = () => {
       return item;
     },
   });
+ 
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -180,7 +181,11 @@ const NewResourcesStudent = () => {
         setDdlShift(newResourcesStudent.searchFilterModel.ddlAcademicShift);
         setDdlSection(newResourcesStudent.searchFilterModel.ddlSection);
         setDdlFacultySubject(newResourcesStudent.searchFilterModel.ddlSubject);
-        
+        setProgramValue(newResourcesStudent.searchFilterModel.idFacultyProgramLink);
+        setClassId(newResourcesStudent.searchFilterModel.level);
+        setAcaYear(newResourcesStudent.searchFilterModel.idAcademicYear);
+        setSection(newResourcesStudent.searchFilterModel.section);
+        setShift( newResourcesStudent.searchFilterModel.idShift);
       });
       if (subjectIdFromDashboard) {
         setFacultySubject(subjectIdFromDashboard);
@@ -191,7 +196,7 @@ const NewResourcesStudent = () => {
             newResourcesStudent.searchFilterModel.idFacultyProgramLink,
             newResourcesStudent.searchFilterModel.level,
             newResourcesStudent.searchFilterModel.section,
-            (newResourcesStudent.searchFilterModel.idShift)
+            newResourcesStudent.searchFilterModel.idShift
           )
         );
       }

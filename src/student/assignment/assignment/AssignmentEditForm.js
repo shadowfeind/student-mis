@@ -54,6 +54,8 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
+    temp.image = !image ? "This File Is Required" : "";
+
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
@@ -121,7 +123,7 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
               // value={values.ClassLocation}
               onChange={(e) => handleImage(e)}
               type="file"
-              // errors={errors.image}
+              errors={errors.image}
             />
             <img src={imgSrc} height={200} width={200} />
           </Grid>

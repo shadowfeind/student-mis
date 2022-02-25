@@ -65,7 +65,6 @@ export const getNewResourcesStudentListAction =
       window.open(test, "_blank");
       dispatch({
         type: DOWNLOAD_NEW_SOURCES_SUCCESS,
-        payload: data,
       });
     } catch (error) {
       dispatch({

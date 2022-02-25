@@ -39,9 +39,9 @@ const NewResourcesStudentTableCollapse = ({
     <TableRow>
       <TableCell>{item.CourseName}</TableCell>
       <TableCell>{item.CourseDescription}</TableCell>
-      <TableCell>{item.PostedBy}</TableCell>
-      <TableCell>{item.EffectiveForm?.slice(0,10)}</TableCell>
-      <TableCell>{item.isActive}</TableCell>
+      <TableCell>{item.FirstName} {item.MiddleName} {item.LastName}</TableCell>
+      <TableCell>{item.Created_On.slice(0, 10)}</TableCell>
+      <TableCell>{item.IsActive ? "Active" : "InActive"}</TableCell>
       <TableCell>
           <Button
             variant="contained"
