@@ -12,6 +12,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import SettingsIcon from "@material-ui/icons/Settings";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 
 export const DashboardCard = ({ subject }) => {
   const useStyles = makeStyles((theme) => ({
@@ -66,7 +67,7 @@ export const DashboardCard = ({ subject }) => {
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="h6">
-          Suresh M. Sanu
+          Teachers Name
           <IconButton aria-label="add to favorites">
             <PhoneIphoneIcon />
           </IconButton>
@@ -75,7 +76,9 @@ export const DashboardCard = ({ subject }) => {
       </CardContent>
       <CardActions>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={() => handleAssignmentHandler(subject.Key)} />
+          <AssignmentIcon
+            onClick={() => handleAssignmentHandler(subject.Key)}
+          />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon onClick={() => handleResouceHandler(subject.Key)} />
