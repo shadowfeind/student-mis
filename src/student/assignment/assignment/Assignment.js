@@ -60,7 +60,7 @@ const tableHeader = [
   { id: "ObtainedMarks", label: "Obtained Marks" },
   { id: "DocumentName", label: "Assignment" },
   { id: "DocumentSubmitted", label: "Submitted Files" },
-  { id: "Actions", label: "Actions", disableSorting: true },
+  { id: "Actions", label: "Submission", disableSorting: true },
 ];
 
 const Assignment = () => {

@@ -158,6 +158,12 @@ const StudentMonthlyPresentSheet = () => {
       );
       setNepMonth(allStudentAttendanceData.searchFilterModel.npMonth);
       setNepYear(allStudentAttendanceData.searchFilterModel.npYear);
+      setProgramValue(allStudentAttendanceData.searchFilterModel.idFacultyProgramLink);
+      setAcaYear(allStudentAttendanceData.searchFilterModel.idAcademicYear);
+      setClassId(allStudentAttendanceData.searchFilterModel.level);
+      setShift(allStudentAttendanceData.searchFilterModel.idShift);
+      setSection(allStudentAttendanceData.searchFilterModel.section);
+      setSubject(allStudentAttendanceData.searchFilterModel.idSubject);
     }
   }, [allStudentAttendanceData, dispatch]);
 

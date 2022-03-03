@@ -34,7 +34,7 @@ import AcademicGradingForm from "./AcademicGradingForm";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
-    width: "75%",
+    width: "100%",
     fontSize: "12px",
   },
   button: {
@@ -47,9 +47,9 @@ const tableHeader = [
   { id: "LetterGrade", label: "Grade" },
   { id: "HonorPoint", label: "Honor Point" },
   { id: "GradeComment", label: "Comment" },
-  { id: "Created_On", label: "Created_On" },
-  { id: "Updated_On", label: "Updated_On" },
-  { id: "actions", label: "Actions", disableSorting: true },
+  // { id: "Created_On", label: "Created_On" },
+  // { id: "Updated_On", label: "Updated_On" },
+  // { id: "actions", label: "Actions", disableSorting: true },
 ];
 
 const AcademicGrading = () => {
@@ -203,7 +203,7 @@ const AcademicGrading = () => {
         <Toolbar>
           <InputControl
             className={classes.searchInput}
-            label="Search Academic Grading"
+            label="Search Grading"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -213,7 +213,7 @@ const AcademicGrading = () => {
             }}
             onChange={handleSearch}
           />
-          <Button
+          {/* <Button
             variant="contained"
             color="primary"
             startIcon={<AddIcon />}
@@ -221,7 +221,7 @@ const AcademicGrading = () => {
             onClick={addHandler}
           >
             Add{" "}
-          </Button>
+          </Button> */}
         </Toolbar>
         <TableContainer className={classes.table}>
           <TblHead />
