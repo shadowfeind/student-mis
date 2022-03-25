@@ -21,7 +21,7 @@ const AcademicGrading = lazy(() =>
   import("./student/academicGrading/AcademicGrading")
 );
 const ExamDivision = lazy(() => import("./student/examDivision/ExamDivision"));
-// const ExamSchedule = lazy(() => import("./student/examSchedule/ExamSchedule"));
+const Notification = lazy(() => import("./student/notification/Notification"));
 const ClassSchedule = lazy(() =>
   import("./student/classSchedule/ClassSchedule")
 );
@@ -79,6 +79,11 @@ const App = () => {
                 exact
                 path={"/academic-grading"}
                 component={AcademicGrading}
+              />
+              <Route
+                exact
+                path={"/notification"}
+                component={Notification}
               />
               <Route exact path={"/"} component={Dashboard} />
               <Route path="*" component={PageNotFound} />

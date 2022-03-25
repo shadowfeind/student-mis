@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import SelectControl from "../../../components/controls/SelectControl";
 import { updateSingleContactAddressAction } from "./ContactAddressActions";
 
-
 const initialFormValues = {
   IDHREmployee: 0,
   PermanentAddressLine1: "",
@@ -23,8 +22,8 @@ const initialFormValues = {
   PermanentWardNo: "",
 };
 
-const ContactAddressForm =({contactAddress, setOpenPopup})=>{
-    const dispatch = useDispatch();
+const ContactAddressForm = ({ contactAddress, setOpenPopup }) => {
+  const dispatch = useDispatch();
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
@@ -36,23 +35,11 @@ const ContactAddressForm =({contactAddress, setOpenPopup})=>{
       ? "This feild is required"
       : "";
 
-      temp.PermanentAddressZone = !fieldValues.PermanentAddressZone
+    temp.PermanentAddressZone = !fieldValues.PermanentAddressZone
       ? "This feild is required"
       : "";
 
-      temp.TemporaryAddressLine1 = !fieldValues.TemporaryAddressLine1
-      ? "This feild is required"
-      : fieldValues.TemporaryAddressLine1.length > 20
-      ? "Must be less than 20 characters"
-      : !fieldValues.TemporaryAddressLine1.trim()
-      ? "This feild is required"
-      : "";
-
-      temp.TemporaryAddressZone = !fieldValues.TemporaryAddressZone
-      ? "This feild is required"
-      : "";
-
-      temp.PermanentAddressDistrict = !fieldValues.PermanentAddressDistrict
+    temp.PermanentAddressDistrict = !fieldValues.PermanentAddressDistrict
       ? "This feild is required"
       : fieldValues.PermanentAddressDistrict.length > 20
       ? "Must be less than 20 characters"
@@ -60,15 +47,7 @@ const ContactAddressForm =({contactAddress, setOpenPopup})=>{
       ? "This feild is required"
       : "";
 
-      temp.TemporaryAddressDistrict = !fieldValues.TemporaryAddressDistrict
-      ? "This feild is required"
-      : fieldValues.TemporaryAddressDistrict.length > 20
-      ? "Must be less than 20 characters"
-      : !fieldValues.TemporaryAddressDistrict.trim()
-      ? "This feild is required"
-      : "";
-
-      temp.PermanentAddressCountry = !fieldValues.PermanentAddressCountry
+    temp.PermanentAddressCountry = !fieldValues.PermanentAddressCountry
       ? "This feild is required"
       : fieldValues.PermanentAddressCountry.length > 20
       ? "Must be less than 20 characters"
@@ -76,31 +55,7 @@ const ContactAddressForm =({contactAddress, setOpenPopup})=>{
       ? "This feild is required"
       : "";
 
-      temp.TemporaryAddressCountry = !fieldValues.TemporaryAddressCountry
-      ? "This feild is required"
-      : fieldValues.TemporaryAddressCountry.length > 20
-      ? "Must be less than 20 characters"
-      : !fieldValues.TemporaryAddressCountry.trim()
-      ? "This feild is required"
-      : "";
-
-      temp.TemporaryTownVillage = !fieldValues.TemporaryTownVillage
-      ? "This feild is required"
-      : fieldValues.TemporaryTownVillage.length > 20
-      ? "Must be less than 20 characters"
-      : !fieldValues.TemporaryTownVillage.trim()
-      ? "This feild is required"
-      : "";
-
-      temp.TemporaryWardNo = !fieldValues.TemporaryWardNo
-      ? "This feild is required"
-      : fieldValues.TemporaryWardNo.length > 20
-      ? "Must be less than 20 characters"
-      : !fieldValues.TemporaryWardNo.trim()
-      ? "This feild is required"
-      : "";
-
-      temp.PermanentTownVillage = !fieldValues.PermanentTownVillage
+    temp.PermanentTownVillage = !fieldValues.PermanentTownVillage
       ? "This feild is required"
       : fieldValues.PermanentTownVillage.length > 20
       ? "Must be less than 20 characters"
@@ -108,7 +63,7 @@ const ContactAddressForm =({contactAddress, setOpenPopup})=>{
       ? "This feild is required"
       : "";
 
-      temp.PermanentWardNo = !fieldValues.PermanentWardNo
+    temp.PermanentWardNo = !fieldValues.PermanentWardNo
       ? "This feild is required"
       : fieldValues.PermanentWardNo.length > 20
       ? "Must be less than 20 characters"
@@ -116,11 +71,11 @@ const ContactAddressForm =({contactAddress, setOpenPopup})=>{
       ? "This feild is required"
       : "";
 
-      setErrors({ ...temp });
+    setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
   const { values, setValues, handleInputChange, errors, setErrors } =
-  useForm(initialFormValues);
+    useForm(initialFormValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -129,107 +84,108 @@ const ContactAddressForm =({contactAddress, setOpenPopup})=>{
       dispatch(updateSingleContactAddressAction(values));
       // alert("working");
     }
-  };  
+  };
   useEffect(() => {
     if (contactAddress) {
       setValues({ ...contactAddress.dbModel });
     }
   }, [contactAddress]);
 
-  const test = [{Key:"", Value:""}]
-  const citizenOption = [{Key:"0", Value:"No"},{Key:"1", Value:"Yes"}]
-  
+  const test = [{ Key: "", Value: "" }];
+  const citizenOption = [
+    { Key: "0", Value: "No" },
+    { Key: "1", Value: "Yes" },
+  ];
 
-  return(
+  return (
     <Form onSubmit={handleSubmit}>
-    <Grid container style={{ fontSize: "12px" }}>
-      <Grid item xs={6}>
-        <InputControl
-          name="PermanentAddressLine1"
-          label="Permanent Address Line 1"
-          value={values.PermanentAddressLine1}
-          onChange={handleInputChange}
-          errors={errors.PermanentAddressLine1}
-        />
-        <SelectControl
-          name="PermanentAddressZone"
-          label="Permanent Address Zone"
-          value={values.PermanentAddressZone}
-          options={contactAddress ? contactAddress.ddlAddressZone: test}
-          onChange={handleInputChange}
-          errors={errors.PermanentAddressZone}
-        />
-        <SelectControl
-          name="TemporaryAddressZone"
-          label="Temporary Address Zone"
-          value={values.TemporaryAddressZone}
-          options={contactAddress ? contactAddress.ddlAddressZone: test}
-          onChange={handleInputChange}
-          errors={errors.TemporaryAddressZone}
-        />
-         <SelectControl
-          name="PermanentAddressDistrict"
-          label="Permanent Address District"
-          value={values.PermanentAddressDistrict}
-          options={contactAddress ? contactAddress.ddlAddressDistrict: test}
-          onChange={handleInputChange}
-          errors={errors.PermanentAddressDistrict}
-        />
-        <SelectControl
-          name="TemporaryAddressDistrict"
-          label="Temporary Address District"
-          value={values.TemporaryAddressDistrict}
-          options={contactAddress ? contactAddress.ddlAddressDistrict: test}
-          onChange={handleInputChange}
-          errors={errors.TemporaryAddressDistrict}
-        />
-         </Grid>
+      <Grid container style={{ fontSize: "12px" }}>
         <Grid item xs={6}>
-        <SelectControl
-          name="PermanentAddressCountry"
-          label="Permanent Address Country"
-          value={values.PermanentAddressCountry}
-          options={contactAddress ? contactAddress.ddlAddressCountry: test}
-          onChange={handleInputChange}
-          errors={errors.PermanentAddressCountry}
-        />
-      <SelectControl
-          name="TemporaryAddressCountry"
-          label="Temporary Address Country"
-          value={values.TemporaryAddressCountry}
-          options={contactAddress ? contactAddress.ddlAddressCountry: test}
-          onChange={handleInputChange}
-          errors={errors.TemporaryAddressCountry}
-        />
-        <InputControl
-          name="TemporaryTownVillage"
-          label="Temporary Town/Village"
-          value={values.TemporaryTownVillage}
-          onChange={handleInputChange}
-          errors={errors.TemporaryTownVillage}
-        />
-        <InputControl
-          name="TemporaryWardNo"
-          label="Temporary Ward No"
-          value={values.TemporaryWardNo}
-          onChange={handleInputChange}
-          errors={errors.TemporaryWardNo}
-        />
-        <InputControl
-          name="PermanentTownVillage"
-          label="Permanent Town/Village"
-          value={values.PermanentTownVillage}
-          onChange={handleInputChange}
-          errors={errors.PermanentTownVillage}
-        />
-        <InputControl
-          name="PermanentWardNo"
-          label="Permanent Ward No"
-          value={values.PermanentWardNo}
-          onChange={handleInputChange}
-          errors={errors.PermanentWardNo}
-        />
-     </Grid>
+          <InputControl
+            name="PermanentAddressLine1"
+            label="Permanent Address Line 1"
+            value={values.PermanentAddressLine1}
+            onChange={handleInputChange}
+            errors={errors.PermanentAddressLine1}
+          />
+          <SelectControl
+            name="PermanentAddressZone"
+            label="Permanent Address Zone"
+            value={values.PermanentAddressZone}
+            options={contactAddress ? contactAddress.ddlAddressZone : test}
+            onChange={handleInputChange}
+            errors={errors.PermanentAddressZone}
+          />
+          <SelectControl
+            name="TemporaryAddressZone"
+            label="Temporary Address Zone"
+            value={values.TemporaryAddressZone}
+            options={contactAddress ? contactAddress.ddlAddressZone : test}
+            onChange={handleInputChange}
+            
+          />
+          <SelectControl
+            name="PermanentAddressDistrict"
+            label="Permanent Address District"
+            value={values.PermanentAddressDistrict}
+            options={contactAddress ? contactAddress.ddlAddressDistrict : test}
+            onChange={handleInputChange}
+            errors={errors.PermanentAddressDistrict}
+          />
+          <SelectControl
+            name="TemporaryAddressDistrict"
+            label="Temporary Address District"
+            value={values.TemporaryAddressDistrict}
+            options={contactAddress ? contactAddress.ddlAddressDistrict : test}
+            onChange={handleInputChange}
+       
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <SelectControl
+            name="PermanentAddressCountry"
+            label="Permanent Address Country"
+            value={values.PermanentAddressCountry}
+            options={contactAddress ? contactAddress.ddlAddressCountry : test}
+            onChange={handleInputChange}
+            errors={errors.PermanentAddressCountry}
+          />
+          <SelectControl
+            name="TemporaryAddressCountry"
+            label="Temporary Address Country"
+            value={values.TemporaryAddressCountry}
+            options={contactAddress ? contactAddress.ddlAddressCountry : test}
+            onChange={handleInputChange}
+           
+          />
+          <InputControl
+            name="TemporaryTownVillage"
+            label="Temporary Town/Village"
+            value={values.TemporaryTownVillage}
+            onChange={handleInputChange}
+          />
+          <InputControl
+            name="TemporaryWardNo"
+            label="Temporary Ward No"
+            value={values.TemporaryWardNo}
+            onChange={handleInputChange}
+            
+          />
+          <InputControl
+            name="PermanentTownVillage"
+            label="Permanent Town/Village"
+            value={values.PermanentTownVillage}
+            onChange={handleInputChange}
+            errors={errors.PermanentTownVillage}
+          />
+          <InputControl
+            name="PermanentWardNo"
+            label="Permanent Ward No"
+            value={values.PermanentWardNo}
+            onChange={handleInputChange}
+            errors={errors.PermanentWardNo}
+          />
+        </Grid>
       </Grid>
       <div
         style={{

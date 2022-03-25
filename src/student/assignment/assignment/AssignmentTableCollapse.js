@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, TableRow, TableCell, makeStyles } from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-import EditIcon from "@material-ui/icons/Edit";
+import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
   downloadAssignmentAction,
@@ -72,15 +72,15 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
           className={classes.button}
           onClick={() => updateHandler(item.IDAssignment)}
         >
-          <EditIcon style={{ fontSize: 12 }} />
+          <AddIcon style={{ fontSize: 12 }} />
         </Button>
-        <Button
+        {/* <Button
           variant="contained"
           color="secondary"
           className={classes.button}
         >
           <DeleteIcon style={{ fontSize: 12 }} />
-        </Button>
+        </Button> */}
       </TableCell>
     </TableRow>
   );

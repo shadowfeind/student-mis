@@ -33,7 +33,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
-    width: "75%",
+    width: "100%",
     fontSize: "12px",
   },
   button: {
@@ -47,9 +47,6 @@ const tableHeader = [
   { id: "EndRange", label: "End Range" },
   { id: "Division", label: "Division" },
   { id: "Comment", label: "Comment" },
-  { id: "Created_On", label: "Created_On" },
-  { id: "Updated_On", label: "Updated_On" },
-  { id: "Actions", label: "Actions", disableSorting: true },
 ];
 
 const ExamDivision = () => {
@@ -206,15 +203,6 @@ const ExamDivision = () => {
             }}
             onChange={handleSearch}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<AddIcon />}
-            className={classes.button}
-            onClick={addHandler}
-          >
-            CREATE{" "}
-          </Button>
         </Toolbar>
         <TableContainer className={classes.table}>
           <TblHead />

@@ -83,6 +83,9 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
     }
   }, [singleAssignment]);
 
+  const symbolsArr = ["e", "E", "+", "-", "."];
+
+
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -133,6 +136,7 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
               name="TotalMark"
               label="Full Marks"
               value={values.TotalMark}
+              onKeyDown={(e) => symbolsArr.includes(e.key) && e.preventDefault()}
               variant="filled"
             />
             <InputControl
@@ -153,6 +157,7 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
               disabled
               name="MarksObtained"
               label="Marks Obtained"
+              onKeyDown={(e) => symbolsArr.includes(e.key) && e.preventDefault()}
               type="number"
               value={values.MarksObtained}
               variant="filled"

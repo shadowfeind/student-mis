@@ -61,6 +61,7 @@ import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
+import { getAllClassNotificationStudentReducer, getListClassNotificationStudentReducer } from "./student/notification/classNotification/ClassNotificationReducers";
 
 import {
   downloadOldQuestionsReducer,
@@ -261,4 +262,7 @@ export const reducers = combineReducers({
   downloadOldQuestions: downloadOldQuestionsReducer,
   //Syllabus Teacher
   getAllSyllabus: getAllSyllabusReducer,
+  //Class Notification Student:
+  getAllClassNotificationStudent : getAllClassNotificationStudentReducer,
+  getListClassNotificationStudent : getListClassNotificationStudentReducer,
 });
