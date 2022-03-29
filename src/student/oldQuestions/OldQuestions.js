@@ -10,6 +10,7 @@ import {
 import useCustomTable from "../../customHooks/useCustomTable";
 import InputControl from "../../components/controls/InputControl";
 import { Search } from "@material-ui/icons";
+import LoadingComp from "../../components/LoadingComp";
 import Popup from "../../components/Popup";
 import CustomContainer from "../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -102,7 +103,7 @@ const OldQuestions = () => {
     (state) => state.getSubjectOptionsForOldQuestions
   );
 
-  const { listOldQuestionsStudent } = useSelector(
+  const { listOldQuestionsStudent,loading } = useSelector(
     (state) => state.getListOldQuestionsStudent
   );
 
@@ -239,6 +240,9 @@ const OldQuestions = () => {
             onChange={handleSearch}
           />
         </Toolbar>
+        {loading ? (
+            <LoadingComp />):(
+              <>
         {listOldQuestionsStudent && (
           <TableContainer className={classes.table}>
             <TblHead />
@@ -251,6 +255,8 @@ const OldQuestions = () => {
           </TableContainer>
         )}
         {listOldQuestionsStudent && <TblPagination />}
+        </>
+            )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

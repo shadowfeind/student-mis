@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import useCustomTable from "../../../customHooks/useCustomTable";
+import LoadingComp from "../../../components/LoadingComp";
 import InputControl from "../../../components/controls/InputControl";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -112,7 +113,7 @@ const NewResourcesStudent = () => {
     (state) => state.getAllNewResourcesStudent
   );
 
-  const { newResourcesStudentList, error: newResourcesStudentListError } =
+  const { newResourcesStudentList,loading, error: newResourcesStudentListError } =
     useSelector((state) => state.getNewResourcesStudentList);
 
   const {
@@ -321,6 +322,9 @@ const NewResourcesStudent = () => {
             onChange={handleSearch}
           />
         </Toolbar>
+        {loading ? (
+            <LoadingComp />):(
+              <>
         {newResourcesStudentList && (
           <TableContainer className={classes.table}>
             <TblHead />
@@ -334,6 +338,8 @@ const NewResourcesStudent = () => {
         )}
 
         {newResourcesStudentList && <TblPagination />}
+        </>
+            )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

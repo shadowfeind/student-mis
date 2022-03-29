@@ -13,6 +13,7 @@ import { Search } from "@material-ui/icons";
 import Popup from "../../../components/Popup";
 import CustomContainer from "../../../components/CustomContainer";
 import SelectControl from "../../../components/controls/SelectControl";
+import LoadingComp from "../../../components/LoadingComp";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
@@ -76,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
       (state) => state.getAllClassNotificationStudent
     );
   
-    const { listClassNotificationStudent, error: listClassNotificationStudentError } =
+    const { listClassNotificationStudent,loading, error: listClassNotificationStudentError } =
       useSelector((state) => state.getListClassNotificationStudent);
 
       if (error) {
@@ -234,6 +235,9 @@ const useStyles = makeStyles((theme) => ({
                 </Grid>
               </Grid>
             </Toolbar>
+            {loading ? (
+            <LoadingComp />):(
+              <>
             <TableContainer className={classes.table}>
               <TblHead />
     
@@ -244,6 +248,8 @@ const useStyles = makeStyles((theme) => ({
               </TableBody>
             </TableContainer>
             <TblPagination />
+            </>
+            )}
           </CustomContainer>
           <Notification notify={notify} setNotify={setNotify} />
           <ConfirmDialog

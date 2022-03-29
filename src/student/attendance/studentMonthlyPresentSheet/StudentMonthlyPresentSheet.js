@@ -4,6 +4,7 @@ import Popup from "../../../components/Popup";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
+import LoadingComp from "../../../components/LoadingComp";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
@@ -91,7 +92,7 @@ const StudentMonthlyPresentSheet = () => {
   );
 
 
-  const { getListStudentAttendance, error: getListStudentAttendanceError } =
+  const { getListStudentAttendance,loading, error: getListStudentAttendanceError } =
     useSelector((state) => state.getListStudentAttendance);
 
 
@@ -383,11 +384,16 @@ const StudentMonthlyPresentSheet = () => {
             </Grid>
           </Grid>
         </Toolbar>
+        {loading ? (
+            <LoadingComp />):(
+              <>
         {getListStudentAttendance && (
           <StudentMonthlyPresentSheetTableCollapse
             students={getListStudentAttendance && getListStudentAttendance}
           />
         )}
+        </>
+            )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
