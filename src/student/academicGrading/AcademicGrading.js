@@ -9,6 +9,7 @@ import {
 import useCustomTable from "../../customHooks/useCustomTable";
 import InputControl from "../../components/controls/InputControl";
 import { Search } from "@material-ui/icons";
+import LoadingComp from "../../components/LoadingComp";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../components/Popup";
 import CustomContainer from "../../components/CustomContainer";
@@ -75,7 +76,7 @@ const AcademicGrading = () => {
 
   const dispatch = useDispatch();
 
-  const { academicGrading, error } = useSelector(
+  const { academicGrading,loading, error } = useSelector(
     (state) => state.academicGrading
   );
 
@@ -223,6 +224,9 @@ const AcademicGrading = () => {
             Add{" "}
           </Button> */}
         </Toolbar>
+        {loading ? (
+            <LoadingComp />):(
+              <>
         <TableContainer className={classes.table}>
           <TblHead />
 
@@ -238,6 +242,8 @@ const AcademicGrading = () => {
           </TableBody>
         </TableContainer>
         <TblPagination />
+        </>
+            )}
       </CustomContainer>
       <Popup
         openPopup={openPopup}

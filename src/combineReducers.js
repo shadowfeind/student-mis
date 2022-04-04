@@ -6,6 +6,7 @@ import {
   getSingleAcademicGradingReducer,
   updateSingleAcademicGradingReducer,
 } from "./student/academicGrading/AcademicGradingReducers";
+import { getAllStudentAnnouncement } from "./student/announcementStudent/AnnouncementReducers";
 import {
   downloadAssignmentReducer,
   downloadSubmittedAssignmentReducer,
@@ -61,6 +62,7 @@ import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
+import { getAllHoliday } from "./student/holiday/HolidayReducer";
 import { getAllClassNotificationStudentReducer, getListClassNotificationStudentReducer } from "./student/notification/classNotification/ClassNotificationReducers";
 
 import {
@@ -265,4 +267,10 @@ export const reducers = combineReducers({
   //Class Notification Student:
   getAllClassNotificationStudent : getAllClassNotificationStudentReducer,
   getListClassNotificationStudent : getListClassNotificationStudentReducer,
+
+  //holiday
+  holiday: getAllHoliday,
+
+//Student Announcement:
+getAllStudentAnnouncement : getAllStudentAnnouncement,
 });

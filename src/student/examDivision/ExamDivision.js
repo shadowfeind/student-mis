@@ -11,6 +11,7 @@ import InputControl from "../../components/controls/InputControl";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../components/Popup";
+import LoadingComp from "../../components/LoadingComp";
 import CustomContainer from "../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
@@ -72,7 +73,7 @@ const ExamDivision = () => {
 
   const dispatch = useDispatch();
 
-  const { examDivision, error } = useSelector(
+  const { examDivision,loading, error } = useSelector(
     (state) => state.getAllExamDivision
   );
   // const { examDivision: singleExamDivision, error: singleExamDivisionError } = useSelector((state) => state.getSingleExamDivision);
@@ -204,6 +205,9 @@ const ExamDivision = () => {
             onChange={handleSearch}
           />
         </Toolbar>
+        {loading ? (
+            <LoadingComp />):(
+              <>
         <TableContainer className={classes.table}>
           <TblHead />
 
@@ -219,7 +223,10 @@ const ExamDivision = () => {
           </TableBody>
         </TableContainer>
         <TblPagination />
-        <Popup
+        </>
+            )}
+            </CustomContainer>
+        {/* <Popup
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
           title="Exam Division Form"
@@ -228,8 +235,8 @@ const ExamDivision = () => {
             examDivision={singleExamDivision && singleExamDivision.dbModel}
             setOpenPopup={setOpenPopup}
           />
-        </Popup>
-      </CustomContainer>
+        </Popup> */}
+      
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
         confirmDialog={confirmDialog}
