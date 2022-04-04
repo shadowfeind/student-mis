@@ -4,6 +4,7 @@ import ConfirmDialog from "../../components/ConfirmDialog";
 import Notification from "../../components/Notification";
 import { API_URL } from "../../constants";
 import CustomContainer from "../../components/CustomContainer";
+import LoadingComp from "../../components/LoadingComp";
 import { Button, Toolbar } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../components/Popup";
@@ -27,7 +28,7 @@ const ClassSchedule=()=>{
   });
   const dispatch = useDispatch();
 
-  const { classSchedule, error: classScheduleError } = useSelector(
+  const { classSchedule,loading, error: classScheduleError } = useSelector(
     (state) => state.getAllClassSchedule
   );
 
@@ -55,8 +56,13 @@ const ClassSchedule=()=>{
 return (
     <>
       <CustomContainer>
+      {loading ? (
+            <LoadingComp />):(
+              <>
       {classSchedule && <iframe src={url} width="100%" height="700" />}
-      </CustomContainer>
+      </>
+            )}
+            </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
         confirmDialog={confirmDialog}

@@ -10,6 +10,7 @@ import {
   Grid,
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
+import LoadingComp from "../../../components/LoadingComp";
 import useCustomTable from "../../../customHooks/useCustomTable";
 import InputControl from "../../../components/controls/InputControl";
 import Popup from "../../../components/Popup";
@@ -122,11 +123,11 @@ const Assignment = () => {
     (state) => state.getAllAssignment
   );
 
-  const { assignmentList, error: assignmentListError } = useSelector(
+  const { assignmentList,loading, error: assignmentListError } = useSelector(
     (state) => state.getAssignmentList
   );
 
-  const { singleAssignment, error: singleAssignmentError } = useSelector(
+  const { singleAssignment,loading:loadingEdit, error: singleAssignmentError } = useSelector(
     (state) => state.getSingleAssignment
   );
 
@@ -377,6 +378,9 @@ const Assignment = () => {
             onChange={handleSearch}
           />
         </Toolbar>
+        {loading ? (
+            <LoadingComp />):(
+              <>
         {assignmentList && (
           <TableContainer className={classes.table}>
             <TblHead />
@@ -394,18 +398,25 @@ const Assignment = () => {
         )}
 
         {assignmentList && <TblPagination />}
+        </>
+            )}
       </CustomContainer>
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
         title="Edit Assignment"
       >
+       {loadingEdit ? (
+            <LoadingComp />):(
+              <>
         <AssignmentEditForm
           setOpenPopup={setOpenPopup}
           singleAssignment={
             singleAssignment && singleAssignment.dbStudentSubmissionModel
           }
         />
+        </>
+            )}
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
