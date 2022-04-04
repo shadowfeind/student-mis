@@ -195,6 +195,14 @@ const SideMenu = () => {
         <Typography variant="h6">Notification</Typography>
       </NavLink>
       <NavLink
+        to={"/announcement"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <Accessible fontSize="medium" />
+        <Typography variant="h6">Announcement</Typography>
+      </NavLink>
+      <NavLink
         to={"/attendance"}
         activeStyle={isActive}
         className={classes.textBox}

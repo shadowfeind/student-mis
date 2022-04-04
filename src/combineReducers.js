@@ -6,6 +6,7 @@ import {
   getSingleAcademicGradingReducer,
   updateSingleAcademicGradingReducer,
 } from "./student/academicGrading/AcademicGradingReducers";
+import { getAllStudentAnnouncement } from "./student/announcementStudent/AnnouncementReducers";
 import {
   downloadAssignmentReducer,
   downloadSubmittedAssignmentReducer,
@@ -265,4 +266,7 @@ export const reducers = combineReducers({
   //Class Notification Student:
   getAllClassNotificationStudent : getAllClassNotificationStudentReducer,
   getListClassNotificationStudent : getListClassNotificationStudentReducer,
+
+//Student Announcement:
+getAllStudentAnnouncement : getAllStudentAnnouncement,
 });
