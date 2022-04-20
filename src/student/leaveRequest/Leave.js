@@ -152,7 +152,6 @@ const Leave = () => {
                     backgroundColor: "#253053",
                     color: "#fff",
                   }}
-                  onClick={() => setLeave("request")}
                 >
                   Leave Requests
                 </h4>{" "}
