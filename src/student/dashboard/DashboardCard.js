@@ -8,8 +8,8 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+import ImportContactsIcon from "@material-ui/icons/ImportContacts";
+import EmailIcon from '@material-ui/icons/Email';
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AssignmentIcon from "@material-ui/icons/Assignment";
@@ -67,11 +67,11 @@ export const DashboardCard = ({ subject }) => {
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="h6">
-          Teachers Name
+        Suresh M. Sanu
           <IconButton aria-label="add to favorites">
-            <PhoneIphoneIcon />
+            <EmailIcon />
           </IconButton>
-          9841479789
+          SureshMandarSanu@gmail.com
         </Typography>
       </CardContent>
       <CardActions>
@@ -81,13 +81,10 @@ export const DashboardCard = ({ subject }) => {
           />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon onClick={() => handleResouceHandler(subject.Key)} />
+          <ImportContactsIcon onClick={() => handleResouceHandler(subject.Key)} />
         </IconButton>
         <IconButton aria-label="share">
           <NotificationsActiveIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <SettingsIcon />
         </IconButton>
       </CardActions>
     </Card>

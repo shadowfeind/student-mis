@@ -63,6 +63,7 @@ import {
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
 import { getAllHoliday } from "./student/holiday/HolidayReducer";
+import { deleteLeaveRequestReducer, downloadLeaveRequestReducer, getAllLeaveRequestReducer, getListLeaveRequestReducer, getSingleCreateLeaveRequestReducer, getSingleDeleteLeaveRequestReducer, getSingleEditLeaveRequestReducer, postLeaveRequestReducer, putLeaveRequestReducer } from "./student/leaveRequest/LeaveRequestReducers";
 import { getAllClassNotificationStudentReducer, getListClassNotificationStudentReducer } from "./student/notification/classNotification/ClassNotificationReducers";
 
 import {
@@ -273,4 +274,15 @@ export const reducers = combineReducers({
 
 //Student Announcement:
 getAllStudentAnnouncement : getAllStudentAnnouncement,
+
+ //Leave Request:
+ getAllLeaveRequest : getAllLeaveRequestReducer,
+ getListLeaveRequest : getListLeaveRequestReducer,
+ getSingleCreateLeaveRequest : getSingleCreateLeaveRequestReducer,
+ getSingleEditLeaveRequest : getSingleEditLeaveRequestReducer,
+ postLeaveRequest : postLeaveRequestReducer,
+ putLeaveRequest : putLeaveRequestReducer,
+ getSingleDeleteLeaveRequest : getSingleDeleteLeaveRequestReducer,
+ deleteLeaveRequest : deleteLeaveRequestReducer,
+ downloadLeaveRequest : downloadLeaveRequestReducer,
 });
