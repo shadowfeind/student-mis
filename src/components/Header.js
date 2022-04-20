@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   AppBar,
   Badge,
@@ -10,9 +10,10 @@ import {
   Toolbar,
 } from "@material-ui/core";
 import { ClickAwayListener } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_URL } from "../constants";
 import { useHistory } from "react-router-dom";
+import { GET_HEADER_CONTENT_RESET } from "../student/dashboard/DashboardConstants";
 
 const useStyles = makeStyles({
   root: {
@@ -81,6 +82,7 @@ const Header = () => {
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -97,6 +99,11 @@ const Header = () => {
   const handleProfileClick = () => {
     history.push("/pid");
     setOpen(false);
+  };
+  const handleLogout = () => {
+    dispatch({ type: GET_HEADER_CONTENT_RESET });
+    sessionStorage.removeItem("blueberrytoken");
+    window.location.href = "https://vidyacube.com/";
   };
   return (
     <div>
@@ -172,7 +179,7 @@ const Header = () => {
                             </h3>
                           </div>
                           <h4 onClick={handleProfileClick}>Profile</h4>
-                          <h4>Logout</h4>
+                          <h4 onClick={handleLogout}>Logout</h4>
                         </div>
                       )}
                     </div>
