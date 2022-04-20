@@ -145,7 +145,15 @@ const SideMenu = () => {
         <PeopleOutline fontSize="medium" />
         <Typography variant="h6">Class Routine</Typography>
       </NavLink>
-
+      
+      <NavLink
+        to={"/leave-request"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <PostAdd fontSize="medium" />
+        <Typography variant="h6">Leave Request</Typography>
+      </NavLink>
       <NavLink
         to={"/quick-links"}
         activeStyle={isActive}

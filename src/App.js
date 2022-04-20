@@ -23,6 +23,7 @@ const AcademicGrading = lazy(() =>
 const ExamDivision = lazy(() => import("./student/examDivision/ExamDivision"));
 const Notification = lazy(() => import("./student/notification/Notification"));
 const Holiday = lazy(() => import("./student/holiday/Holiday"));
+const Leave = lazy(() => import("./student/leaveRequest/Leave"));
 const Announcement = lazy(() => import("./student/announcementStudent/Announcement"));
 const ClassSchedule = lazy(() =>
   import("./student/classSchedule/ClassSchedule")
@@ -77,6 +78,7 @@ const App = () => {
               <Route path={"/class-schedule"} component={ClassSchedule} />
               <Route path={"/old-questions"} component={OldQuestions} />
               <Route path={"/attendance"} component={Attendance} />
+              <Route path={"/leave-request"} component={Leave} />
               <Route path={"/announcement"} component={Announcement} />
               <Route path={"/holiday"} component={Holiday} />
               <Route
