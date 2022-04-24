@@ -240,7 +240,7 @@ const NewResourcesStudent = () => {
                 errors={errors.acaYear}
               />
             </Grid>
-            <Grid item xs={3}>
+            {/* <Grid item xs={3}>
               <SelectControl
                 name="Program/Faculty"
                 label="Program/Faculty"
@@ -281,9 +281,8 @@ const NewResourcesStudent = () => {
                 options={ddlShift}
                 errors={errors.shift1}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="facultySubject"
                 label="Faculty Subject"
@@ -294,7 +293,6 @@ const NewResourcesStudent = () => {
               />
             </Grid>
             <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
               <Button
                 variant="contained"
                 color="primary"

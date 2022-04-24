@@ -168,7 +168,7 @@ const SideMenu = () => {
         className={classes.textBox}
       >
         <Assessment fontSize="medium" />
-        <Typography variant="h6">Resources</Typography>
+        <Typography variant="h6">Reading Material</Typography>
       </NavLink>
       <NavLink
         to={"/assignment-front"}
@@ -176,7 +176,7 @@ const SideMenu = () => {
         className={classes.textBox}
       >
         <PostAdd fontSize="medium" />
-        <Typography variant="h6">Assignment</Typography>
+        <Typography variant="h6">Assignment/Homeworks</Typography>
       </NavLink>
       <NavLink
         to={"/syllabus"}
