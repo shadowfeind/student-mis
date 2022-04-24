@@ -123,13 +123,17 @@ const Assignment = () => {
     (state) => state.getAllAssignment
   );
 
-  const { assignmentList,loading, error: assignmentListError } = useSelector(
-    (state) => state.getAssignmentList
-  );
+  const {
+    assignmentList,
+    loading,
+    error: assignmentListError,
+  } = useSelector((state) => state.getAssignmentList);
 
-  const { singleAssignment,loading:loadingEdit, error: singleAssignmentError } = useSelector(
-    (state) => state.getSingleAssignment
-  );
+  const {
+    singleAssignment,
+    loading: loadingEdit,
+    error: singleAssignmentError,
+  } = useSelector((state) => state.getSingleAssignment);
 
   const {
     success: putSingleAssignmentSuccess,
@@ -159,7 +163,6 @@ const Assignment = () => {
     var url = window.URL.createObjectURL(blob);
     window.open(url, "_blank");
   }
-
 
   if (assignmentError) {
     setNotify({
@@ -308,7 +311,7 @@ const Assignment = () => {
                 errors={errors.acaYear}
               />
             </Grid>
-            <Grid item xs={3}>
+            {/* <Grid item xs={3}>
               <SelectControl
                 name="Program/Faculty"
                 label="Program/Faculty"
@@ -337,9 +340,8 @@ const Assignment = () => {
                 options={ddlShift}
                 errors={errors.shift1}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="facultySubject"
                 label="Faculty Subject"
@@ -350,7 +352,6 @@ const Assignment = () => {
               />
             </Grid>
             <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
               <Button
                 variant="contained"
                 color="primary"
@@ -379,44 +380,46 @@ const Assignment = () => {
           />
         </Toolbar>
         {loading ? (
-            <LoadingComp />):(
-              <>
-        {assignmentList && (
-          <TableContainer className={classes.table}>
-            <TblHead />
+          <LoadingComp />
+        ) : (
+          <>
+            {assignmentList && (
+              <TableContainer className={classes.table}>
+                <TblHead />
 
-            <TableBody>
-              {tableDataAfterPagingAndSorting().map((item) => (
-                <AssignmentTableCollapse
-                  item={item}
-                  key={item.$id}
-                  setOpenPopup={setOpenPopup}
-                />
-              ))}
-            </TableBody>
-          </TableContainer>
-        )}
-
-        {assignmentList && <TblPagination />}
-        </>
+                <TableBody>
+                  {tableDataAfterPagingAndSorting().map((item) => (
+                    <AssignmentTableCollapse
+                      item={item}
+                      key={item.$id}
+                      setOpenPopup={setOpenPopup}
+                    />
+                  ))}
+                </TableBody>
+              </TableContainer>
             )}
+
+            {assignmentList && <TblPagination />}
+          </>
+        )}
       </CustomContainer>
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
         title="Edit Assignment"
       >
-       {loadingEdit ? (
-            <LoadingComp />):(
-              <>
-        <AssignmentEditForm
-          setOpenPopup={setOpenPopup}
-          singleAssignment={
-            singleAssignment && singleAssignment.dbStudentSubmissionModel
-          }
-        />
-        </>
-            )}
+        {loadingEdit ? (
+          <LoadingComp />
+        ) : (
+          <>
+            <AssignmentEditForm
+              setOpenPopup={setOpenPopup}
+              singleAssignment={
+                singleAssignment && singleAssignment.dbStudentSubmissionModel
+              }
+            />
+          </>
+        )}
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
