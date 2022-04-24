@@ -9,11 +9,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
-import EmailIcon from '@material-ui/icons/Email';
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import ImportContactsIcon from "@material-ui/icons/ImportContacts";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import EmailIcon from "@material-ui/icons/Email";
+import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Link } from "react-router-dom";
 
 export const DashboardCard = ({ subject }) => {
@@ -71,7 +69,7 @@ export const DashboardCard = ({ subject }) => {
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="h6">
-        Suresh M. Sanu
+          Suresh M. Sanu
           <IconButton aria-label="add to favorites">
             <EmailIcon />
           </IconButton>

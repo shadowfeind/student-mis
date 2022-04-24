@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import DashboardCard from "./DashboardCard";
 import { subject } from "./SubjectData";
