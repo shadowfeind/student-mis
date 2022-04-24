@@ -11,9 +11,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import EmailIcon from '@material-ui/icons/Email';
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import EmailIcon from "@material-ui/icons/Email";
 import { Link } from "react-router-dom";
 
 export const DashboardCard = ({ subject }) => {
