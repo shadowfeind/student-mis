@@ -12,6 +12,19 @@ import {
   PostAdd,
   RecordVoiceOver,
 } from "@material-ui/icons";
+import EventBusyIcon from '@material-ui/icons/EventBusy';
+import HowToRegRoundedIcon from '@material-ui/icons/HowToRegRounded';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import AnnouncementIcon from '@material-ui/icons/Announcement';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import DescriptionIcon from '@material-ui/icons/Description';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import BookIcon from '@material-ui/icons/Book';
+import ReportProblemIcon from '@material-ui/icons/ReportProblem';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import DvrRoundedIcon from '@material-ui/icons/DvrRounded';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getHeaderContentAction } from "../student/dashboard/DashboardActions";
@@ -110,7 +123,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <ChromeReaderMode fontSize="medium" />
+        <DashboardIcon fontSize="medium" />
         <Typography variant="h6"> DashBoard</Typography>
       </NavLink>
       <NavLink
@@ -118,7 +131,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <School fontSize="medium" />
+        <TrendingUpIcon fontSize="medium" />
         <Typography variant="h6">Grading</Typography>
       </NavLink>
       <NavLink
@@ -126,7 +139,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <Accessible fontSize="medium" />
+        <DvrRoundedIcon fontSize="medium" />
         <Typography variant="h6">Exam Division</Typography>
       </NavLink>
       {/* <NavLink
@@ -142,7 +155,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <PeopleOutline fontSize="medium" />
+        <CalendarTodayIcon fontSize="medium" />
         <Typography variant="h6">Class Routine</Typography>
       </NavLink>
       
@@ -151,23 +164,23 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <PostAdd fontSize="medium" />
+        <ReportProblemIcon fontSize="medium" />
         <Typography variant="h6">Leave Request</Typography>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to={"/quick-links"}
         activeStyle={isActive}
         className={classes.textBox}
       >
         <Face fontSize="medium" />
         <Typography variant="h6">Quick Links</Typography>
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to={"/resources"}
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <Assessment fontSize="medium" />
+        <BookIcon fontSize="medium" />
         <Typography variant="h6">Reading Material</Typography>
       </NavLink>
       <NavLink
@@ -175,7 +188,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <PostAdd fontSize="medium" />
+        <AssignmentTurnedInIcon fontSize="medium" />
         <Typography variant="h6">Assignment/Homeworks</Typography>
       </NavLink>
       <NavLink
@@ -183,7 +196,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <RecordVoiceOver fontSize="medium" />
+        <DescriptionIcon fontSize="medium" />
         <Typography variant="h6">Syllabus</Typography>
       </NavLink>
       <NavLink
@@ -191,7 +204,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <Accessible fontSize="medium" />
+        <MenuBookIcon fontSize="medium" />
         <Typography variant="h6">Old Questions</Typography>
       </NavLink>
       <NavLink
@@ -199,7 +212,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <Accessible fontSize="medium" />
+        <NotificationsIcon fontSize="medium" />
         <Typography variant="h6">Notification</Typography>
       </NavLink>
       <NavLink
@@ -207,7 +220,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <Accessible fontSize="medium" />
+        <AnnouncementIcon fontSize="medium" />
         <Typography variant="h6">Announcement</Typography>
       </NavLink>
       <NavLink
@@ -215,7 +228,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <Accessible fontSize="medium" />
+        <EventBusyIcon fontSize="medium" />
         <Typography variant="h6">Holiday</Typography>
       </NavLink>
       <NavLink
@@ -223,7 +236,7 @@ const SideMenu = () => {
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <Accessible fontSize="medium" />
+        <HowToRegRoundedIcon fontSize="medium" />
         <Typography variant="h6">Attendance</Typography>
       </NavLink>
       <Notification notify={notify} setNotify={setNotify} />

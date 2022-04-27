@@ -100,7 +100,7 @@ const initialFormValues = {
           <Grid item xs={6}>
             <SelectControl
               name="ReceiverID"
-              label="ReceiverID"
+              label="Reciever Name"
               value={values.ReceiverID}
               onChange={handleInputChange}
               options={
@@ -176,11 +176,12 @@ const initialFormValues = {
               onChange={handleInputChange}
               errors={errors.ToDate}
             />
-            <SelectControl
+            <InputControl
+            disabled
               name="Status"
               label="Status"
               value={values.Status}
-              onChange={handleInputChange}
+              onChange={null}
               options={
                 leaveRequestEdit
                   ? leaveRequestEdit.ddlStatus
