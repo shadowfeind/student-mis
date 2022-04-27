@@ -120,7 +120,7 @@ const initialFormValues = {
                 onChange={handleInputChange}
                 
               />
-              <SelectControl
+              <InputControl
               disabled
                 name="Status"
                 label="Status"

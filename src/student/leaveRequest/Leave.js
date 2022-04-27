@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #253053",
     borderRadius: "10px",
     fontSize: "12px",
-    cursor: "pointer",
   },
 }));
 

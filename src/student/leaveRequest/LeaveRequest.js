@@ -263,18 +263,17 @@ const LeaveRequest = () => {
           {tableDataAfterPagingAndSorting().map((s) => (
             <StyledTableRow key={s.id}>
               <StyledTableCell component="th" scope="row">
-                {s.FirsName}
-                {s.MiddleName}
-                {s.LastName}
+                {s.FirsName} {s.MiddleName} {s.LastName}
               </StyledTableCell>
               <StyledTableCell align="left">
-                {s.LeaveDecription}
+                {s.LeaveDecription?.slice(0,20)}
               </StyledTableCell>
               <StyledTableCell align="left">
                 {s.FromDate?.slice(0, 10)} /<div>{s.ToDate?.slice(0, 10)}</div>
               </StyledTableCell>
               <StyledTableCell align="left">{s.Status}</StyledTableCell>
               <StyledTableCell>
+              {s.Status !== "APPROVED" && (
                 <Button
                   variant="contained"
                   color="primary"
@@ -283,6 +282,7 @@ const LeaveRequest = () => {
                 >
                   <EditIcon style={{ fontSize: 12 }} />
                 </Button>
+              )}{" "}
                 <Button
                   variant="contained"
                   color="secondary"
@@ -291,6 +291,8 @@ const LeaveRequest = () => {
                 >
                   <DeleteIcon style={{ fontSize: 12 }} />
                 </Button>
+                {" "}
+                {s.DocumentName !== null && (
                 <Button
                   variant="contained"
                   color="default"
@@ -299,6 +301,7 @@ const LeaveRequest = () => {
                 >
                   <CloudDownloadIcon style={{ fontSize: 12 }} />
                 </Button>
+                )}
               </StyledTableCell>
             </StyledTableRow>
           ))}
