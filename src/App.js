@@ -24,7 +24,9 @@ const ExamDivision = lazy(() => import("./student/examDivision/ExamDivision"));
 const Notification = lazy(() => import("./student/notification/Notification"));
 const Holiday = lazy(() => import("./student/holiday/Holiday"));
 const Leave = lazy(() => import("./student/leaveRequest/Leave"));
-const Announcement = lazy(() => import("./student/announcementStudent/Announcement"));
+const Announcement = lazy(() =>
+  import("./student/announcementStudent/Announcement")
+);
 const ClassSchedule = lazy(() =>
   import("./student/classSchedule/ClassSchedule")
 );
@@ -80,17 +82,13 @@ const App = () => {
               <Route path={"/attendance"} component={Attendance} />
               <Route path={"/leave-request"} component={Leave} />
               <Route path={"/announcement"} component={Announcement} />
-              <Route path={"/holiday"} component={Holiday} />
+              <Route path={"/academic-calendar"} component={Holiday} />
               <Route
                 exact
                 path={"/academic-grading"}
                 component={AcademicGrading}
               />
-              <Route
-                exact
-                path={"/notification"}
-                component={Notification}
-              />
+              <Route exact path={"/notification"} component={Notification} />
               <Route exact path={"/"} component={Dashboard} />
               <Route path="*" component={PageNotFound} />
             </Switch>

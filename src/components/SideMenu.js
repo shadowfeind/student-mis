@@ -12,19 +12,19 @@ import {
   PostAdd,
   RecordVoiceOver,
 } from "@material-ui/icons";
-import EventBusyIcon from '@material-ui/icons/EventBusy';
-import HowToRegRoundedIcon from '@material-ui/icons/HowToRegRounded';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import AnnouncementIcon from '@material-ui/icons/Announcement';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import DescriptionIcon from '@material-ui/icons/Description';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import BookIcon from '@material-ui/icons/Book';
-import ReportProblemIcon from '@material-ui/icons/ReportProblem';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import DvrRoundedIcon from '@material-ui/icons/DvrRounded';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import EventBusyIcon from "@material-ui/icons/EventBusy";
+import HowToRegRoundedIcon from "@material-ui/icons/HowToRegRounded";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import AnnouncementIcon from "@material-ui/icons/Announcement";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import DescriptionIcon from "@material-ui/icons/Description";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import BookIcon from "@material-ui/icons/Book";
+import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import DvrRoundedIcon from "@material-ui/icons/DvrRounded";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getHeaderContentAction } from "../student/dashboard/DashboardActions";
@@ -46,7 +46,6 @@ const useStyles = makeStyles({
     position: "fixed",
     "& h6": {
       fontSize: "13px",
-      marginTop: "-8px",
       padding: "0",
     },
     // "& h6:hover": {
@@ -158,7 +157,7 @@ const SideMenu = () => {
         <CalendarTodayIcon fontSize="medium" />
         <Typography variant="h6">Class Routine</Typography>
       </NavLink>
-      
+
       <NavLink
         to={"/leave-request"}
         activeStyle={isActive}
@@ -224,12 +223,12 @@ const SideMenu = () => {
         <Typography variant="h6">Announcement</Typography>
       </NavLink>
       <NavLink
-        to={"/holiday"}
+        to={"/academic-calendar"}
         activeStyle={isActive}
         className={classes.textBox}
       >
         <EventBusyIcon fontSize="medium" />
-        <Typography variant="h6">Holiday</Typography>
+        <Typography variant="h6">Academic Calendar</Typography>
       </NavLink>
       <NavLink
         to={"/attendance"}
