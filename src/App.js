@@ -52,7 +52,7 @@ const theme = createTheme({
 
 const useStyles = makeStyles({
   appMain: {
-    paddingLeft: "7%",
+    paddingLeft: "8%",
     width: "100%",
   },
 });

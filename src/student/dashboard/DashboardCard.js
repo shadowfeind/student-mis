@@ -30,7 +30,7 @@ export const DashboardCard = ({ subject }) => {
       },
     },
     CardContent: {
-      marginBottom: "-25px",
+      marginBottom: "-55px",
     },
     media: {
       height: 0,
@@ -73,7 +73,6 @@ export const DashboardCard = ({ subject }) => {
           <IconButton aria-label="add to favorites">
             <EmailIcon />
           </IconButton>
-          SureshMandarSanu@gmail.com
         </Typography>
       </CardContent>
       <CardActions>

@@ -417,6 +417,7 @@ const Assignment = () => {
               singleAssignment={
                 singleAssignment && singleAssignment.dbStudentSubmissionModel
               }
+              assignmentImage={singleAssignment && singleAssignment.FullPath}
             />
           </>
         )}

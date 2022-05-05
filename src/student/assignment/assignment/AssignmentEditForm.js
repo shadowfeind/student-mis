@@ -5,6 +5,7 @@ import InputControl from "../../../components/controls/InputControl";
 import { useForm, Form } from "../../../customHooks/useForm";
 import DatePickerControl from "../../../components/controls/DatePickerControl";
 import { putSingleAssignmentAction } from "./AssignmentActions";
+import { API_URL } from "../../../constants";
 
 const initialFormValues = {
   IDAssignment: 0,
@@ -43,7 +44,11 @@ const initialFormValues = {
   Updated_On: "0001-01-01T00:00:00",
 };
 
-const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
+const AssignmentEditForm = ({
+  singleAssignment,
+  setOpenPopup,
+  assignmentImage,
+}) => {
   const [image, setImage] = useState(null);
   const [imgSrc, setImgSrc] = useState(null);
   const dispatch = useDispatch();
@@ -85,7 +90,6 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
 
   const symbolsArr = ["e", "E", "+", "-", "."];
 
-
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -122,13 +126,20 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
             />
             <InputControl
               name="ImageUploaded"
-              label="Select File"
               // value={values.ClassLocation}
               onChange={(e) => handleImage(e)}
               type="file"
               errors={errors.image}
             />
-            <img src={imgSrc} height={200} width={200} />
+            <img
+              src={
+                imgSrc
+                  ? imgSrc
+                  : assignmentImage && `${API_URL}${assignmentImage}`
+              }
+              height={200}
+              width={200}
+            />
           </Grid>
           <Grid item xs={6}>
             <InputControl
@@ -136,7 +147,9 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
               name="TotalMark"
               label="Full Marks"
               value={values.TotalMark}
-              onKeyDown={(e) => symbolsArr.includes(e.key) && e.preventDefault()}
+              onKeyDown={(e) =>
+                symbolsArr.includes(e.key) && e.preventDefault()
+              }
               variant="filled"
             />
             <InputControl
@@ -157,7 +170,9 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPopup }) => {
               disabled
               name="MarksObtained"
               label="Marks Obtained"
-              onKeyDown={(e) => symbolsArr.includes(e.key) && e.preventDefault()}
+              onKeyDown={(e) =>
+                symbolsArr.includes(e.key) && e.preventDefault()
+              }
               type="number"
               value={values.MarksObtained}
               variant="filled"

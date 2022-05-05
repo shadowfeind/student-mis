@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     fontSize: "12px",
   },
 });
+import LockIcon from "@material-ui/icons/Lock";
 
 const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
   const classes = useStyles();
@@ -33,47 +34,70 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
   const downloadSubmittedHandler = (id) => {
     dispatch(downloadSubmittedAssignmentAction(id));
   };
+  const dateInPast = (firstDate, secondDate) => {
+    if (
+      new Date(firstDate).setHours(0, 0, 0, 0) <=
+      new Date(secondDate).setHours(0, 0, 0, 0)
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <TableRow>
       <TableCell>{item.FullName}</TableCell>
       <TableCell>{item.AssignmentName}</TableCell>
-      <TableCell>{item.AssignmentDate?.slice(0,10)}</TableCell>
-      <TableCell>{item.DueDate?.slice(0,10)}</TableCell>
-      <TableCell>{item.SubmittedDate?.slice(0,10)}</TableCell>
+      <TableCell>{item.AssignmentDate?.slice(0, 10)}</TableCell>
+      <TableCell>{item.DueDate?.slice(0, 10)}</TableCell>
+      <TableCell>{item.SubmittedDate?.slice(0, 10)}</TableCell>
       <TableCell>{item.TotalMark}</TableCell>
       <TableCell>{item.MarksObtained}</TableCell>
-    
+
       <TableCell>
-      {" "}
+        {" "}
         <Button
-           variant="outlined"
-            color="secondary"
+          variant="outlined"
+          color="secondary"
           className={classes.button}
           onClick={() => downloadHandler(item.IDAssignment)}
         >
           <CloudDownloadIcon style={{ fontSize: 12 }} />
         </Button>
-        </TableCell>
-        <TableCell>
-      {" "}
-       {item.DocumentSubmitted!== null &&  <Button
-           variant="outlined"
-              color= "primary"
-          className={classes.button}
-          onClick={() => downloadSubmittedHandler(item.IDAssignment)}
-        >
-          <CloudDownloadIcon style={{ fontSize: 12 }} />
-        </Button>}
-        </TableCell>
+      </TableCell>
       <TableCell>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={() => updateHandler(item.IDAssignment)}
-        >
-          <AddIcon style={{ fontSize: 12 }} />
-        </Button>
+        {" "}
+        {item.DocumentSubmitted !== null && (
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+            onClick={() => downloadSubmittedHandler(item.IDAssignment)}
+          >
+            <CloudDownloadIcon style={{ fontSize: 12 }} />
+          </Button>
+        )}
+      </TableCell>
+      <TableCell>
+        {dateInPast(item.DueDate, Date.now() + 1) ? (
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            <LockIcon style={{ fontSize: 12 }} />
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+            onClick={() => updateHandler(item.IDAssignment)}
+          >
+            <AddIcon style={{ fontSize: 12 }} />
+          </Button>
+        )}
         {/* <Button
           variant="contained"
           color="secondary"

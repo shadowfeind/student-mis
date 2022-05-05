@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     position: "absolute",
     left: "0",
     height: "100%",
-    width: "7%",
+    width: "8%",
     backgroundColor: "#253053",
     position: "fixed",
     "& h6": {
