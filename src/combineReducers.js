@@ -6,7 +6,7 @@ import {
   getSingleAcademicGradingReducer,
   updateSingleAcademicGradingReducer,
 } from "./student/academicGrading/AcademicGradingReducers";
-import { getAllStudentAnnouncement } from "./student/announcementStudent/AnnouncementReducers";
+import { getAllStudentAnnouncement, getFCMForStudentAnnouncementReducer, getListStudentAnnouncement } from "./student/announcementStudent/AnnouncementReducers";
 import {
   downloadAssignmentReducer,
   downloadSubmittedAssignmentReducer,
@@ -274,7 +274,8 @@ export const reducers = combineReducers({
 
 //Student Announcement:
 getAllStudentAnnouncement : getAllStudentAnnouncement,
-
+getListStudentAnnouncement: getListStudentAnnouncement,
+getFCMForStudentAnnouncement : getFCMForStudentAnnouncementReducer,
  //Leave Request:
  getAllLeaveRequest : getAllLeaveRequestReducer,
  getListLeaveRequest : getListLeaveRequestReducer,
