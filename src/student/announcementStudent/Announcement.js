@@ -17,8 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import AnnouncementTableCollapse from "./AnnouncementTableCollapse";
-import { getAllStudentAnnouncementAction } from "./AnnouncementActions";
-import { GET_ALL_ANNOUNCEMENT_STUDENT_RESET } from "./AnnouncementConstant";
+import { getAllStudentAnnouncementAction, getListStudentAnnouncementAction } from "./AnnouncementActions";
+import { ANNOUNCEMENT_STUDENT_FCM_RESET, GET_ALL_ANNOUNCEMENT_STUDENT_RESET, GET_LIST_ANNOUNCEMENT_STUDENT_RESET } from "./AnnouncementConstant";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   ];
 
   const Announcement = () => {
-
+    const [date, setDate] = useState();
     const [tableData, setTableData] = useState([]);
   const [filterFn, setFilterFn] = useState({
     fn: (item) => {
@@ -67,6 +72,16 @@ const useStyles = makeStyles((theme) => ({
 
   const { announcement, error,loading } = useSelector((state) => state.getAllStudentAnnouncement);
 
+  const {
+    announcementList,
+    error: announcementListError,
+    loading: announcementListLoading,
+  } = useSelector((state) => state.getListStudentAnnouncement);
+
+  const { announcementFCM, error: announcementFCMError } = useSelector(
+    (state) => state.getFCMForStudentAnnouncement
+  );
+
 
   if (error) {
     setNotify({
@@ -77,12 +92,32 @@ const useStyles = makeStyles((theme) => ({
     dispatch({ type: GET_ALL_ANNOUNCEMENT_STUDENT_RESET });
   }
 
+  if (announcementListError) {
+    setNotify({
+      isOpen: true,
+      message: announcementListError,
+      type: "error",
+    });
+    dispatch({ type: GET_LIST_ANNOUNCEMENT_STUDENT_RESET });
+  }
+  if (announcementFCMError) {
+    setNotify({
+      isOpen: true,
+      message: announcementFCMError,
+      type: "error",
+    });
+    dispatch({ type: ANNOUNCEMENT_STUDENT_FCM_RESET });
+  }
+
+
   useEffect(() => {
-    if (!announcement) {
-      dispatch(getAllStudentAnnouncementAction());
-    }
+    dispatch(getAllStudentAnnouncementAction());
+  }, []);
+
+  useEffect(() => {
     if (announcement) {
-      setTableData(announcement.dbModelLst);
+      setDate(announcement?.searchFilterModel?.CreatedDate?.slice(0, 10));
+      setTableData(announcement?.dbModelLst);
     }
   }, [dispatch, announcement]);
 
@@ -90,6 +125,11 @@ const useStyles = makeStyles((theme) => ({
     dispatch({ type: "GET_LINK", payload: "/announcement" });
   }, [dispatch]);
 
+  useEffect(() => {
+    if (announcementList) {
+      setTableData(announcementList.dbModelLst);
+    }
+  }, [announcementList]);
 
   const {
     TableContainer,
@@ -112,12 +152,17 @@ const useStyles = makeStyles((theme) => ({
     });
   };
 
+  const listSearchHandler = () => {
+    dispatch(getListStudentAnnouncementAction(date));
+  };
+
+
   return (
 
     <>
     <CustomContainer>
         <Toolbar>
-          <InputControl
+        <InputControl
             className={classes.searchInput}
             label="Search Announcement"
             InputProps={{
@@ -128,8 +173,35 @@ const useStyles = makeStyles((theme) => ({
               ),
             }}
             onChange={handleSearch}
-            />
+          />
+          <div style={{ marginLeft: "12px" }}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                disableToolbar
+                variant="inline"
+                inputVariant="outlined"
+                format="dd-MM-yyyy"
+                name="CurrentYear"
+                label="Current Year"
+                value={date}
+                onChange={(e) => {
+                  const newDate = new Date(e);
+                  setDate(newDate.toLocaleDateString().slice(0, 10));
+                }}
+              />
+            </MuiPickersUtilsProvider>
+          </div>
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={listSearchHandler}
+            style={{ marginLeft: "12px" }}
+          >
+            Search By Date
+          </Button>
             </Toolbar>
+        {announcementListLoading && <LoadingComp />}
         {loading ? (
           <LoadingComp />
         ) : (
