@@ -29,9 +29,7 @@ export const DashboardCard = ({ subject }) => {
         fontWeight: "lighter",
       },
     },
-    CardContent: {
-      marginBottom: "-55px",
-    },
+    CardContent: {},
     media: {
       height: 0,
       backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
@@ -68,12 +66,12 @@ export const DashboardCard = ({ subject }) => {
           </span>
         </Typography>
 
-        <Typography variant="body2" color="textSecondary" component="h6">
+        {/* <Typography variant="body2" color="textSecondary" component="h6">
           Suresh M. Sanu
           <IconButton aria-label="add to favorites">
             <EmailIcon />
           </IconButton>
-        </Typography>
+        </Typography> */}
       </CardContent>
       <CardActions>
         <Link to={`/assignment-front/${subject.Key}`}>
