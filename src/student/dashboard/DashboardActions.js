@@ -15,7 +15,7 @@ export const getHeaderContentAction = () => async (dispatch) => {
     dispatch({ type: GET_HEADER_CONTENT_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/Home/GetHeaderContent
+      `/api/Home/GetHeaderContent
       `,
       tokenConfig()
     );
@@ -34,7 +34,7 @@ export const getDashboardContentAction = () => async (dispatch) => {
     dispatch({ type: GET_STUDENT_DASHBOARD_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/StudentDashboard/GetAllStudentSubmission`,
+      `/api/StudentDashboard/GetAllStudentSubmission`,
       tokenConfig()
     );
 
