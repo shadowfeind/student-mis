@@ -102,7 +102,7 @@ const SideMenu = () => {
         variant="h5"
         style={{ color: "#fff", textAlign: "center", padding: " 17px 0" }}
       >
-        MIS
+       VIDYACUBE
       </Typography>
       <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
         {headerContent && (

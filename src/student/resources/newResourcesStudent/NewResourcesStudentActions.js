@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_URL, tokenConfig } from "../../../constants";
+
+import { API_URL, axiosInstance, tokenConfig } from "../../../constants";
 import {
   DOWNLOAD_NEW_SOURCES_FAIL,
   DOWNLOAD_NEW_SOURCES_REQUEST,
@@ -16,10 +16,10 @@ export const getAllNewResourcesStudentAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_NEW_SOURCES_STUDENT_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/CourseDeliveryPlanStudent/GetAllCourseDeliveryPlan
           `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -39,9 +39,9 @@ export const getNewResourcesStudentListAction =
     try {
       dispatch({ type: GET_NEW_SOURCES_STUDENT_LIST_REQUEST });
 
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `${API_URL}/api/CourseDeliveryPlanStudent/GetListCourseDeliveryPlan?idAcademicFacultySubjectLink=${facultySubject}&idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}&section=${section}&idShift=${shift}`,
-        tokenConfig
+        tokenConfig()
       );
 
       dispatch({

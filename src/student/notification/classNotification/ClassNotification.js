@@ -104,11 +104,14 @@ const useStyles = makeStyles((theme) => ({
           dispatch(getAllClassNotificationStudentAction());
         }
         if (classNotificationStudent) {
-          setAcademicYear(classNotificationStudent.searchFilterModel.ddlAcademicYear);
-          setShift(classNotificationStudent.searchFilterModel.ddlAcademicShift);
-          setProgram(classNotificationStudent.searchFilterModel.ddlFacultyProgramLink);
-          setSection(classNotificationStudent.searchFilterModel.ddlSection);
-          setClassOpt(classNotificationStudent.searchFilterModel.ddlClass);
+          setAcademicYear(classNotificationStudent?.searchFilterModel.ddlAcademicYear);
+          setShift(classNotificationStudent?.searchFilterModel.ddlAcademicShift);
+          setShiftValue(classNotificationStudent?.searchFilterModel.ddlAcademicShift[0].Key);
+          setProgramValue(classNotificationStudent?.searchFilterModel.ddlFacultyProgramLink[0].Key);
+          setSection(classNotificationStudent?.searchFilterModel.ddlSection);
+          setSectionValue(classNotificationStudent?.searchFilterModel.ddlSection[0].Key);
+          setClassOpt(classNotificationStudent?.searchFilterModel.ddlClass);
+          setClassOptValue(classNotificationStudent?.searchFilterModel.ddlClass[0].Key);
         }
       }, [dispatch, classNotificationStudent]);
     
@@ -180,7 +183,7 @@ const useStyles = makeStyles((theme) => ({
                     errors={errors.academicYearValue}
                   />
                 </Grid>
-                <Grid item xs={3}>
+                {/* <Grid item xs={3}>
                   <SelectControl
                     name="ddlFacultyProgramLink"
                     label="Program / Faculty"
@@ -189,7 +192,7 @@ const useStyles = makeStyles((theme) => ({
                     options={program}
                     errors={errors.programValue}
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={3}>
                   <SelectControl
                     name="ddlClass"
@@ -212,7 +215,6 @@ const useStyles = makeStyles((theme) => ({
                   />
                 </Grid>
                 <Grid item xs={3}>
-                  <div style={{ height: "10px" }}></div>
                   <SelectControl
                     name="ddlAcademicShift"
                     label="Shift"

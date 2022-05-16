@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_URL, tokenConfig } from "../../../constants";
+
+import { API_URL, axiosInstance, tokenConfig } from "../../../constants";
 import {
   DOWNLOAD_ASSIGNMENT_FAIL,
   DOWNLOAD_ASSIGNMENT_REQUEST,
@@ -25,10 +25,10 @@ export const getAllAssignmentAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_ASSIGNMENT_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/StudentSubmission/GetAllStudentSubmission
             `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -48,9 +48,9 @@ export const getAssignmentListAction =
     try {
       dispatch({ type: GET_ASSIGNMENT_LIST_REQUEST });
 
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `${API_URL}/api/StudentSubmission/GetListStudentSubmission?idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}&idShift=${shift}&idAcademicFacultySubjectLink=${facultySubject}`,
-        tokenConfig
+        tokenConfig()
       );
 
       dispatch({
@@ -69,9 +69,9 @@ export const getSingleAssignmentAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_ASSIGNMENT_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/StudentSubmission/GetSignleToEditStudentSubmission/${id}`,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -94,10 +94,10 @@ export const putSingleAssignmentAction =
       let formData = new FormData();
       formData.append("ImageUploaded", image);
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${API_URL}/api/StudentSubmission/FileUpload`,
         formData,
-        tokenConfig
+        tokenConfig()
       );
 
       console.log(assignment)
@@ -112,10 +112,10 @@ export const putSingleAssignmentAction =
         });
 
 
-        await axios.put(
+        await axiosInstance.put(
           `${API_URL}/api/StudentSubmission/PutStudentSubmission`,
           jsonData,
-          tokenConfig
+          tokenConfig()
         );
       }
 

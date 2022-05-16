@@ -39,10 +39,10 @@ export const getAllLeaveRequestAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/LeaveRequest/GetAllLeaveRequest
         `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: GET_ALL_LEAVE_REQUESTS_SUCCESS, payload: data });
@@ -58,10 +58,10 @@ export const getListLeaveRequestAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_LIST_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/LeaveRequest/GetListLeaveRequest
         `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: GET_LIST_LEAVE_REQUESTS_SUCCESS, payload: data });
@@ -77,10 +77,10 @@ export const getSingleCreateLeaveRequestAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_TO_CREATE_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/LeaveRequest/GetSingleToCreateLeaveRequest
         `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -99,10 +99,10 @@ export const getSingleEditLeaveRequestAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_TO_EDIT_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/LeaveRequest/GetSingleToEditLeaveRequest/${id}
         `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -122,9 +122,9 @@ export const postLeaveRequestAction =
     try {
       dispatch({ type: POST_LEAVE_REQUESTS_REQUEST });
 
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `${API_URL}/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`,
-        tokenConfig
+        tokenConfig()
       );
       if (data) {
         const fcmBody = {
@@ -148,29 +148,29 @@ export const postLeaveRequestAction =
         let formData = new FormData();
         formData.append("ImageUploaded", image);
 
-        const { data } = await axios.post(
+        const { data } = await axiosInstance.post(
           `${API_URL}/api/LeaveRequest/FileUpload`,
           formData,
-          tokenConfig
+          tokenConfig()
         );
         if (data) {
           const newData = { ...leaveRequestPost, DocumentName: data };
           const jsonData = JSON.stringify({ dbModel: newData });
 
-          await axios.post(
+          await axiosInstance.post(
             `${API_URL}/api/LeaveRequest/PostLeaveRequest`,
             jsonData,
-            tokenConfig
+            tokenConfig()
           );
         }
       } else {
         const newData = { ...leaveRequestPost };
         const jsonData = JSON.stringify({ dbModel: newData });
 
-        await axios.post(
+        await axiosInstance.post(
           `${API_URL}/api/LeaveRequest/PostLeaveRequest`,
           jsonData,
-          tokenConfig
+          tokenConfig()
         );
       }
 
@@ -192,29 +192,29 @@ export const putLeaveRequestAction =
         let formData = new FormData();
         formData.append("ImageUploaded", image);
 
-        const { data } = await axios.post(
+        const { data } = await axiosInstance.post(
           `${API_URL}/api/LeaveRequest/FileUpload`,
           formData,
-          tokenConfig
+          tokenConfig()
         );
         if (data) {
           const newData = { ...leaveRequest, DocumentName: data };
           const jsonData = JSON.stringify({ dbModel: newData });
 
-          await axios.put(
+          await axiosInstance.put(
             `${API_URL}/api/LeaveRequest/PutLeaveRequest`,
             jsonData,
-            tokenConfig
+            tokenConfig()
           );
         }
       } else {
         const newData = { ...leaveRequest };
         const jsonData = JSON.stringify({ dbModel: newData });
 
-        await axios.put(
+        await axiosInstance.put(
           `${API_URL}/api/LeaveRequest/PutLeaveRequest`,
           jsonData,
-          tokenConfig
+          tokenConfig()
         );
       }
       dispatch({ type: PUT_LEAVE_REQUESTS_SUCCESS });
@@ -230,10 +230,10 @@ export const getSingleDeleteLeaveRequestAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_TO_DELETE_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/LeaveRequest/GetSingleToDeleteLeaveRequest/${id}
           `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -260,10 +260,10 @@ export const deleteLeaveRequestAction = (leaveRequest) => async (dispatch) => {
     //   },
     // };
 
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       `${API_URL}/api/LeaveRequest/DeleteLeaveRequest`,
       jsonData,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: DELETE_LEAVE_REQUESTS_SUCCESS, payload: data });

@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_URL,tokenConfig } from "../../../constants";
+
+import { API_URL,axiosInstance,tokenConfig } from "../../../constants";
 import { GET_ALL_PERSONALINFORMATION_FAIL,
      GET_ALL_PERSONALINFORMATION_REQUEST,
       GET_ALL_PERSONALINFORMATION_SUCCESS, 
@@ -18,7 +18,7 @@ export const getAllPersonalInformationAction = () => async (dispatch) => {
     try {
       dispatch({ type: GET_ALL_PERSONALINFORMATION_REQUEST });
   
-      const { data } = await axios.get(`${API_URL}/api/PID_PersonalInformation/GetAllPIDPersonalInformation?searchKey=1`,tokenConfig)
+      const { data } = await axiosInstance.get(`${API_URL}/api/PID_PersonalInformation/GetAllPIDPersonalInformation?searchKey=1`,tokenConfig())
   
       dispatch({ type: GET_ALL_PERSONALINFORMATION_SUCCESS, payload: data });
     } catch (error) {
@@ -33,8 +33,8 @@ export const getAllPersonalInformationAction = () => async (dispatch) => {
     try {
       dispatch({ type: GET_SINGLE_PERSONALINFORMATION_REQUEST });
   
-      const { data } = await axios.get(
-        `${API_URL}/api/PID_PersonalInformation/GetSingleEdit?searchKey=1`,tokenConfig
+      const { data } = await axiosInstance.get(
+        `${API_URL}/api/PID_PersonalInformation/GetSingleEdit?searchKey=1`,tokenConfig()
       );
   
       dispatch({ type: GET_SINGLE_PERSONALINFORMATION_SUCCESS, payload: data });
@@ -50,8 +50,8 @@ export const getAllPersonalInformationAction = () => async (dispatch) => {
     try {
       dispatch({ type: GET_LIST_PERSONALINFORMATION_REQUEST });
   
-      const { data } = await axios.get(
-        `${API_URL}/api/PID_PersonalInformation/GetListPersonallInformation?searchKey=1`,tokenConfig
+      const { data } = await axiosInstance.get(
+        `${API_URL}/api/PID_PersonalInformation/GetListPersonallInformation?searchKey=1`,tokenConfig()
       );
   
       dispatch({ type: GET_LIST_PERSONALINFORMATION_SUCCESS, payload: data });
@@ -76,10 +76,10 @@ export const getAllPersonalInformationAction = () => async (dispatch) => {
       //   },
       // };
   
-      const { data } = await axios.put(
+      const { data } = await axiosInstance.put(
         `${API_URL}/api/PID_PersonalInformation/Put`,
         jsonData,
-        tokenConfig
+        tokenConfig()
       );
   console.log(jsonData);
   

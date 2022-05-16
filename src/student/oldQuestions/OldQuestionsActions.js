@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_URL, tokenConfig } from "../../constants";
+
+import { API_URL, axiosInstance, tokenConfig } from "../../constants";
 import {
   DOWNLOAD_OLD_QUESTIONS_FAIL,
   DOWNLOAD_OLD_QUESTIONS_REQUEST,
@@ -19,9 +19,9 @@ export const getAllOldQuestionsAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_OLD_QUESTIONS_REQUEST });
 
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${API_URL}/api/OldQuestionStudent/GetAllOldQuestion`,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -41,9 +41,9 @@ export const getSubjectOptionsForOldQuestionsAction =
     try {
       dispatch({ type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_REQUEST });
 
-      const subject = await axios.get(
+      const subject = await axiosInstance.get(
         `${API_URL}/api/OldQuestionStudent/GetSubjectByIDLevel?level=${classId}`,
-        tokenConfig
+        tokenConfig()
       );
       const data = {
         subject: subject.data,
@@ -65,9 +65,9 @@ export const getListOldQuestionsStudentAction =
     try {
       dispatch({ type: GET_LIST_OLD_QUESTIONS_STUDENT_REQUEST });
 
-      const { data } = await axios.get(
+      const { data } = await axiosInstance.get(
         `${API_URL}/api/OldQuestionStudent/GetListOldQuestion?level=${classId}&idAcademicSubject=${subject}`,
-        tokenConfig
+        tokenConfig()
       );
 
       dispatch({

@@ -78,10 +78,8 @@ const StudentMonthlyPresentSheet = () => {
 
   const test = [{ Key: "", Value: "" }];
 
-  const {
-    allStudentAttendanceData,
-    error: allStudentAttendanceDataError,
-  } = useSelector((state) => state.getAllStudentAttendance);
+  const { allStudentAttendanceData, error: allStudentAttendanceDataError } =
+    useSelector((state) => state.getAllStudentAttendance);
 
   const { allOtherOptions, error: allOtherOptionsError } = useSelector(
     (state) => state.getAllOtherOptionsForStudent
@@ -91,10 +89,11 @@ const StudentMonthlyPresentSheet = () => {
     (state) => state.getEnglishDateStudent
   );
 
-
-  const { getListStudentAttendance,loading, error: getListStudentAttendanceError } =
-    useSelector((state) => state.getListStudentAttendance);
-
+  const {
+    getListStudentAttendance,
+    loading,
+    error: getListStudentAttendanceError,
+  } = useSelector((state) => state.getListStudentAttendance);
 
   if (allStudentAttendanceDataError) {
     setNotify({
@@ -104,7 +103,7 @@ const StudentMonthlyPresentSheet = () => {
     });
     dispatch({ type: GET_ALL_STUDENT_ATTENDANCE_RESET });
   }
-  
+
   if (allOtherOptionsError) {
     setNotify({
       isOpen: true,
@@ -129,37 +128,27 @@ const StudentMonthlyPresentSheet = () => {
     }
     if (allStudentAttendanceData) {
       setProgramDdl(
-        allStudentAttendanceData.searchFilterModel
-          .ddlFacultyProgramLink
+        allStudentAttendanceData.searchFilterModel.ddlFacultyProgramLink
       );
       setDdlClass(allStudentAttendanceData.searchFilterModel.ddlClass);
       setAcademicYearDdl(
         allStudentAttendanceData.searchFilterModel.ddlAcademicYear
       );
-      setDdlShift(
-        allStudentAttendanceData.searchFilterModel.ddlAcademicShift
-      );
+      setDdlShift(allStudentAttendanceData.searchFilterModel.ddlAcademicShift);
       setDdlSubject(
         allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance
       );
-      setDdlSection(
-        allStudentAttendanceData.searchFilterModel.ddlSection
-      );
-      setDdlNepMonth(
-        allStudentAttendanceData.searchFilterModel.ddlnpMonth
-      );
-      setDdlNepYear(
-        allStudentAttendanceData.searchFilterModel.ddlnpYear
-      );
+      setDdlSection(allStudentAttendanceData.searchFilterModel.ddlSection);
+      setDdlNepMonth(allStudentAttendanceData.searchFilterModel.ddlnpMonth);
+      setDdlNepYear(allStudentAttendanceData.searchFilterModel.ddlnpYear);
       setDate(
-        allStudentAttendanceData.searchFilterModel.currentDate.slice(
-          0,
-          10
-        )
+        allStudentAttendanceData.searchFilterModel.currentDate.slice(0, 10)
       );
       setNepMonth(allStudentAttendanceData.searchFilterModel.npMonth);
       setNepYear(allStudentAttendanceData.searchFilterModel.npYear);
-      setProgramValue(allStudentAttendanceData.searchFilterModel.idFacultyProgramLink);
+      setProgramValue(
+        allStudentAttendanceData.searchFilterModel.idFacultyProgramLink
+      );
       setAcaYear(allStudentAttendanceData.searchFilterModel.idAcademicYear);
       setClassId(allStudentAttendanceData.searchFilterModel.level);
       setShift(allStudentAttendanceData.searchFilterModel.idShift);
@@ -202,8 +191,7 @@ const StudentMonthlyPresentSheet = () => {
           classId,
           subject,
           section,
-          shift,
-          
+          shift
         )
       );
     }
@@ -278,7 +266,7 @@ const StudentMonthlyPresentSheet = () => {
                 errors={errors.acaYear}
               />
             </Grid>
-            <Grid item xs={3}>
+            {/* <Grid item xs={3}>
               <SelectControl
                 name="Program/Faculty"
                 label="Program/Faculty"
@@ -318,9 +306,8 @@ const StudentMonthlyPresentSheet = () => {
                 options={ddlSection ? ddlSection : test}
                 errors={errors.section}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="Subject"
                 label="Subject"
@@ -331,7 +318,6 @@ const StudentMonthlyPresentSheet = () => {
               />
             </Grid>
             <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="NepaliMonth"
                 label="Nepali Month"
@@ -342,7 +328,6 @@ const StudentMonthlyPresentSheet = () => {
               />
             </Grid>
             <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="NepaliYear"
                 label="Nepali Year"
@@ -355,7 +340,7 @@ const StudentMonthlyPresentSheet = () => {
             <Grid item xs={3}>
               <div style={{ height: "10px" }}></div>
 
-             <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
                   disableToolbar
                   variant="inline"
@@ -372,6 +357,7 @@ const StudentMonthlyPresentSheet = () => {
               </MuiPickersUtilsProvider>
             </Grid>
             <Grid item xs={3}>
+            <div style={{ height: "10px" }}></div>
               <Button
                 variant="contained"
                 color="primary"
@@ -385,15 +371,16 @@ const StudentMonthlyPresentSheet = () => {
           </Grid>
         </Toolbar>
         {loading ? (
-            <LoadingComp />):(
-              <>
-        {getListStudentAttendance && (
-          <StudentMonthlyPresentSheetTableCollapse
-            students={getListStudentAttendance && getListStudentAttendance}
-          />
-        )}
-        </>
+          <LoadingComp />
+        ) : (
+          <>
+            {getListStudentAttendance && (
+              <StudentMonthlyPresentSheetTableCollapse
+                students={getListStudentAttendance && getListStudentAttendance}
+              />
             )}
+          </>
+        )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
