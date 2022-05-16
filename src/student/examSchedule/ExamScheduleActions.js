@@ -1,5 +1,4 @@
-import axios from "axios";
-import { API_URL,tokenConfig} from "../../constants";
+import { API_URL,axiosInstance,tokenConfig} from "../../constants";
 import {
   GET_ALL_EXAM_SCHEDULE_INITIAL_DATA_FAIL,
   GET_ALL_EXAM_SCHEDULE_INITIAL_DATA_REQUEST,
@@ -13,8 +12,8 @@ export const getAllExamScheduleInitialDataAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_EXAM_SCHEDULE_INITIAL_DATA_REQUEST });
 
-    const { data } = await axios.get(`${API_URL}/api/AcademicExamSchedule/GetAll
-        `,tokenConfig);
+    const { data } = await axiosInstance.get(`${API_URL}/api/AcademicExamSchedule/GetAll
+        `,tokenConfig());
 
     dispatch({
       type: GET_ALL_EXAM_SCHEDULE_INITIAL_DATA_SUCCESS,
@@ -34,8 +33,8 @@ export const getExamScheduleListAction =
       dispatch({ type: GET_EXAM_SCHEDULE_LIST_REQUEST });
 
       const { data } =
-        await axios.get(`${API_URL}/api/AcademicExamSchedule/GetListAcademicExamSchedule?idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}&idAcademicYearCalendar=${event}&searchKey=1
-          `,tokenConfig);
+        await axiosInstance.get(`${API_URL}/api/AcademicExamSchedule/GetListAcademicExamSchedule?idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}&idAcademicYearCalendar=${event}&searchKey=1
+          `,tokenConfig());
 
       dispatch({
         type: GET_EXAM_SCHEDULE_LIST_SUCCESS,
