@@ -43,10 +43,8 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    if (!dashboardContent) {
-      dispatch(getDashboardContentAction());
-    }
-  }, [dispatch, dashboardContent]);
+    dispatch(getDashboardContentAction());
+  }, []);
   return (
     <>
       <div className={classes.dashboardContainer}>
