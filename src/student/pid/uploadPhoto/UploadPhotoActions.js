@@ -1,5 +1,4 @@
-
-import { API_URL,axiosInstance,tokenConfig } from "../../../constants";
+import { API_URL, axiosInstance, tokenConfig } from "../../../constants";
 
 import {
   GET_ALL_UPLOADPHOTO_FAIL,
@@ -26,7 +25,9 @@ export const getAllUploadPhotoAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_UPLOADPHOTO_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -66,7 +67,9 @@ export const putUploadPhotoAction = (image, dbData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPLOADPHOTO_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };

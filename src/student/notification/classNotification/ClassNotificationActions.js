@@ -13,7 +13,7 @@ export const getAllClassNotificationStudentAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_CLASS_NOTIFICATION_STUDENT_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/ClassInboxNotification/GetAllClassInboxNotification`,
+      `/api/ClassInboxNotification/GetAllClassInboxNotification`,
       tokenConfig()
     );
 
@@ -24,7 +24,9 @@ export const getAllClassNotificationStudentAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_CLASS_NOTIFICATION_STUDENT_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -35,7 +37,7 @@ export const getListClassNotificationStudentAction =
       dispatch({ type: GET_LIST_CLASS_NOTIFICATION_STUDENT_REQUEST });
 
       const { data } = await axiosInstance.get(
-        `${API_URL}/api/ClassInboxNotification/GetListClassInboxNotification?idAcademicYear=${year}&idFacultyProgramLink=${program}&idClass=${classId}&idShift=${shift}&classSection=${section}`,
+        `/api/ClassInboxNotification/GetListClassInboxNotification?idAcademicYear=${year}&idFacultyProgramLink=${program}&idClass=${classId}&idShift=${shift}&classSection=${section}`,
         tokenConfig()
       );
 
@@ -46,7 +48,9 @@ export const getListClassNotificationStudentAction =
     } catch (error) {
       dispatch({
         type: GET_LIST_CLASS_NOTIFICATION_STUDENT_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };

@@ -1,4 +1,3 @@
-
 import { API_URL, axiosInstance, tokenConfig } from "../../constants";
 import {
   GET_ALL_SYLLABUS_FAIL,
@@ -22,7 +21,9 @@ export const getAllSyllabusAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_SYLLABUS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
