@@ -1,5 +1,9 @@
-
-import { API_URL, axiosInstance, tokenConfig, tokenHeader } from "../../constants";
+import {
+  API_URL,
+  axiosInstance,
+  tokenConfig,
+  tokenHeader,
+} from "../../constants";
 import {
   ANNOUNCEMENT_STUDENT_FCM_FAIL,
   ANNOUNCEMENT_STUDENT_FCM_REQUEST,
@@ -26,7 +30,9 @@ export const getAllStudentAnnouncementAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_ANNOUNCEMENT_STUDENT_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -44,7 +50,9 @@ export const getListStudentAnnouncementAction = (date) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_LIST_ANNOUNCEMENT_STUDENT_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -62,7 +70,9 @@ export const getFCMForStudentAnnouncementAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ANNOUNCEMENT_STUDENT_FCM_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };

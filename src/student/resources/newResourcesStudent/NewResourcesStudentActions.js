@@ -1,4 +1,3 @@
-
 import { API_URL, axiosInstance, tokenConfig } from "../../../constants";
 import {
   DOWNLOAD_NEW_SOURCES_FAIL,
@@ -29,13 +28,16 @@ export const getAllNewResourcesStudentAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_NEW_SOURCES_STUDENT_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
 
 export const getNewResourcesStudentListAction =
-  (facultySubject,year,program,classId,section,shift) => async (dispatch) => {
+  (facultySubject, year, program, classId, section, shift) =>
+  async (dispatch) => {
     try {
       dispatch({ type: GET_NEW_SOURCES_STUDENT_LIST_REQUEST });
 
@@ -51,27 +53,29 @@ export const getNewResourcesStudentListAction =
     } catch (error) {
       dispatch({
         type: GET_NEW_SOURCES_STUDENT_LIST_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
 
-  export const downloadNewResourcesAction = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: DOWNLOAD_NEW_SOURCES_REQUEST });
-  
-      const test = `${API_URL}/api/CourseDeliveryPlanStudent/DownloadDoc/${id}`;
-  
-      window.open(test, "_blank");
-      dispatch({
-        type: DOWNLOAD_NEW_SOURCES_SUCCESS,
-      });
-    } catch (error) {
-      dispatch({
-        type: DOWNLOAD_NEW_SOURCES_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
-  
-  
+export const downloadNewResourcesAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DOWNLOAD_NEW_SOURCES_REQUEST });
+
+    const test = `${API_URL}/api/CourseDeliveryPlanStudent/DownloadDoc/${id}`;
+
+    window.open(test, "_blank");
+    dispatch({
+      type: DOWNLOAD_NEW_SOURCES_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOWNLOAD_NEW_SOURCES_FAIL,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
+    });
+  }
+};

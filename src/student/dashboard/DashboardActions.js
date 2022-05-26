@@ -1,4 +1,3 @@
-
 import { API_URL, axiosInstance, tokenConfig } from "../../constants";
 
 import {
@@ -24,7 +23,9 @@ export const getHeaderContentAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_HEADER_CONTENT_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -42,7 +43,9 @@ export const getDashboardContentAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_STUDENT_DASHBOARD_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };

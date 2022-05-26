@@ -1,4 +1,3 @@
-
 import { API_URL, axiosInstance, tokenConfig } from "../../../constants";
 import {
   GET_ALL_OTHER_OPTIONS_FOR_STUDENT_FAIL,
@@ -7,9 +6,9 @@ import {
   GET_ALL_STUDENT_ATTENDANCE_FAIL,
   GET_ALL_STUDENT_ATTENDANCE_REQUEST,
   GET_ALL_STUDENT_ATTENDANCE_SUCCESS,
-   GET_ENGLISH_DATE_STUDENT_FAIL,
-   GET_ENGLISH_DATE_STUDENT_REQUEST,
-   GET_ENGLISH_DATE_STUDENT_SUCCESS,
+  GET_ENGLISH_DATE_STUDENT_FAIL,
+  GET_ENGLISH_DATE_STUDENT_REQUEST,
+  GET_ENGLISH_DATE_STUDENT_SUCCESS,
   GET_LIST_STUDENT_ATTENDANCE_FAIL,
   GET_LIST_STUDENT_ATTENDANCE_REQUEST,
   GET_LIST_STUDENT_ATTENDANCE_SUCCESS,
@@ -31,13 +30,26 @@ export const getAllStudentAttendanceAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_STUDENT_ATTENDANCE_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
 
 export const getListStudentAttendanceAction =
-  (currentDate,npYear,npMonth,year, program, classId,subject, section, shift) => async (dispatch) => {
+  (
+    currentDate,
+    npYear,
+    npMonth,
+    year,
+    program,
+    classId,
+    subject,
+    section,
+    shift
+  ) =>
+  async (dispatch) => {
     try {
       dispatch({ type: GET_LIST_STUDENT_ATTENDANCE_REQUEST });
 
@@ -53,34 +65,37 @@ export const getListStudentAttendanceAction =
     } catch (error) {
       dispatch({
         type: GET_LIST_STUDENT_ATTENDANCE_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
 
-export const getEngDateStudentAction =
-  (year, month) => async (dispatch) => {
-    try {
-      dispatch({ type:  GET_ENGLISH_DATE_STUDENT_REQUEST });
+export const getEngDateStudentAction = (year, month) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ENGLISH_DATE_STUDENT_REQUEST });
 
-      const { data } = await axiosInstance.get(
-        `${API_URL}/api/StudentPresentSheetStudent/GetEngDate?year=${year}&month=${month}`,
-        tokenConfig()
-      );
+    const { data } = await axiosInstance.get(
+      `${API_URL}/api/StudentPresentSheetStudent/GetEngDate?year=${year}&month=${month}`,
+      tokenConfig()
+    );
 
-      dispatch({
-        type:  GET_ENGLISH_DATE_STUDENT_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type:  GET_ENGLISH_DATE_STUDENT_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
+    dispatch({
+      type: GET_ENGLISH_DATE_STUDENT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ENGLISH_DATE_STUDENT_FAIL,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
+    });
+  }
+};
 
-  export const getAllOtherOptionsForStudentAction =
+export const getAllOtherOptionsForStudentAction =
   (id, subject) => async (dispatch) => {
     try {
       dispatch({ type: GET_ALL_OTHER_OPTIONS_FOR_STUDENT_REQUEST });
@@ -125,7 +140,9 @@ export const getEngDateStudentAction =
     } catch (error) {
       dispatch({
         type: GET_ALL_OTHER_OPTIONS_FOR_STUDENT_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };

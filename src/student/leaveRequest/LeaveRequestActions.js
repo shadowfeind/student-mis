@@ -40,7 +40,7 @@ export const getAllLeaveRequestAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_LEAVE_REQUESTS_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/LeaveRequest/GetAllLeaveRequest
+      `/api/LeaveRequest/GetAllLeaveRequest
         `,
       tokenConfig()
     );
@@ -49,7 +49,9 @@ export const getAllLeaveRequestAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_LEAVE_REQUESTS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -59,7 +61,7 @@ export const getListLeaveRequestAction = () => async (dispatch) => {
     dispatch({ type: GET_LIST_LEAVE_REQUESTS_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/LeaveRequest/GetListLeaveRequest
+      `/api/LeaveRequest/GetListLeaveRequest
         `,
       tokenConfig()
     );
@@ -68,7 +70,9 @@ export const getListLeaveRequestAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_LIST_LEAVE_REQUESTS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -78,7 +82,7 @@ export const getSingleCreateLeaveRequestAction = () => async (dispatch) => {
     dispatch({ type: GET_SINGLE_TO_CREATE_LEAVE_REQUESTS_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/LeaveRequest/GetSingleToCreateLeaveRequest
+      `/api/LeaveRequest/GetSingleToCreateLeaveRequest
         `,
       tokenConfig()
     );
@@ -90,7 +94,9 @@ export const getSingleCreateLeaveRequestAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_SINGLE_TO_CREATE_LEAVE_REQUESTS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -100,7 +106,7 @@ export const getSingleEditLeaveRequestAction = (id) => async (dispatch) => {
     dispatch({ type: GET_SINGLE_TO_EDIT_LEAVE_REQUESTS_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/LeaveRequest/GetSingleToEditLeaveRequest/${id}
+      `/api/LeaveRequest/GetSingleToEditLeaveRequest/${id}
         `,
       tokenConfig()
     );
@@ -112,7 +118,9 @@ export const getSingleEditLeaveRequestAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_SINGLE_TO_EDIT_LEAVE_REQUESTS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -123,7 +131,7 @@ export const postLeaveRequestAction =
       dispatch({ type: POST_LEAVE_REQUESTS_REQUEST });
 
       const { data } = await axiosInstance.get(
-        `${API_URL}/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`,
+        `/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`,
         tokenConfig()
       );
       if (data) {
@@ -149,7 +157,7 @@ export const postLeaveRequestAction =
         formData.append("ImageUploaded", image);
 
         const { data } = await axiosInstance.post(
-          `${API_URL}/api/LeaveRequest/FileUpload`,
+          `/api/LeaveRequest/FileUpload`,
           formData,
           tokenConfig()
         );
@@ -158,7 +166,7 @@ export const postLeaveRequestAction =
           const jsonData = JSON.stringify({ dbModel: newData });
 
           await axiosInstance.post(
-            `${API_URL}/api/LeaveRequest/PostLeaveRequest`,
+            `/api/LeaveRequest/PostLeaveRequest`,
             jsonData,
             tokenConfig()
           );
@@ -168,7 +176,7 @@ export const postLeaveRequestAction =
         const jsonData = JSON.stringify({ dbModel: newData });
 
         await axiosInstance.post(
-          `${API_URL}/api/LeaveRequest/PostLeaveRequest`,
+          `/api/LeaveRequest/PostLeaveRequest`,
           jsonData,
           tokenConfig()
         );
@@ -178,7 +186,9 @@ export const postLeaveRequestAction =
     } catch (error) {
       dispatch({
         type: POST_LEAVE_REQUESTS_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
@@ -193,7 +203,7 @@ export const putLeaveRequestAction =
         formData.append("ImageUploaded", image);
 
         const { data } = await axiosInstance.post(
-          `${API_URL}/api/LeaveRequest/FileUpload`,
+          `/api/LeaveRequest/FileUpload`,
           formData,
           tokenConfig()
         );
@@ -202,7 +212,7 @@ export const putLeaveRequestAction =
           const jsonData = JSON.stringify({ dbModel: newData });
 
           await axiosInstance.put(
-            `${API_URL}/api/LeaveRequest/PutLeaveRequest`,
+            `/api/LeaveRequest/PutLeaveRequest`,
             jsonData,
             tokenConfig()
           );
@@ -212,7 +222,7 @@ export const putLeaveRequestAction =
         const jsonData = JSON.stringify({ dbModel: newData });
 
         await axiosInstance.put(
-          `${API_URL}/api/LeaveRequest/PutLeaveRequest`,
+          `/api/LeaveRequest/PutLeaveRequest`,
           jsonData,
           tokenConfig()
         );
@@ -221,7 +231,9 @@ export const putLeaveRequestAction =
     } catch (error) {
       dispatch({
         type: PUT_LEAVE_REQUESTS_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
@@ -231,7 +243,7 @@ export const getSingleDeleteLeaveRequestAction = (id) => async (dispatch) => {
     dispatch({ type: GET_SINGLE_TO_DELETE_LEAVE_REQUESTS_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/LeaveRequest/GetSingleToDeleteLeaveRequest/${id}
+      `/api/LeaveRequest/GetSingleToDeleteLeaveRequest/${id}
           `,
       tokenConfig()
     );
@@ -243,7 +255,9 @@ export const getSingleDeleteLeaveRequestAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_SINGLE_TO_DELETE_LEAVE_REQUESTS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -261,7 +275,7 @@ export const deleteLeaveRequestAction = (leaveRequest) => async (dispatch) => {
     // };
 
     const { data } = await axiosInstance.post(
-      `${API_URL}/api/LeaveRequest/DeleteLeaveRequest`,
+      `/api/LeaveRequest/DeleteLeaveRequest`,
       jsonData,
       tokenConfig()
     );
@@ -270,7 +284,9 @@ export const deleteLeaveRequestAction = (leaveRequest) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_LEAVE_REQUESTS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -279,7 +295,7 @@ export const downloadLeaveRequestAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: DOWNLOAD_DOC_LEAVE_REQUESTS_REQUEST });
 
-    const File = `${API_URL}/api/LeaveRequest/DownloadDoc/${id}`;
+    const File = `/api/LeaveRequest/DownloadDoc/${id}`;
 
     window.open(File, "_blank");
 
@@ -287,7 +303,9 @@ export const downloadLeaveRequestAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DOWNLOAD_DOC_LEAVE_REQUESTS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };

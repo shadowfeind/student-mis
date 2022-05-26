@@ -1,4 +1,3 @@
-
 import { API_URL, axiosInstance, tokenConfig } from "../../../constants";
 import {
   DOWNLOAD_ASSIGNMENT_FAIL,
@@ -38,7 +37,9 @@ export const getAllAssignmentAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_ASSIGNMENT_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -60,7 +61,9 @@ export const getAssignmentListAction =
     } catch (error) {
       dispatch({
         type: GET_ASSIGNMENT_LIST_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
@@ -81,7 +84,9 @@ export const getSingleAssignmentAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_SINGLE_ASSIGNMENT_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -100,7 +105,7 @@ export const putSingleAssignmentAction =
         tokenConfig()
       );
 
-      console.log(assignment)
+      console.log(assignment);
 
       if (data) {
         const newData = {
@@ -110,7 +115,6 @@ export const putSingleAssignmentAction =
         const jsonData = JSON.stringify({
           dbStudentSubmissionModel: newData,
         });
-
 
         await axiosInstance.put(
           `${API_URL}/api/StudentSubmission/PutStudentSubmission`,
@@ -126,46 +130,49 @@ export const putSingleAssignmentAction =
     } catch (error) {
       dispatch({
         type: PUT_SINGLE_ASSIGNMENT_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
 
-  export const downloadAssignmentAction = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
-  
-      const test = `${API_URL}/api/StudentSubmission/DownloadDoc/${id}`;
-  
-      window.open(test, "_blank");
-      dispatch({
-        type: DOWNLOAD_ASSIGNMENT_SUCCESS,
+export const downloadAssignmentAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
 
-      });
-    } catch (error) {
-      dispatch({
-        type: DOWNLOAD_ASSIGNMENT_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
+    const test = `${API_URL}/api/StudentSubmission/DownloadDoc/${id}`;
 
-  export const downloadSubmittedAssignmentAction = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST });
-  
-      const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
-  
-      window.open(test, "_blank");
-      dispatch({
-        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
-       
-      });
-    } catch (error) {
-      dispatch({
-        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
-  
+    window.open(test, "_blank");
+    dispatch({
+      type: DOWNLOAD_ASSIGNMENT_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOWNLOAD_ASSIGNMENT_FAIL,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
+    });
+  }
+};
+
+export const downloadSubmittedAssignmentAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST });
+
+    const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
+
+    window.open(test, "_blank");
+    dispatch({
+      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
+    });
+  }
+};

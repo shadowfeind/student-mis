@@ -1,4 +1,3 @@
-
 import { API_URL, axiosInstance, tokenConfig } from "../../constants";
 import {
   DOWNLOAD_OLD_QUESTIONS_FAIL,
@@ -20,7 +19,7 @@ export const getAllOldQuestionsAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_OLD_QUESTIONS_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `${API_URL}/api/OldQuestionStudent/GetAllOldQuestion`,
+      `/api/OldQuestionStudent/GetAllOldQuestion`,
       tokenConfig()
     );
 
@@ -31,7 +30,9 @@ export const getAllOldQuestionsAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_OLD_QUESTIONS_FAIL,
-      payload: error.message ? error.message : error.Message,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
     });
   }
 };
@@ -42,7 +43,7 @@ export const getSubjectOptionsForOldQuestionsAction =
       dispatch({ type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_REQUEST });
 
       const subject = await axiosInstance.get(
-        `${API_URL}/api/OldQuestionStudent/GetSubjectByIDLevel?level=${classId}`,
+        `/api/OldQuestionStudent/GetSubjectByIDLevel?level=${classId}`,
         tokenConfig()
       );
       const data = {
@@ -55,7 +56,9 @@ export const getSubjectOptionsForOldQuestionsAction =
     } catch (error) {
       dispatch({
         type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
@@ -66,7 +69,7 @@ export const getListOldQuestionsStudentAction =
       dispatch({ type: GET_LIST_OLD_QUESTIONS_STUDENT_REQUEST });
 
       const { data } = await axiosInstance.get(
-        `${API_URL}/api/OldQuestionStudent/GetListOldQuestion?level=${classId}&idAcademicSubject=${subject}`,
+        `/api/OldQuestionStudent/GetListOldQuestion?level=${classId}&idAcademicSubject=${subject}`,
         tokenConfig()
       );
 
@@ -77,26 +80,29 @@ export const getListOldQuestionsStudentAction =
     } catch (error) {
       dispatch({
         type: GET_LIST_OLD_QUESTIONS_STUDENT_FAIL,
-        payload: error.message ? error.message : error.Message,
+        payload: error?.response?.data?.Message
+          ? error?.response?.data?.Message
+          : error?.message,
       });
     }
   };
 
-  export const downloadOldQuestionsAction = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: DOWNLOAD_OLD_QUESTIONS_REQUEST });
-  
-      const test = `${API_URL}/api/OldQuestionStudent/DownloadOldQuestion/${id}`;
-  
-      window.open(test, "_blank");
-      dispatch({
-        type: DOWNLOAD_OLD_QUESTIONS_SUCCESS,
-      });
-    } catch (error) {
-      dispatch({
-        type: DOWNLOAD_OLD_QUESTIONS_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
+export const downloadOldQuestionsAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DOWNLOAD_OLD_QUESTIONS_REQUEST });
 
+    const test = `/api/OldQuestionStudent/DownloadOldQuestion/${id}`;
+
+    window.open(test, "_blank");
+    dispatch({
+      type: DOWNLOAD_OLD_QUESTIONS_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOWNLOAD_OLD_QUESTIONS_FAIL,
+      payload: error?.response?.data?.Message
+        ? error?.response?.data?.Message
+        : error?.message,
+    });
+  }
+};
