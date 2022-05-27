@@ -85,7 +85,10 @@ const LeaveRequestForm = ({
 
   useEffect(() => {
     if (leaveRequestCreate) {
-      setValues({ ...leaveRequestCreate.dbModel });
+      setValues({
+        ...leaveRequestCreate.dbModel,
+        ReceiverID: leaveRequestCreate?.ddlTeacher[0]?.Key,
+      });
     }
   }, [leaveRequestCreate]);
 
