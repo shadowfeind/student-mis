@@ -6,20 +6,20 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core";
 
-const PersonalInformation = lazy(() =>
-  import("./personalinformation/PersonalInformation")
-);
+// const PersonalInformation = lazy(() =>
+//   import("./personalinformation/PersonalInformation")
+// );
 const UploadPhoto = lazy(() => import("./uploadPhoto/UploadPhoto"));
-const ContactAddress = lazy(() => import("./contactAddress/ContactAddress"));
-const ContactNumber = lazy(() => import("./contactNumber/ContactNumber"));
-const Email = lazy(() => import("./email/Email"));
-const Guardian = lazy(() => import("./gurdian/Guardian"));
-const FamilyMember = lazy(() => import("./familyMember/FamilyMember"));
-const Education = lazy(() => import("./education/Education"));
-const JobHistory = lazy(() => import("./jobHistory/JobHistory"));
-const Hobby = lazy(() => import("./hobby/Hobby"));
-const Training = lazy(() => import("./training/Training"));
-const Skill = lazy(() => import("./skill/Skill"));
+// const ContactAddress = lazy(() => import("./contactAddress/ContactAddress"));
+// const ContactNumber = lazy(() => import("./contactNumber/ContactNumber"));
+// const Email = lazy(() => import("./email/Email"));
+// const Guardian = lazy(() => import("./gurdian/Guardian"));
+// const FamilyMember = lazy(() => import("./familyMember/FamilyMember"));
+// const Education = lazy(() => import("./education/Education"));
+// const JobHistory = lazy(() => import("./jobHistory/JobHistory"));
+// const Hobby = lazy(() => import("./hobby/Hobby"));
+// const Training = lazy(() => import("./training/Training"));
+// const Skill = lazy(() => import("./skill/Skill"));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,17 +75,17 @@ const UserProfile = () => {
           aria-label="scrollable force tabs example"
           TabIndicatorProps={{ className: classes.indicator }}
         >
-          <Tab
+          {/* <Tab
             style={{ fontSize: "11px", color: "#fff" }}
             label="Personal Information"
             {...a11yProps(0)}
-          />
-          <Tab
+          /> */}
+          {/* <Tab
             style={{ fontSize: "11px", color: "#fff" }}
             label="Upload Photo"
-            {...a11yProps(1)}
-          />
-          <Tab
+            {...a11yProps(0)}
+          /> */}
+          {/* <Tab
             style={{ fontSize: "11px", color: "#fff" }}
             label="Contact Address"
             {...a11yProps(2)}
@@ -134,17 +134,17 @@ const UserProfile = () => {
             style={{ fontSize: "11px", color: "#fff" }}
             label="Skills"
             {...a11yProps(11)}
-          />
+          /> */}
         </Tabs>
       </AppBar>
       <Suspense fallback={<div></div>}>
-        <TabPanel value={value} index={0}>
+        {/* <TabPanel value={value} index={0}>
           <PersonalInformation />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <UploadPhoto />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
+        </TabPanel> */}
+        {/* <TabPanel value={value} index={1}> */}
+        <UploadPhoto />
+        {/* </TabPanel> */}
+        {/* <TabPanel value={value} index={2}>
           <ContactAddress />
         </TabPanel>
         <TabPanel value={value} index={3}>
@@ -173,7 +173,7 @@ const UserProfile = () => {
         </TabPanel>
         <TabPanel value={value} index={11}>
           <Skill />
-        </TabPanel>
+        </TabPanel> */}
       </Suspense>
     </div>
   );
