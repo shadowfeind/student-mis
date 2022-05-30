@@ -102,7 +102,7 @@ const SideMenu = () => {
         variant="h5"
         style={{ color: "#fff", textAlign: "center", padding: " 17px 0" }}
       >
-       VIDYACUBE
+        VIDYACUBE
       </Typography>
       <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
         {headerContent && (
@@ -125,7 +125,16 @@ const SideMenu = () => {
         <DashboardIcon fontSize="medium" />
         <Typography variant="h6"> DashBoard</Typography>
       </NavLink>
+
       <NavLink
+        to={"/assignment-front"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <AssignmentTurnedInIcon fontSize="medium" />
+        <Typography variant="h6">Assignment/Homeworks</Typography>
+      </NavLink>
+      {/* <NavLink
         to={"/academic-grading"}
         activeStyle={isActive}
         className={classes.textBox}
@@ -140,7 +149,7 @@ const SideMenu = () => {
       >
         <DvrRoundedIcon fontSize="medium" />
         <Typography variant="h6">Exam Division</Typography>
-      </NavLink>
+      </NavLink> */}
       {/* <NavLink
         to={"/exam-schedule"}
         activeStyle={isActive}
@@ -156,6 +165,33 @@ const SideMenu = () => {
       >
         <CalendarTodayIcon fontSize="medium" />
         <Typography variant="h6">Class Routine</Typography>
+      </NavLink>
+
+      <NavLink
+        to={"/syllabus"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <DescriptionIcon fontSize="medium" />
+        <Typography variant="h6">Syllabus</Typography>
+      </NavLink>
+
+      <NavLink
+        to={"/resources"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <BookIcon fontSize="medium" />
+        <Typography variant="h6">E-Material</Typography>
+      </NavLink>
+
+      <NavLink
+        to={"/old-questions"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <MenuBookIcon fontSize="medium" />
+        <Typography variant="h6">Old Questions</Typography>
       </NavLink>
 
       <NavLink
@@ -175,37 +211,14 @@ const SideMenu = () => {
         <Typography variant="h6">Quick Links</Typography>
       </NavLink> */}
       <NavLink
-        to={"/resources"}
+        to={"/announcement"}
         activeStyle={isActive}
         className={classes.textBox}
       >
-        <BookIcon fontSize="medium" />
-        <Typography variant="h6">Reading Material</Typography>
+        <AnnouncementIcon fontSize="medium" />
+        <Typography variant="h6">Announcement</Typography>
       </NavLink>
-      <NavLink
-        to={"/assignment-front"}
-        activeStyle={isActive}
-        className={classes.textBox}
-      >
-        <AssignmentTurnedInIcon fontSize="medium" />
-        <Typography variant="h6">Assignment/Homeworks</Typography>
-      </NavLink>
-      <NavLink
-        to={"/syllabus"}
-        activeStyle={isActive}
-        className={classes.textBox}
-      >
-        <DescriptionIcon fontSize="medium" />
-        <Typography variant="h6">Syllabus</Typography>
-      </NavLink>
-      <NavLink
-        to={"/old-questions"}
-        activeStyle={isActive}
-        className={classes.textBox}
-      >
-        <MenuBookIcon fontSize="medium" />
-        <Typography variant="h6">Old Questions</Typography>
-      </NavLink>
+
       <NavLink
         to={"/notification"}
         activeStyle={isActive}
@@ -214,22 +227,7 @@ const SideMenu = () => {
         <NotificationsIcon fontSize="medium" />
         <Typography variant="h6">Notification</Typography>
       </NavLink>
-      <NavLink
-        to={"/announcement"}
-        activeStyle={isActive}
-        className={classes.textBox}
-      >
-        <AnnouncementIcon fontSize="medium" />
-        <Typography variant="h6">Announcement</Typography>
-      </NavLink>
-      <NavLink
-        to={"/academic-calendar"}
-        activeStyle={isActive}
-        className={classes.textBox}
-      >
-        <EventBusyIcon fontSize="medium" />
-        <Typography variant="h6">Academic Calendar</Typography>
-      </NavLink>
+
       <NavLink
         to={"/attendance"}
         activeStyle={isActive}
@@ -238,6 +236,16 @@ const SideMenu = () => {
         <HowToRegRoundedIcon fontSize="medium" />
         <Typography variant="h6">Attendance</Typography>
       </NavLink>
+
+      <NavLink
+        to={"/academic-calendar"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <EventBusyIcon fontSize="medium" />
+        <Typography variant="h6">Academic Calendar</Typography>
+      </NavLink>
+
       <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
