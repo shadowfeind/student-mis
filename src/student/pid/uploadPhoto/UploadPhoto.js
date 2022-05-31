@@ -71,11 +71,11 @@ const UploadPhoto = () => {
 
   useEffect(() => {
     dispatch({ type: "GET_LINK", payload: "/" });
-    if (!allUploadPhoto) {
-      dispatch(getAllUploadPhotoAction());
-    }
-  }, [dispatch, allUploadPhoto]);
+  }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getAllUploadPhotoAction());
+  }, []);
   //   useEffect(()=>{
   // if (uploadPhotoSuccess){
   //   setUrl(`${API_URL}${uploadPhotoSuccess.FullPath}`);

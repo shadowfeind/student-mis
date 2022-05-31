@@ -109,9 +109,6 @@ const ClassNotification = () => {
 
   useEffect(() => {
     dispatch({ type: "GET_LINK", payload: "/notification" });
-    if (!classNotificationStudent) {
-      dispatch(getAllClassNotificationStudentAction());
-    }
     if (classNotificationStudent) {
       setAcademicYear(
         classNotificationStudent?.searchFilterModel.ddlAcademicYear
@@ -133,6 +130,10 @@ const ClassNotification = () => {
       );
     }
   }, [dispatch, classNotificationStudent]);
+
+  useEffect(() => {
+    dispatch(getAllClassNotificationStudentAction());
+  }, []);
 
   useEffect(() => {
     if (listClassNotificationStudent) {

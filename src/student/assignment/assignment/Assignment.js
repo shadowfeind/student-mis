@@ -234,9 +234,6 @@ const Assignment = () => {
   }
 
   useEffect(() => {
-    if (!assignment) {
-      dispatch(getAllAssignmentAction());
-    }
     if (assignment) {
       unstable_batchedUpdates(() => {
         setAcademicYearDdl(assignment.searchFilterModel.ddlAcademicYear);
@@ -244,10 +241,13 @@ const Assignment = () => {
         setDdlClass(assignment.searchFilterModel.ddlClass);
         setDdlShift(assignment.searchFilterModel.ddlAcademicShift);
         setDdlFacultySubject(assignment.searchFilterModel.ddlSubject);
-        setAcaYear(assignment.searchFilterModel.idAcademicYear);
-        setProgramValue(assignment.searchFilterModel.idFacultyProgramLink);
-        setClassId(assignment.searchFilterModel.level);
-        setShift(assignment.searchFilterModel.idShift);
+        setAcaYear(assignment.searchFilterModel.ddlAcademicYear[0]?.Key);
+        setProgramValue(
+          assignment.searchFilterModel.ddlFacultyProgramLink[0]?.Key
+        );
+        setClassId(assignment.searchFilterModel.ddlClass[0]?.Key);
+        setShift(assignment.searchFilterModel.ddlAcademicShift[0]?.Key);
+        setFacultySubject(assignment.searchFilterModel.ddlSubject[0]?.Key);
       });
       if (subjectIdFromDashboard) {
         setFacultySubject(subjectIdFromDashboard);
@@ -263,6 +263,11 @@ const Assignment = () => {
       }
     }
   }, [assignment, dispatch, subjectIdFromDashboard]);
+
+  useEffect(() => {
+    dispatch({ type: GET_ASSIGNMENT_LIST_RESET });
+    dispatch(getAllAssignmentAction());
+  }, []);
 
   useEffect(() => {
     if (assignmentList) {

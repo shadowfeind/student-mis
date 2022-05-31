@@ -110,7 +110,9 @@ const Header = () => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Grid container alignItems="center">
-            <Grid item></Grid>
+            <Grid item>
+              <b>STUDENT DASHBOARD</b>
+            </Grid>
             <Grid item sm></Grid>
             <Grid item>
               <ClickAwayListener onClickAway={() => setOpen(false)}>
