@@ -17,37 +17,43 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import AnnouncementTableCollapse from "./AnnouncementTableCollapse";
-import { getAllStudentAnnouncementAction, getListStudentAnnouncementAction } from "./AnnouncementActions";
-import { ANNOUNCEMENT_STUDENT_FCM_RESET, GET_ALL_ANNOUNCEMENT_STUDENT_RESET, GET_LIST_ANNOUNCEMENT_STUDENT_RESET } from "./AnnouncementConstant";
+import {
+  getAllStudentAnnouncementAction,
+  getListStudentAnnouncementAction,
+} from "./AnnouncementActions";
+import {
+  ANNOUNCEMENT_STUDENT_FCM_RESET,
+  GET_ALL_ANNOUNCEMENT_STUDENT_RESET,
+  GET_LIST_ANNOUNCEMENT_STUDENT_RESET,
+} from "./AnnouncementConstant";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
-
 const useStyles = makeStyles((theme) => ({
-    searchInput: {
-      width: "75%",
-      fontSize: "12px",
-    },
-    button: {
-      position: "absolute",
-      right: "10px",
-    },
-  }));
-  
-  const tableHeader = [
-    { id: "NewsHeading", label: "News Heading" },
-    { id: "NewsDescription", label: "News Description" },
-    { id: "IsActive", label: "IsActive" },
-    { id: "Created_On", label: "Created On" },
-    { id: "Updated_On", label: "Updated On" },
-  ];
+  searchInput: {
+    width: "75%",
+    fontSize: "12px",
+  },
+  button: {
+    position: "absolute",
+    right: "10px",
+  },
+}));
 
-  const Announcement = () => {
-    const [date, setDate] = useState();
-    const [tableData, setTableData] = useState([]);
+const tableHeader = [
+  { id: "NewsHeading", label: "News Heading" },
+  { id: "NewsDescription", label: "News Description" },
+  { id: "IsActive", label: "IsActive" },
+  { id: "Created_On", label: "Created On" },
+  { id: "Updated_On", label: "Updated On" },
+];
+
+const Announcement = () => {
+  const [date, setDate] = useState();
+  const [tableData, setTableData] = useState([]);
   const [filterFn, setFilterFn] = useState({
     fn: (item) => {
       return item;
@@ -70,7 +76,9 @@ const useStyles = makeStyles((theme) => ({
 
   const dispatch = useDispatch();
 
-  const { announcement, error,loading } = useSelector((state) => state.getAllStudentAnnouncement);
+  const { announcement, error, loading } = useSelector(
+    (state) => state.getAllStudentAnnouncement
+  );
 
   const {
     announcementList,
@@ -81,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
   const { announcementFCM, error: announcementFCMError } = useSelector(
     (state) => state.getFCMForStudentAnnouncement
   );
-
 
   if (error) {
     setNotify({
@@ -108,7 +115,6 @@ const useStyles = makeStyles((theme) => ({
     });
     dispatch({ type: ANNOUNCEMENT_STUDENT_FCM_RESET });
   }
-
 
   useEffect(() => {
     dispatch(getAllStudentAnnouncementAction());
@@ -145,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
           return item;
         } else {
           return item.filter((x) =>
-            x.NewsHeading.toLowerCase().includes(e.target.value)
+            x.NewsHeading.toLowerCase().includes(e.target.value?.toLowerCase())
           );
         }
       },
@@ -156,15 +162,13 @@ const useStyles = makeStyles((theme) => ({
     dispatch(getListStudentAnnouncementAction(date));
   };
 
-
   return (
-
     <>
-    <CustomContainer>
+      <CustomContainer>
         <Toolbar>
-        <InputControl
+          <InputControl
             className={classes.searchInput}
-            label="Search Announcement"
+            label="Search Announcement by Headings"
             InputProps={{
               startAdornment: (
                 <InputAdornment announcement="start">
@@ -200,26 +204,23 @@ const useStyles = makeStyles((theme) => ({
           >
             Search By Date
           </Button>
-            </Toolbar>
+        </Toolbar>
         {announcementListLoading && <LoadingComp />}
         {loading ? (
           <LoadingComp />
         ) : (
           <>
-        <TableContainer className={classes.table}>
-          <TblHead />
+            <TableContainer className={classes.table}>
+              <TblHead />
 
-          <TableBody>
-            {tableDataAfterPagingAndSorting().map((item) => (
-              <AnnouncementTableCollapse
-                item={item}
-                key={item.$id}
-              />
-            ))}
-          </TableBody>
-        </TableContainer>
-        <TblPagination />
-        </>
+              <TableBody>
+                {tableDataAfterPagingAndSorting().map((item) => (
+                  <AnnouncementTableCollapse item={item} key={item.$id} />
+                ))}
+              </TableBody>
+            </TableContainer>
+            <TblPagination />
+          </>
         )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
@@ -228,5 +229,6 @@ const useStyles = makeStyles((theme) => ({
         setConfirmDialog={setConfirmDialog}
       />
     </>
-  )}
-  export default Announcement;
+  );
+};
+export default Announcement;

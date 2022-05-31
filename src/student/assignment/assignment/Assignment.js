@@ -112,7 +112,9 @@ const Assignment = () => {
           return item;
         } else {
           return item.filter((x) =>
-            x.AssignmentName.toLowerCase().includes(e.target.value)
+            x.AssignmentName.toLowerCase().includes(
+              e.target.value?.toLowerCase()
+            )
           );
         }
       },
@@ -373,7 +375,7 @@ const Assignment = () => {
         <Toolbar>
           <InputControl
             className={classes.searchInput}
-            label="Search Assignment"
+            label="Search Assignment by Assignment Name"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

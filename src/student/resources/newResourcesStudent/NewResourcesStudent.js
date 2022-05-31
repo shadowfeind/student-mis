@@ -102,7 +102,7 @@ const NewResourcesStudent = () => {
           return item;
         } else {
           return item.filter((x) =>
-            x.EventName.toLowerCase().includes(e.target.value)
+            x.EventName.toLowerCase().includes(e.target.value?.toLowerCase())
           );
         }
       },
@@ -323,7 +323,7 @@ const NewResourcesStudent = () => {
         <Toolbar>
           <InputControl
             className={classes.searchInput}
-            label="Search New Resources Student"
+            label="Search E-Material by Resources Name"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
