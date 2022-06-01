@@ -89,7 +89,7 @@ export const DashboardCard = ({ subject }) => {
         </Link>
         <IconButton aria-label="share">
           <NotificationsActiveIcon style={{ fontSize: "16px" }} />
-          <h5></h5>
+          <h5>Notification</h5>
         </IconButton>
       </CardActions>
     </Card>
