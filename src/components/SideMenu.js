@@ -85,10 +85,8 @@ const SideMenu = () => {
   );
 
   useEffect(() => {
-    if (!headerContent) {
-      dispatch(getHeaderContentAction());
-    }
-  }, [headerContent, dispatch]);
+    dispatch(getHeaderContentAction());
+  }, []);
 
   useEffect(() => {
     if (uploadPhotoSuccess) {
@@ -117,6 +115,7 @@ const SideMenu = () => {
         )}
       </Typography>
       {/* </NavLink> */}
+      <br />
       <NavLink
         to={"/"}
         exact={true}
