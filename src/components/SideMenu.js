@@ -117,6 +117,7 @@ const SideMenu = () => {
         )}
       </Typography>
       {/* </NavLink> */}
+      <br />
       <NavLink
         to={"/"}
         exact={true}
