@@ -20,6 +20,7 @@ import SelectControl from "../../components/controls/SelectControl";
 import {
   DOWNLOAD_OLD_QUESTIONS_RESET,
   GET_ALL_OLD_QUESTIONS_RESET,
+  GET_LIST_OLD_QUESTIONS_STUDENT_RESET,
   GET_SUBJECT_OPTIONS_OLD_QUESTIONS_RESET,
 } from "./OldQuestionsConstants";
 import {
@@ -89,7 +90,9 @@ const OldQuestions = () => {
           return item;
         } else {
           return item.filter((x) =>
-            x.OldQuestionName.toLowerCase().includes(e.target.value)
+            x.OldQuestionName.toLowerCase().includes(
+              e.target.value?.toLowerCase()
+            )
           );
         }
       },
@@ -103,7 +106,7 @@ const OldQuestions = () => {
     (state) => state.getSubjectOptionsForOldQuestions
   );
 
-  const { listOldQuestionsStudent,loading } = useSelector(
+  const { listOldQuestionsStudent, loading } = useSelector(
     (state) => state.getListOldQuestionsStudent
   );
 
@@ -155,9 +158,6 @@ const OldQuestions = () => {
   };
 
   useEffect(() => {
-    if (!oldQuestions) {
-      dispatch(getAllOldQuestionsAction());
-    }
     if (oldQuestions) {
       setDdlClass(oldQuestions.searchFilterModel.ddlClass);
     }
@@ -180,6 +180,11 @@ const OldQuestions = () => {
       dispatch(getListOldQuestionsStudentAction(classId, facultySubject));
     }
   };
+
+  useEffect(() => {
+    dispatch({ type: GET_LIST_OLD_QUESTIONS_STUDENT_RESET });
+    dispatch(getAllOldQuestionsAction());
+  }, []);
 
   const handleClassIdChange = (value) => {
     setClassId(value);
@@ -229,7 +234,7 @@ const OldQuestions = () => {
         <Toolbar>
           <InputControl
             className={classes.searchInput}
-            label="Search Old Questions"
+            label="Search Old Questions by Name"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -241,22 +246,23 @@ const OldQuestions = () => {
           />
         </Toolbar>
         {loading ? (
-            <LoadingComp />):(
-              <>
-        {listOldQuestionsStudent && (
-          <TableContainer className={classes.table}>
-            <TblHead />
+          <LoadingComp />
+        ) : (
+          <>
+            {listOldQuestionsStudent && (
+              <TableContainer className={classes.table}>
+                <TblHead />
 
-            <TableBody>
-              {tableDataAfterPagingAndSorting().map((item) => (
-                <OldQuestionsTableCollapse item={item} key={item.$id} />
-              ))}
-            </TableBody>
-          </TableContainer>
-        )}
-        {listOldQuestionsStudent && <TblPagination />}
-        </>
+                <TableBody>
+                  {tableDataAfterPagingAndSorting().map((item) => (
+                    <OldQuestionsTableCollapse item={item} key={item.$id} />
+                  ))}
+                </TableBody>
+              </TableContainer>
             )}
+            {listOldQuestionsStudent && <TblPagination />}
+          </>
+        )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

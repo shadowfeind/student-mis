@@ -123,9 +123,6 @@ const StudentMonthlyPresentSheet = () => {
   }
 
   useEffect(() => {
-    if (!allStudentAttendanceData) {
-      dispatch(getAllStudentAttendanceAction());
-    }
     if (allStudentAttendanceData) {
       setProgramDdl(
         allStudentAttendanceData.searchFilterModel.ddlFacultyProgramLink
@@ -147,16 +144,26 @@ const StudentMonthlyPresentSheet = () => {
       setNepMonth(allStudentAttendanceData.searchFilterModel.npMonth);
       setNepYear(allStudentAttendanceData.searchFilterModel.npYear);
       setProgramValue(
-        allStudentAttendanceData.searchFilterModel.idFacultyProgramLink
+        allStudentAttendanceData.searchFilterModel.ddlFacultyProgramLink[0]?.Key
       );
-      setAcaYear(allStudentAttendanceData.searchFilterModel.idAcademicYear);
-      setClassId(allStudentAttendanceData.searchFilterModel.level);
-      setShift(allStudentAttendanceData.searchFilterModel.idShift);
-      setSection(allStudentAttendanceData.searchFilterModel.section);
-      setSubject(allStudentAttendanceData.searchFilterModel.idSubject);
+      setAcaYear(
+        allStudentAttendanceData.searchFilterModel.ddlAcademicYear[0]?.Key
+      );
+      setClassId(allStudentAttendanceData.searchFilterModel.ddlClass[0]?.Key);
+      setShift(
+        allStudentAttendanceData.searchFilterModel.ddlAcademicShift[0]?.Key
+      );
+      setSection(allStudentAttendanceData.searchFilterModel.ddlSection[0]?.Key);
+      setSubject(
+        allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance[0]?.Key
+      );
     }
   }, [allStudentAttendanceData, dispatch]);
 
+  useEffect(() => {
+    dispatch({ type: GET_LIST_STUDENT_ATTENDANCE_RESET });
+    dispatch(getAllStudentAttendanceAction());
+  }, []);
   // useEffect(() => {
   //   if (subjectOptions) {
   //     setDdlSubject(subjectOptions);
@@ -231,25 +238,15 @@ const StudentMonthlyPresentSheet = () => {
     }
   };
 
-  useEffect(() => {
-    if (allOtherOptions) {
-      setAcaYear(
-        allOtherOptions.year.length > 0 ? allOtherOptions.year[0].Key : ""
-      );
-      setProgramValue(
-        allOtherOptions.program.length > 0 ? allOtherOptions.program[0].Key : ""
-      );
-      setClassId(
-        allOtherOptions.classId.length > 0 ? allOtherOptions.classId[0].Key : ""
-      );
-      setSection(
-        allOtherOptions.section.length > 0 ? allOtherOptions.section[0].Key : ""
-      );
-      setShift(
-        allOtherOptions.shift.length > 0 ? allOtherOptions.shift[0].Key : ""
-      );
-    }
-  }, [allOtherOptions]);
+  // useEffect(() => {
+  //   if (allOtherOptions) {
+  //     setAcaYear(allOtherOptions.year[0]?.Key);
+  //     setProgramValue(allOtherOptions.program[0]?.Key);
+  //     setClassId(allOtherOptions.classId[0]?.Key);
+  //     setSection(allOtherOptions.section[0]?.Key);
+  //     setShift(allOtherOptions?.shift[0].Key);
+  //   }
+  // }, [allOtherOptions]);
 
   return (
     <>
@@ -347,7 +344,7 @@ const StudentMonthlyPresentSheet = () => {
                   inputVariant="outlined"
                   format="dd-MM-yyyy"
                   name="CurrentYear"
-                  label="Current Year"
+                  label="Current Date"
                   value={date}
                   onChange={(e) => {
                     const newDate = new Date(e);
@@ -357,7 +354,7 @@ const StudentMonthlyPresentSheet = () => {
               </MuiPickersUtilsProvider>
             </Grid>
             <Grid item xs={3}>
-            <div style={{ height: "10px" }}></div>
+              <div style={{ height: "10px" }}></div>
               <Button
                 variant="contained"
                 color="primary"

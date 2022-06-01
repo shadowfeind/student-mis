@@ -76,7 +76,7 @@ const NewResourcesStudent = () => {
       return item;
     },
   });
- 
+
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -102,7 +102,7 @@ const NewResourcesStudent = () => {
           return item;
         } else {
           return item.filter((x) =>
-            x.EventName.toLowerCase().includes(e.target.value)
+            x.EventName.toLowerCase().includes(e.target.value?.toLowerCase())
           );
         }
       },
@@ -113,8 +113,11 @@ const NewResourcesStudent = () => {
     (state) => state.getAllNewResourcesStudent
   );
 
-  const { newResourcesStudentList,loading, error: newResourcesStudentListError } =
-    useSelector((state) => state.getNewResourcesStudentList);
+  const {
+    newResourcesStudentList,
+    loading,
+    error: newResourcesStudentListError,
+  } = useSelector((state) => state.getNewResourcesStudentList);
 
   const {
     success: downloadNewResourcesSuccess,
@@ -167,9 +170,6 @@ const NewResourcesStudent = () => {
   };
 
   useEffect(() => {
-    if (!newResourcesStudent) {
-      dispatch(getAllNewResourcesStudentAction());
-    }
     if (newResourcesStudent) {
       unstable_batchedUpdates(() => {
         setProgramDdl(
@@ -182,11 +182,20 @@ const NewResourcesStudent = () => {
         setDdlShift(newResourcesStudent.searchFilterModel.ddlAcademicShift);
         setDdlSection(newResourcesStudent.searchFilterModel.ddlSection);
         setDdlFacultySubject(newResourcesStudent.searchFilterModel.ddlSubject);
-        setProgramValue(newResourcesStudent.searchFilterModel.idFacultyProgramLink);
-        setClassId(newResourcesStudent.searchFilterModel.level);
-        setAcaYear(newResourcesStudent.searchFilterModel.idAcademicYear);
-        setSection(newResourcesStudent.searchFilterModel.section);
-        setShift( newResourcesStudent.searchFilterModel.idShift);
+        setProgramValue(
+          newResourcesStudent.searchFilterModel.ddlFacultyProgramLink[0]?.Key
+        );
+        setClassId(newResourcesStudent.searchFilterModel.ddlClass[0]?.Key);
+        setAcaYear(
+          newResourcesStudent.searchFilterModel.ddlAcademicYear[0]?.Key
+        );
+        setSection(newResourcesStudent.searchFilterModel.ddlSection[0]?.Key);
+        setShift(
+          newResourcesStudent.searchFilterModel.ddlAcademicShift[0]?.Key
+        );
+        setFacultySubject(
+          newResourcesStudent.searchFilterModel.ddlSubject[0]?.Key
+        );
       });
       if (subjectIdFromDashboard) {
         setFacultySubject(subjectIdFromDashboard);
@@ -203,6 +212,11 @@ const NewResourcesStudent = () => {
       }
     }
   }, [newResourcesStudent, dispatch, subjectIdFromDashboard]);
+
+  useEffect(() => {
+    dispatch({ type: GET_NEW_SOURCES_STUDENT_LIST_RESET });
+    dispatch(getAllNewResourcesStudentAction());
+  }, []);
 
   useEffect(() => {
     if (newResourcesStudentList) {
@@ -309,7 +323,7 @@ const NewResourcesStudent = () => {
         <Toolbar>
           <InputControl
             className={classes.searchInput}
-            label="Search New Resources Student"
+            label="Search E-Material by Resources Name"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -321,23 +335,27 @@ const NewResourcesStudent = () => {
           />
         </Toolbar>
         {loading ? (
-            <LoadingComp />):(
-              <>
-        {newResourcesStudentList && (
-          <TableContainer className={classes.table}>
-            <TblHead />
+          <LoadingComp />
+        ) : (
+          <>
+            {newResourcesStudentList && (
+              <TableContainer className={classes.table}>
+                <TblHead />
 
-            <TableBody>
-              {tableDataAfterPagingAndSorting().map((item) => (
-                <NewResourcesStudentTableCollapse item={item} key={item.$id} />
-              ))}
-            </TableBody>
-          </TableContainer>
-        )}
-
-        {newResourcesStudentList && <TblPagination />}
-        </>
+                <TableBody>
+                  {tableDataAfterPagingAndSorting().map((item) => (
+                    <NewResourcesStudentTableCollapse
+                      item={item}
+                      key={item.$id}
+                    />
+                  ))}
+                </TableBody>
+              </TableContainer>
             )}
+
+            {newResourcesStudentList && <TblPagination />}
+          </>
+        )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

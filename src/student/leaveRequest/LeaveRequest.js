@@ -232,13 +232,14 @@ const LeaveRequest = () => {
   }
 
   useEffect(() => {
-    if (!listLeaveRequest) {
-      dispatch(getListLeaveRequestAction());
-    }
     if (listLeaveRequest) {
       setTableData(listLeaveRequest.dbModelLst);
     }
   }, [dispatch, listLeaveRequest]);
+
+  useEffect(() => {
+    dispatch(getListLeaveRequestAction());
+  }, []);
 
   const updateCollegeHandler = (id) => {
     dispatch(getSingleEditLeaveRequestAction(id));

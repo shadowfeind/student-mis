@@ -45,7 +45,7 @@ const useStyles = makeStyles({
     backgroundColor: "#253053",
     position: "fixed",
     "& h6": {
-      fontSize: "13px",
+      fontSize: "12px",
       padding: "0",
     },
     // "& h6:hover": {
@@ -98,24 +98,25 @@ const SideMenu = () => {
 
   return (
     <div className={classes.sideMenu}>
-      <Typography
+      <br />
+      {/* <Typography
         variant="h5"
         style={{ color: "#fff", textAlign: "center", padding: " 17px 0" }}
       >
         VIDYACUBE
-      </Typography>
-      <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
+      </Typography> */}
+      <Typography align="center">
+        {/* <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}> */}
         {headerContent && (
           <img
-            src={`${API_URL}${headerContent.FullPath}`}
-            width="70px"
-            height="70px"
+            src={`${API_URL}${headerContent.FullPathSchoolLogo}`}
+            width="60px"
+            height="60px"
             style={{ borderRadius: "50%" }}
           />
         )}
-
-        <Typography variant="h6">Profile</Typography>
-      </NavLink>
+      </Typography>
+      {/* </NavLink> */}
       <NavLink
         to={"/"}
         exact={true}
