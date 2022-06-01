@@ -85,10 +85,8 @@ const SideMenu = () => {
   );
 
   useEffect(() => {
-    if (!headerContent) {
-      dispatch(getHeaderContentAction());
-    }
-  }, [headerContent, dispatch]);
+    dispatch(getHeaderContentAction());
+  }, []);
 
   useEffect(() => {
     if (uploadPhotoSuccess) {
