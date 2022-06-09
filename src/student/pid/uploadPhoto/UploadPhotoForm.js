@@ -6,6 +6,7 @@ import { API_URL } from "../../../constants";
 import { putUploadPhotoAction } from "./UploadPhotoActions";
 
 const UploadPhotoForm = ({ uploadPhoto }) => {
+  const [active, setActive] = useState(false);
   const [image, setImage] = useState(null);
   const [imgSrc, setImgSrc] = useState(null);
   const dispatch = useDispatch();
@@ -21,12 +22,13 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
   };
 
   const handleUploadImage = () => {
-    if(uploadPhoto){
-      dispatch(putUploadPhotoAction(image,uploadPhoto.dbModel))
-    }else{
-      console.log("failed")
+    setActive(true);
+    if (uploadPhoto) {
+      dispatch(putUploadPhotoAction(image, uploadPhoto.dbModel));
+    } else {
+      console.log("failed");
     }
-  }
+  };
 
   return (
     <>
@@ -36,7 +38,15 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
         type="file"
       />
 
-      <img src={imgSrc ? imgSrc : uploadPhoto && `${API_URL}${uploadPhoto.dbModel.FullPath}`} height={200} width={200} />
+      <img
+        src={
+          imgSrc
+            ? imgSrc
+            : uploadPhoto && `${API_URL}${uploadPhoto.dbModel.FullPath}`
+        }
+        height={200}
+        width={200}
+      />
       <div
         style={{
           display: "flex",
@@ -50,9 +60,10 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
           variant="contained"
           color="primary"
           onClick={handleUploadImage}
+          disabled={active}
           style={{ margin: "10px 0 0 10px" }}
         >
-          UPLOAD
+          {active ? "PROCESSING" : "UPLOAD"}
         </Button>
       </div>
     </>
