@@ -12,6 +12,7 @@ import {
   PostAdd,
   RecordVoiceOver,
 } from "@material-ui/icons";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
 import HowToRegRoundedIcon from "@material-ui/icons/HowToRegRounded";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -244,6 +245,14 @@ const SideMenu = () => {
       >
         <EventBusyIcon fontSize="medium" />
         <Typography variant="h6">Academic Calendar</Typography>
+      </NavLink>
+      <NavLink
+        to={"/account-statement"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <FileCopyIcon fontSize="medium" />
+        <Typography variant="h6">Account Statement</Typography>
       </NavLink>
 
       <Notification notify={notify} setNotify={setNotify} />

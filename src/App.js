@@ -10,6 +10,9 @@ import {
 } from "@material-ui/core";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 
+const AccountStatement = lazy(() =>
+  import("./student/accountStatement/AccountStatement")
+);
 const PageNotFound = lazy(() => import("./student/pageNotFound/PageNotFound"));
 const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
 const Pid = lazy(() => import("./student/pid/UserProfile"));
@@ -83,6 +86,7 @@ const App = () => {
               <Route path={"/leave-request"} component={Leave} />
               <Route path={"/announcement"} component={Announcement} />
               <Route path={"/academic-calendar"} component={Holiday} />
+              <Route path={"/account-statement"} component={AccountStatement} />
               <Route
                 exact
                 path={"/academic-grading"}

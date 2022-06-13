@@ -6,7 +6,16 @@ import {
   getSingleAcademicGradingReducer,
   updateSingleAcademicGradingReducer,
 } from "./student/academicGrading/AcademicGradingReducers";
-import { getAllStudentAnnouncement, getFCMForStudentAnnouncementReducer, getListStudentAnnouncement } from "./student/announcementStudent/AnnouncementReducers";
+import {
+  getAccountNameReducer,
+  getAllAccountStatementReducer,
+  getListAccountStatementReducer,
+} from "./student/accountStatement/AccountStatementReducers";
+import {
+  getAllStudentAnnouncement,
+  getFCMForStudentAnnouncementReducer,
+  getListStudentAnnouncement,
+} from "./student/announcementStudent/AnnouncementReducers";
 import {
   downloadAssignmentReducer,
   downloadSubmittedAssignmentReducer,
@@ -63,8 +72,21 @@ import {
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
 import { getAllHoliday } from "./student/holiday/HolidayReducer";
-import { deleteLeaveRequestReducer, downloadLeaveRequestReducer, getAllLeaveRequestReducer, getListLeaveRequestReducer, getSingleCreateLeaveRequestReducer, getSingleDeleteLeaveRequestReducer, getSingleEditLeaveRequestReducer, postLeaveRequestReducer, putLeaveRequestReducer } from "./student/leaveRequest/LeaveRequestReducers";
-import { getAllClassNotificationStudentReducer, getListClassNotificationStudentReducer } from "./student/notification/classNotification/ClassNotificationReducers";
+import {
+  deleteLeaveRequestReducer,
+  downloadLeaveRequestReducer,
+  getAllLeaveRequestReducer,
+  getListLeaveRequestReducer,
+  getSingleCreateLeaveRequestReducer,
+  getSingleDeleteLeaveRequestReducer,
+  getSingleEditLeaveRequestReducer,
+  postLeaveRequestReducer,
+  putLeaveRequestReducer,
+} from "./student/leaveRequest/LeaveRequestReducers";
+import {
+  getAllClassNotificationStudentReducer,
+  getListClassNotificationStudentReducer,
+} from "./student/notification/classNotification/ClassNotificationReducers";
 
 import {
   downloadOldQuestionsReducer,
@@ -255,7 +277,7 @@ export const reducers = combineReducers({
   getSingleAssignment: getSingleAssignmentReducer,
   putSingleAssignment: putSingleAssignmentReducer,
   downloadAssignment: downloadAssignmentReducer,
-  downloadSubmittedAssignment : downloadSubmittedAssignmentReducer,
+  downloadSubmittedAssignment: downloadSubmittedAssignmentReducer,
   //ClassSchedule Reducer
   getAllClassSchedule: getAllClassScheduleReducer,
   //OldQuestions Reducers
@@ -266,24 +288,28 @@ export const reducers = combineReducers({
   //Syllabus Teacher
   getAllSyllabus: getAllSyllabusReducer,
   //Class Notification Student:
-  getAllClassNotificationStudent : getAllClassNotificationStudentReducer,
-  getListClassNotificationStudent : getListClassNotificationStudentReducer,
+  getAllClassNotificationStudent: getAllClassNotificationStudentReducer,
+  getListClassNotificationStudent: getListClassNotificationStudentReducer,
 
   //holiday
   holiday: getAllHoliday,
 
-//Student Announcement:
-getAllStudentAnnouncement : getAllStudentAnnouncement,
-getListStudentAnnouncement: getListStudentAnnouncement,
-getFCMForStudentAnnouncement : getFCMForStudentAnnouncementReducer,
- //Leave Request:
- getAllLeaveRequest : getAllLeaveRequestReducer,
- getListLeaveRequest : getListLeaveRequestReducer,
- getSingleCreateLeaveRequest : getSingleCreateLeaveRequestReducer,
- getSingleEditLeaveRequest : getSingleEditLeaveRequestReducer,
- postLeaveRequest : postLeaveRequestReducer,
- putLeaveRequest : putLeaveRequestReducer,
- getSingleDeleteLeaveRequest : getSingleDeleteLeaveRequestReducer,
- deleteLeaveRequest : deleteLeaveRequestReducer,
- downloadLeaveRequest : downloadLeaveRequestReducer,
+  //Student Announcement:
+  getAllStudentAnnouncement: getAllStudentAnnouncement,
+  getListStudentAnnouncement: getListStudentAnnouncement,
+  getFCMForStudentAnnouncement: getFCMForStudentAnnouncementReducer,
+  //Leave Request:
+  getAllLeaveRequest: getAllLeaveRequestReducer,
+  getListLeaveRequest: getListLeaveRequestReducer,
+  getSingleCreateLeaveRequest: getSingleCreateLeaveRequestReducer,
+  getSingleEditLeaveRequest: getSingleEditLeaveRequestReducer,
+  postLeaveRequest: postLeaveRequestReducer,
+  putLeaveRequest: putLeaveRequestReducer,
+  getSingleDeleteLeaveRequest: getSingleDeleteLeaveRequestReducer,
+  deleteLeaveRequest: deleteLeaveRequestReducer,
+  downloadLeaveRequest: downloadLeaveRequestReducer,
+  //account statement
+  getAllAccountStatement: getAllAccountStatementReducer,
+  getListAccountStatement: getListAccountStatementReducer,
+  getAccountName: getAccountNameReducer,
 });
