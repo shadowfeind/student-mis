@@ -1,8 +1,7 @@
-
 // export const API_URL = "http://103.90.86.151:84";
 // export const API_URL = "http://103.90.86.151:100";
 // export const API_URL = "http://192.168.1.85:88";
-export const API_URL = "https://mis.vidyacube.com";
+export const API_URL = "https://divinelight.vidyacube.com/";
 import jwt_decode from "jwt-decode";
 import moment from "moment";
 import axios from "axios";
@@ -24,12 +23,10 @@ export const tokenHeader = {
   },
 };
 
-
 export const tokenConfig = () => {
   const user = sessionStorage.getItem("blueberrytoken")
     ? sessionStorage.getItem("blueberrytoken")
     : null;
-
 
   if (user) {
     // const userSessionCheck = jwt_decode(user.AccessToken);
