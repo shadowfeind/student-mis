@@ -60,8 +60,6 @@ const AssignmentEditForm = ({
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
-    temp.image = !image ? "This File Is Required" : "";
-
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
   };
@@ -131,7 +129,6 @@ const AssignmentEditForm = ({
               // value={values.ClassLocation}
               onChange={(e) => handleImage(e)}
               type="file"
-              errors={errors.image}
             />
             <img
               src={
