@@ -95,25 +95,37 @@ export const putSingleAssignmentAction =
   (image, assignment) => async (dispatch) => {
     try {
       dispatch({ type: PUT_SINGLE_ASSIGNMENT_REQUEST });
+      let documentSubmitted;
+      if (image) {
+        let formData = new FormData();
+        formData.append("ImageUploaded", image);
 
-      let formData = new FormData();
-      formData.append("ImageUploaded", image);
-
-      const { data } = await axiosInstance.post(
-        `${API_URL}/api/StudentSubmission/FileUpload`,
-        formData,
-        tokenConfig()
-      );
-
+        const { data: documentsSubmitted } = await axiosInstance.post(
+          `${API_URL}/api/StudentSubmission/FileUpload`,
+          formData,
+          tokenConfig()
+        );
+        documentSubmitted = documentsSubmitted || "";
+      }
       console.log(assignment);
 
-      if (data) {
+      if (documentSubmitted) {
         const newData = {
           ...assignment,
-          DocumentSubmitted: data,
+          DocumentSubmitted: documentSubmitted,
         };
         const jsonData = JSON.stringify({
           dbStudentSubmissionModel: newData,
+        });
+
+        await axiosInstance.put(
+          `${API_URL}/api/StudentSubmission/PutStudentSubmission`,
+          jsonData,
+          tokenConfig()
+        );
+      } else {
+        const jsonData = JSON.stringify({
+          dbStudentSubmissionModel: assignment,
         });
 
         await axiosInstance.put(
@@ -125,7 +137,6 @@ export const putSingleAssignmentAction =
 
       dispatch({
         type: PUT_SINGLE_ASSIGNMENT_SUCCESS,
-        payload: data,
       });
     } catch (error) {
       dispatch({

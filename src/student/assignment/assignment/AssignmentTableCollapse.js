@@ -2,6 +2,7 @@ import React from "react";
 import { Button, TableRow, TableCell, makeStyles } from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import AddIcon from "@material-ui/icons/Add";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
   downloadAssignmentAction,
@@ -57,14 +58,18 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
 
       <TableCell>
         {" "}
-        <Button
-          variant="outlined"
-          color="secondary"
-          className={classes.button}
-          onClick={() => downloadHandler(item.IDAssignment)}
-        >
-          <CloudDownloadIcon style={{ fontSize: 12 }} />
-        </Button>
+        {item.DocumentName !== null &&
+          item.DocumentName !== "/Upload/TeacherAssignment/" &&
+          item.DocumentName !== "" && (
+            <Button
+              variant="outlined"
+              color="secondary"
+              className={classes.button}
+              onClick={() => downloadHandler(item.IDAssignment)}
+            >
+              <CloudDownloadIcon style={{ fontSize: 12 }} />
+            </Button>
+          )}
       </TableCell>
       <TableCell>
         {" "}
@@ -76,6 +81,14 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
             onClick={() => downloadSubmittedHandler(item.IDAssignment)}
           >
             <CloudDownloadIcon style={{ fontSize: 12 }} />
+          </Button>
+        )}
+      </TableCell>
+      <TableCell>
+        {" "}
+        {item.SubmittedDate !== null && (
+          <Button variant="outlined" color="primary" className={classes.button}>
+            <VisibilityIcon style={{ fontSize: 12 }} />
           </Button>
         )}
       </TableCell>
